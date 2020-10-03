@@ -13,7 +13,7 @@ import logging
 import requests
 import threading
 
-# 配置日志
+# 配置日志1
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 
 
