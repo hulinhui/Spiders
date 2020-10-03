@@ -59,4 +59,4 @@ def get_song(song_name):
 
 
 if __name__ == '__main__':
-    get_song(input("请输入您想要搜索的歌曲名称："))
+    get_song(input("请输入您55555想要搜索的歌曲名称："))
