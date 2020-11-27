@@ -36,13 +36,13 @@ class Parse(threading.Thread):
         print(f'退出{self.number}号解析线程')
 
     # 页面解析函数
-    def parse(self):
+    def parse(self, data):
         pass
 
 
-class Crwal(threading.Thread):
+class Crawl(threading.Thread):
     def __init__(self, number, req_list, data_list):
-        super(Crwal, self).__init__()
+        super(Crawl, self).__init__()
         self.number = number
         self.req_list = req_list
         self.data_list = data_list

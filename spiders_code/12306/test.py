@@ -1,13 +1,15 @@
 import json
+from time import sleep
+
 import requests
 from PIL import Image
-from time import sleep
-from .CJYDemo import use_cjy
 from selenium import webdriver
 from selenium.webdriver import ActionChains
 from selenium.webdriver.common.by import By
-from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.support.ui import WebDriverWait
+
+from .CJYDemo import use_cjy
 
 headers = {
     "User-Agent": "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.1 (KHTML, like Gecko) Chrome/22.0.1207.1"
@@ -24,7 +26,7 @@ class TrainUser:
 
     # 登录12306
     def login(self):
-       browser = webdriver.Chrome()
+        browser = webdriver.Chrome()
         browser.get("https://kyfw.12306.cn/otn/login/init")
         browser.find_element_by_xpath('//*[@id="username"]').send_keys(self.username)
         sleep(2)
