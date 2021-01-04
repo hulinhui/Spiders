@@ -7,7 +7,6 @@ Time: 2019/1/31 14:08
 import re
 import time
 import requests
-import numpy as np
 import matplotlib.pyplot as plt
 from lxml import etree
 from multiprocessing import Pool
@@ -77,7 +76,7 @@ class BaiJiaHao:
         lst = sorted(dic.items(), key=lambda x: x[1])  # 字典解析
         lst = lst[-10:]  # 取前十项
         for i in lst[::-1]:
-            print(i[0],i[1])
+            print(i[0], i[1])
         href_list, num_list = [], []
         for i in lst:
             href = i[0]
