@@ -57,7 +57,7 @@ class WangyiSpider():
     def get_params(self,page=4):
         self.frist_param = '{"csrf_token": "","cursor": "-1","offset": "0","orderType": "1","pageNo": %s,"pageSize": "20","threadId": "R_SO_4_%s"}' % (
         page,self.song_id)
-        print(self.frist_param)
+        # print(self.frist_param)
         # 生成长度为16的随机字符串
         text = self.create_random_16()
         # 第一次AES加密
