@@ -10,13 +10,15 @@
 import requests
 from fake_useragent import UserAgent
 from bs4 import BeautifulSoup
+import json
+import os
 
 
 class World_Spider():
     def __init__(self):
         self.start_url='http://cn.flagbox.net/'
         self.headers={'User-Agent':UserAgent().random}
-        self.filepath=''
+        self.filepath='D:/pycharm/PyCharm2020.2.2/projects/Spiders/single_spider/world_flag/'
         self.data_list=[]
 
     def get_html(self,url):
@@ -34,7 +36,7 @@ class World_Spider():
         url_list=['http://cn.flagbox.net/'+url.get('href') for url in link_list]
         return url_list
 
-    def get_country_info(self,text):
+    def get_country_info(self,text,url_data):
         soup=BeautifulSoup(text,'lxml')
         table_selector=soup.select_one('div#page-bg > table tr > td:nth-of-type(1) > table table:nth-of-type(2)')
         item={}
@@ -62,20 +64,48 @@ class World_Spider():
 
             language = table_selector.select('tr:nth-of-type(14) > td:nth-of-type(2)')
             item['语言'] = language[0].get_text() if len(country) else ''
+
+            item['国旗']=url_data[0]
+            item['国标'] = url_data[1]
+            item['国徽'] = url_data[2]
+
             return item
         except Exception as e:
             print(e)
 
 
     def download_data(self,item):
-        pass
-
+        with open('国家信息.json','a',encoding='utf-8') as fp:
+            fp.write(json.dumps(item,ensure_ascii=False)+"\n")
+            print(f"数据下载完成:{item['国家']}")
 
     def get_imglink(self,text):
-        pass
+        soup=BeautifulSoup(text,'lxml')
+        td_seletor=soup.select_one('div#page-bg > table td:nth-of-type(1) tr > td')
+        #高清国旗
+        f_picture=self.start_url+td_seletor.select('ul > li:nth-of-type(7) > a')[0].get('href')
+        #国旗高清图标
+        f_icon=self.start_url+td_seletor.select('p > img:nth-of-type(2)')[0].get('src')
+        # 国徽链接
+        f_emblem=self.start_url+td_seletor.select('p > img')[3].get('src')
 
-    def download_imglink(self,url):
-        pass
+        return f_picture,f_icon,f_emblem
+
+    def download_imglink(self,item,urls):
+        file_path = self.filepath + item['国家'] + '/'
+        if not os.path.exists(file_path):
+            os.mkdir(file_path)
+        try:
+            for url in urls:
+                with open(file_path+url.split('/')[-1],'wb') as fp:
+                    content=requests.get(url,headers=self.headers).content
+                    if content:
+                        fp.write(content)
+                    else:
+                        print("图片下载失败")
+            print(f"图片下载完成：{item['国家']}")
+        except Exception as e:
+            print(e)
 
 
     def run(self):
@@ -88,14 +118,10 @@ class World_Spider():
             second_urllist=self.get_url(first_html,selector2)
             for second_url in second_urllist:
                 second_html=self.get_html(second_url)
-                item_data=self.get_country_info(second_html)
-                img_url=self.get_imglink(second_html)
+                img_url = self.get_imglink(second_html)
+                item_data=self.get_country_info(second_html,img_url)
                 self.download_data(item_data)
-                self.download_imglink(img_url)
-
-
-
-
+                self.download_imglink(item_data,img_url)
 
 
 if __name__=='__main__':
