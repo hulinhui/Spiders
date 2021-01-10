@@ -13,16 +13,9 @@ def url_decode(str):
     return str_decode
 
 
-
-
 if __name__ == '__main__':
-    str_init='小米11'
-    str_encode=url_encode(str_init)
-    str_decode=url_decode(str_encode)
-    print(str_encode,str_decode)
-
-
-
-
-
-
+    str_init = '小米11'
+    str_encode = url_encode(str_init)
+    str2 = '%E5%8C%97%E4%BA%AC%7C101010100%7C'
+    str_decode = url_decode(str2)
+    print(str_encode, str_decode)
