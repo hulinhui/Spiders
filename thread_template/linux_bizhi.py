@@ -4,9 +4,8 @@ from threading import Thread
 import requests
 import time
 from bs4 import BeautifulSoup
-from fake_useragent import UserAgent
 
-headers = {'User-Agent': UserAgent().random}
+headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/94.0.4606.61 Safari/537.36'}
 
 
 class Linux_Pic(Thread):
@@ -14,7 +13,7 @@ class Linux_Pic(Thread):
         super().__init__()
         self.queue = queue
         self.domain = 'http://www.linuxidc.com'
-        self.path = 'C:/Users/hlh/Pictures/Saved Pictures/linux_pic/'
+        self.path = 'C:/Users/hulinhui/Pictures/linux_pic/'
 
     def run(self):
         while True:
@@ -76,10 +75,10 @@ class Linux_Pic(Thread):
 if __name__ == '__main__':
     start_time = time.time()
     base_url = 'http://www.linuxidc.com/Linuxwallpaper/index{}.htm'
-    url_list = [base_url.format(f'p{i}') if i != 1 else base_url.format('') for i in range(1, 23)]
+    url_list = [base_url.format(f'p{i}') if i != 1 else base_url.format('') for i in range(1, 6)]
     q_page = Queue()
 
-    for i in range(20):
+    for i in range(6):
         worker = Linux_Pic(q_page)
         worker.daemon = True
         worker.start()
