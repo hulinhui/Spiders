@@ -5,7 +5,9 @@ import requests
 import time
 from bs4 import BeautifulSoup
 
-headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/94.0.4606.61 Safari/537.36'}
+headers = {
+    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) '
+                  'Chrome/94.0.4606.61 Safari/537.36'}
 
 
 class Linux_Pic(Thread):
@@ -13,7 +15,7 @@ class Linux_Pic(Thread):
         super().__init__()
         self.queue = queue
         self.domain = 'http://www.linuxidc.com'
-        self.path = 'C:/Users/hulinhui/Pictures/linux_pic/'
+        self.path = r'C:/Users/hlh/OneDrive/Pictures/pictures/linux_pic/'
 
     def run(self):
         while True:
