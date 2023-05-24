@@ -14,6 +14,7 @@ Accept-Encoding: gzip, deflate, br
 Accept-Language: zh-CN,zh;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
 appsource: PC
 Connection: keep-alive
+Content-Type: application/json;charset=UTF-8
 Host: distribution.gotokeep.com
 Referer: https://distribution.gotokeep.com/mgr
 sec-ch-ua: "Microsoft Edge";v="113", "Chromium";v="113", "Not-A.Brand";v="24"
