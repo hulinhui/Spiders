@@ -2,9 +2,9 @@ import requests
 import os
 import pathlib
 import json
-from loggingmethod import get_logging
+from .loggingmethod import get_logging
 from configparser import ConfigParser
-from NotifyMessage import send_pushplus
+from .NotifyMessage import send_pushplus
 
 logger = get_logging()  # 日志模块
 
