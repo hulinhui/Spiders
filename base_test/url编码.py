@@ -1,15 +1,14 @@
-#python实现url编码
+# python实现url编码
 from urllib import parse
 
 
-
 def url_encode(str):
-    str_encode=parse.quote(str)
+    str_encode = parse.quote(str)
     return str_encode
 
 
 def url_decode(str):
-    str_decode=parse.unquote(str)
+    str_decode = parse.unquote(str)
     return str_decode
 
 
