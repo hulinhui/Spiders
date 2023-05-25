@@ -69,19 +69,12 @@ class Batch_Order:
         if json_data['status'] == 1:
             data = json_data['data']
             if data.get('totalResult', 0) > 0:
-                if 'pdList' in data:
-                    for order in data['pdList']:
-                        yield order['id_'], order['mod_time_']
-                else:
-                    order_msg = f"订单号-{data['code_']}：作废成功" if data.get(
-                        'form_status_') == 999 else f"订单号-{data['code_']}：作废失败！"
-                    print(order_msg)
+                for order in data['pdList']:
+                    yield order['id_'], order['mod_time_']
             else:
-                print(444)
                 print('查询无订单！')
                 exit()
         else:
-            print(555)
             print('查询订单列表数据失败！')
             exit()
 
