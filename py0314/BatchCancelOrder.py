@@ -47,11 +47,11 @@ class Batch_Order:
             params_str = ''
         timestamp = str(int(time.time() * math.pow(10, 7)))
         random_str = ''.join(random.sample(string.ascii_letters + string.digits, 20))
-        print(params_str)
         checkKey = 'yunshang' + self.headers['yunshl_token'] + timestamp + random_str + params_str
         self.headers['timestamp'] = timestamp
         self.headers['nonce'] = random_str
         self.headers['signnatrue'] = self.get_md5_str(checkKey)
+        return params_str
 
     def get_response(self, method, url, params_dict=None, data_dict=None):
         try:
@@ -69,16 +69,22 @@ class Batch_Order:
         if json_data['status'] == 1:
             data = json_data['data']
             if data.get('totalResult', 0) > 0:
-                if data.get('pdList'):
-                    for order in data['pdList']:
-                        yield order['id_'], order['mod_time_']
-                else:
-                    order_msg = f"订单号-{data['code_']}：作废成功" if data.get(
-                        'form_status_') == 999 else f"订单号-{data['code_']}：作废失败！"
-                    print(order_msg)
+                for order in data['pdList']:
+                    yield order['id_'], order['mod_time_']
             else:
                 print('查询无订单！')
                 exit()
+        else:
+            print('查询订单列表数据失败！')
+            exit()
+
+    def get_vaild_info(self, response):
+        json_data = response.json()
+        if json_data['status'] == 1:
+            data = json_data['data']
+            order_msg = f"订单号-{data['code_']}：作废成功" if data.get(
+                'form_status_') == 999 else f"订单号-{data['code_']}：作废失败！"
+            print(order_msg)
         else:
             print('查询订单列表数据失败！')
             exit()
@@ -88,11 +94,11 @@ class Batch_Order:
         self.get_real_headers(search_params_str)
         response = self.get_response('get', self.order_list_url, params_dict)
         for index, info in enumerate(self.get_order_info(response), 4):
-            cancel_params = {"id_": info[0], "mod_time_": info[1], "invalid_remark_": f"0524作废订单-{index}"}
-            self.get_real_headers(cancel_params)
+            cancel_params = {"id_": info[0], "mod_time_": info[1], "invalid_remark_": f"0524cancelorder-{index}"}
+            cancel_params = self.get_real_headers(cancel_params)
             cancel_response = self.get_response('post', self.order_cancel_url, data_dict=cancel_params)
-            self.get_order_info(cancel_response)
-            break
+            self.get_vaild_info(cancel_response)
+            time.sleep(1)
         else:
             print('全部订单取消完成！')
 
