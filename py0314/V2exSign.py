@@ -1,5 +1,9 @@
+import json
+
 import requests
 import re
+from urllib.parse import unquote
+import urllib3
 
 
 def get_html(url):
@@ -19,7 +23,8 @@ def get_html(url):
                   '|5d09eda2ad671db12c2aad00765fa3cfeff7c23b4f7b58e84181e485e694e9df" '
     }
     try:
-        response = requests.get(url, headers=headers)
+        urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)  # 去掉https警告
+        response = requests.get(url, headers=headers, verify=False)
         response.raise_for_status()
         response.encoding = 'utf-8'
         return response
@@ -55,7 +60,6 @@ def main():
     sign_url = get_sign_href(html1)
     print(sign_url)
     html3 = get_html(sign_url)
-    print(html3.text)
     html2 = get_html(page_url)
     message = get_sign_result(html2)
     print(message)
