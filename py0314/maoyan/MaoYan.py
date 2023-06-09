@@ -1,17 +1,21 @@
-import re
-
-import requests
-import time
 import base64
+import hashlib
+import logging
 import math
 import random
-import hashlib
-from fontTools.ttLib import TTFont
-from PIL import ImageFont, Image, ImageDraw
+import re
+import time
+import warnings
 from io import BytesIO
-from cnocr import CnOcr
 
+import ddddocr
+import requests
+from PIL import ImageFont, Image, ImageDraw
+from fontTools.ttLib import TTFont
 from fontTools.ttLib.woff2 import decompress
+
+warnings.filterwarnings('ignore')
+logging.basicConfig(level=logging.CRITICAL)
 
 headers = {
     'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/112.0.0.0 '
@@ -70,24 +74,6 @@ def get_params():
     return params_item
 
 
-def get_font_data(font_url=None):
-    if not font_url:
-        font_filename = 'e3dfe524.woff'
-        xml_filename = 'e3dfe524.xml'
-    else:
-        font_filename = font_url.split('/')[-1]
-        xml_filename = font_filename.split('.')[0] + '.xml'
-        headers['Host'] = 's3plus.meituan.net'
-        f = open(font_filename, 'wb')
-        font_resp = get_maoyan_requsets(font_url)
-        f.write(font_resp.content)
-        f.close()
-    font = TTFont(font_filename)
-    font.saveXML(xml_filename)
-    font_uni_list = font.getGlyphOrder()[2:]
-    return font_uni_list, font
-
-
 def get_ttf_font(font_url=None):
     if not font_url:
         font_filename = 'e3dfe524.woff'
@@ -103,47 +89,67 @@ def get_ttf_font(font_url=None):
     return TTFont(ttf_filename), ttf_filename
 
 
-def get_maoyan_dict(font_list):
-    number_list = [9, 2, 4, 1, 5, 3, 6, 8, 0, 7]
-    dict = {'uniEB19': 9, 'uniE3EC': 2, 'uniF7D2': 4, 'uniED30': 1, 'uniF3E8': 5, 'uniF11C': 3, 'uniEA60': 6,
-            'uniEF28': 8,
-            'uniEA6F': 0, 'uniE3DF': 7}
-    return dict(zip(font_list, number_list))
-
-
-def get_font_img(ttf_obj):
+def get_font_img(ttf_obj, ttf_name):
+    font_dict = {}
     img_size = 512
-    font_img = ImageFont.truetype(ttf_obj[1], img_size)
-    for cmap_code, glyph_name in ttf_obj[0].getBestCmap().items():
+    font_img = ImageFont.truetype(ttf_name, img_size)
+    ocr = ddddocr.DdddOcr()
+    for cmap_code, glyph_name in ttf_obj.getBestCmap().items():
+        if glyph_name == 'x':
+            continue
         img = Image.new('1', (img_size, img_size), 255)
         draw = ImageDraw.Draw(img)
         txt = chr(cmap_code)
         x, y = draw.textsize(txt, font=font_img)
         draw.text(((img_size - x) // 2, (img_size - y) // 2), txt, font=font_img, fill=0)
         bytes_io = BytesIO()
-        img.save(bytes_io, format="PNG")
-        ocr=CnOcr()
-        word = ocr.ocr_for_single_line(bytes_io.getvalue())  # 识别字体
-        print(cmap_code, glyph_name, word)
+        img.save(bytes_io, format="png")
+        word = ocr.classification(img)  # 识别字体
+        font_dict[glyph_name] = word
+    return font_dict
+
+
+def get_real_data(text, font_dict):
+    text_list = [_.upper().replace('&#X', 'uni') for _ in text.split(';') if _]
+    real_text_list = [num.replace(num.strip('.'), font_dict[num.strip('.')]) for num in text_list if
+                      num.strip('.') in font_dict.keys()]
+    return ''.join(real_text_list)
 
 
 def get_maoyan_data(response):
+    maoyan_dict = {}
     if not response:
-        return {}
+        return maoyan_dict
     data = response.json()
+    if not data.get('status') and 'movieList' not in data:
+        return maoyan_dict
     font_url = 'https:' + re.search(r',url\("(.*)"\);', data['fontStyle']).group(1)
-    ttf_obj = get_ttf_font()
-    get_font_img(ttf_obj)
+    tf_obj, tf_filename = get_ttf_font(font_url)
+    font_dict = get_font_img(tf_obj, tf_filename)
+    movie_list = data['movieList']['list']
+    for movie in movie_list:
+        maoyan_dict['movie_name'] = movie['movieInfo']['movieName']
+        maoyan_dict['movie_time'] = movie['movieInfo']['releaseInfo']
+        maoyan_dict['movie_box_sum'] = movie['sumBoxDesc']
+        maoyan_dict['movie_box_unit'] = get_real_data(movie['boxSplitUnit']['num'], font_dict) + movie['boxSplitUnit'][
+            'unit']
+        maoyan_dict['movie_box_text'] = get_real_data(movie['splitBoxSplitUnit']['num'], font_dict) + \
+                                        movie['splitBoxSplitUnit'][
+                                            'unit']
+        maoyan_dict['movie_box_rate'] = movie['boxRate']
+        maoyan_dict['movie_show_count'] = movie['showCount']
+        maoyan_dict['movie_show_rate'] = movie['showCountRate']
+        maoyan_dict['movie_avg_seat'] = movie['avgSeatView']
+        maoyan_dict['movie_avg_show'] = movie['avgShowView']
+        yield maoyan_dict
 
 
 def main():
     maoyan_url = 'https://piaofang.maoyan.com/dashboard-ajax/movie?'
     params = get_params()
     response = get_maoyan_requsets(maoyan_url, params)
-    local_font_tuple = get_font_data()
-    local_font_dict = get_maoyan_dict(local_font_tuple[0])
-    print(local_font_dict)
-    get_maoyan_data(response)
+    for movie in get_maoyan_data(response):
+        print(movie)
 
 
 if __name__ == '__main__':

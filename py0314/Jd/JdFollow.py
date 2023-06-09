@@ -1,7 +1,8 @@
+import json
+import time
+
 import requests
 from bs4 import BeautifulSoup
-import time
-import json
 
 
 class Jd_Follow:

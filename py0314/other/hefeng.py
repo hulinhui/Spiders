@@ -1,10 +1,11 @@
-import requests
 import os
 import pathlib
-import json
-from .loggingmethod import get_logging
 from configparser import ConfigParser
-from .NotifyMessage import send_pushplus
+
+import requests
+
+from py0314.NotifyMessage import send_pushplus
+from py0314.loggingmethod import get_logging
 
 logger = get_logging()  # 日志模块
 
@@ -13,7 +14,7 @@ def read_config():
     item_infos = {}
     config = ConfigParser()
     dir_name = os.path.dirname(os.path.abspath(__file__))
-    file_path = os.path.join(dir_name, 'config.ini')
+    file_path = os.path.join(dir_name, '../config.ini')
     if not os.path.exists(file_path):
         pathlib.Path(file_path).touch()  # 创建文件
     config.read(file_path, encoding='utf-8')

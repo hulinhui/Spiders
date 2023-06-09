@@ -7,16 +7,18 @@
 # Date:      2023/5/27 14:50
 # -------------------------------------------------------------------------------
 import hmac
-from hashlib import sha256
-import execjs
-import time
+import json
 import math
+import re
+import time
+from hashlib import sha256
+from urllib.parse import quote
+
+import execjs
 import requests
 from bs4 import BeautifulSoup
-import json
-import re
-from git_file.py0314.job_51.FormatHeaders import get_format_headers, headers_one, update_cookies
-from urllib.parse import quote
+
+from py0314.FormatHeaders import get_format_headers, headers_one, update_cookies
 
 headers = get_format_headers(headers_one)
 

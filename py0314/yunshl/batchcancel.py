@@ -1,7 +1,9 @@
-import requests
-from py0314.connectmysql import MysqlClass
-from py0314.NotifyMessage import read_config
 import time
+
+import requests
+
+from py0314.NotifyMessage import read_config
+from py0314.connectmysql import MysqlClass
 
 
 def connect_mysql(infos):

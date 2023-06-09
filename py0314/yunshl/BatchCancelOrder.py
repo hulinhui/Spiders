@@ -6,15 +6,17 @@
 # Author:       hlh
 # Date:      2023/5/24 20:53
 # -------------------------------------------------------------------------------
-from git_file.py0314.job_51.FormatHeaders import get_format_headers
-import requests
-import time
-import random
-import math
-import string
 import hashlib
 import json
+import math
+import random
 import re
+import string
+import time
+
+import requests
+
+from py0314.FormatHeaders import get_format_headers
 
 
 class Batch_Order:

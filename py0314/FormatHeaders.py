@@ -6,7 +6,6 @@
 # Author:       hlh
 # Date:      2023/5/21 9:51
 # -------------------------------------------------------------------------------
-import re
 
 from lxpy import copy_headers_dict
 

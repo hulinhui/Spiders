@@ -12,12 +12,12 @@
 # 第四步：将顺序unicode编码写成对应的unicode的类型。
 # 第五步：替换掉文章中对应的unicode的类型的文字。
 # --------------------------------------------------------------------------------
-import requests
 import re
-from fake_useragent import UserAgent
+
+import requests
 from bs4 import BeautifulSoup
+from fake_useragent import UserAgent
 from fontTools.ttLib import TTFont
-from io import BytesIO
 
 headers = {'User-Agent': UserAgent(verify_ssl=False).random, 'Host': 'maoyan.com',
            'Referer': 'https://maoyan.com/films?yearId=15',

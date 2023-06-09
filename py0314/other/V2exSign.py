@@ -1,8 +1,6 @@
-import json
+import re
 
 import requests
-import re
-from urllib.parse import unquote
 import urllib3
 
 
