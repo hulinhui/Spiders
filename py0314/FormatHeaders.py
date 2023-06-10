@@ -30,7 +30,29 @@ sec-ch-ua-mobile: ?0
 sec-ch-ua-platform: "Windows"
 '''
 
-cookies='guid=98e03f642f3317ae73b838e6ee866e85; nsearch=jobarea%3D%26%7C%26ord_field%3D%26%7C%26recentSearch0%3D%26%7C%26recentSearch1%3D%26%7C%26recentSearch2%3D%26%7C%26recentSearch3%3D%26%7C%26recentSearch4%3D%26%7C%26collapse_expansion%3D; ps=needv%3D0; 51job=cuid%3D141222074%26%7C%26cusername%3DE%252BGiK0Zaz9XUQ07IDRe2AUJ9b3PsgQw%252FM7Q3CdJwMPw%253D%26%7C%26cpassword%3D%26%7C%26cname%3DVT1LGobou%252FctBF1khRnRnQ%253D%253D%26%7C%26cemail%3Dpb7hakB24RoZJnT7gb%252BkkO8RJAnThJHRav1nJGLal2k%253D%26%7C%26cemailstatus%3D3%26%7C%26cnickname%3D%26%7C%26ccry%3D.0Ar6wJxITgyk%26%7C%26cconfirmkey%3D17nCu3lBLwdy6%26%7C%26cautologin%3D1%26%7C%26cenglish%3D0%26%7C%26sex%3D0%26%7C%26cnamekey%3D17sWIbm42btJI%26%7C%26to%3Dba11e0adcd81d8888e2e0baa8b2d26f36472c032%26%7C%26; sensor=createDate%3D2018-06-09%26%7C%26identityType%3D1; partner=www_google_com_hk; seo_refer_info_2023=%7B%22referUrl%22%3A%22https%3A%5C%2F%5C%2Fwww.google.com.hk%5C%2F%22%2C%22referHost%22%3A%22www.google.com.hk%22%2C%22landUrl%22%3A%22%5C%2F%22%2C%22landHost%22%3A%22www.51job.com%22%2C%22partner%22%3Anull%7D; privacy=1685772358; slife=lastlogindate%3D20230603%26%7C%26; sensorsdata2015jssdkcross=%7B%22distinct_id%22%3A%22141222074%22%2C%22first_id%22%3A%22188584c9c131ed-08bc15a1bf3eb8-4c657b58-1049088-188584c9c14927%22%2C%22props%22%3A%7B%22%24latest_traffic_source_type%22%3A%22%E7%9B%B4%E6%8E%A5%E6%B5%81%E9%87%8F%22%2C%22%24latest_search_keyword%22%3A%22%E6%9C%AA%E5%8F%96%E5%88%B0%E5%80%BC_%E7%9B%B4%E6%8E%A5%E6%89%93%E5%BC%80%22%2C%22%24latest_referrer%22%3A%22%22%7D%2C%22identities%22%3A%22eyIkaWRlbnRpdHlfY29va2llX2lkIjoiMTg4NTg0YzljMTMxZWQtMDhiYzE1YTFiZjNlYjgtNGM2NTdiNTgtMTA0OTA4OC0xODg1ODRjOWMxNDkyNyIsIiRpZGVudGl0eV9sb2dpbl9pZCI6IjE0MTIyMjA3NCJ9%22%2C%22history_login_id%22%3A%7B%22name%22%3A%22%24identity_login_id%22%2C%22value%22%3A%22141222074%22%7D%2C%22%24device_id%22%3A%22188584c9c131ed-08bc15a1bf3eb8-4c657b58-1049088-188584c9c14927%22%7D; acw_sc__v2=647b23dea31201870d4262a139c2a35b6a5778bc; search=jobarea%7E%60%7C%21recentSearch0%7E%60000000%A1%FB%A1%FA000000%A1%FB%A1%FA0000%A1%FB%A1%FA00%A1%FB%A1%FA99%A1%FB%A1%FA%A1%FB%A1%FA99%A1%FB%A1%FA99%A1%FB%A1%FA99%A1%FB%A1%FA99%A1%FB%A1%FA9%A1%FB%A1%FA99%A1%FB%A1%FA%A1%FB%A1%FA0%A1%FB%A1%FA%A1%FB%A1%FA2%A1%FB%A1%FA1%7C%21recentSearch1%7E%60040000%A1%FB%A1%FA000000%A1%FB%A1%FA0000%A1%FB%A1%FA00%A1%FB%A1%FA99%A1%FB%A1%FA%A1%FB%A1%FA99%A1%FB%A1%FA99%A1%FB%A1%FA99%A1%FB%A1%FA99%A1%FB%A1%FA9%A1%FB%A1%FA99%A1%FB%A1%FA%A1%FB%A1%FA0%A1%FB%A1%FApython%C5%C0%B3%E6%A1%FB%A1%FA2%A1%FB%A1%FA1%7C%21recentSearch2%7E%60040000%A1%FB%A1%FA000000%A1%FB%A1%FA0000%A1%FB%A1%FA00%A1%FB%A1%FA99%A1%FB%A1%FA%A1%FB%A1%FA99%A1%FB%A1%FA99%A1%FB%A1%FA99%A1%FB%A1%FA99%A1%FB%A1%FA9%A1%FB%A1%FA99%A1%FB%A1%FA%A1%FB%A1%FA0%A1%FB%A1%FApython%A1%FB%A1%FA2%A1%FB%A1%FA1%7C%21recentSearch3%7E%60040000%A1%FB%A1%FA041000%A1%FB%A1%FA0000%A1%FB%A1%FA00%A1%FB%A1%FA99%A1%FB%A1%FA%A1%FB%A1%FA99%A1%FB%A1%FA99%A1%FB%A1%FA99%A1%FB%A1%FA99%A1%FB%A1%FA9%A1%FB%A1%FA99%A1%FB%A1%FA%A1%FB%A1%FA0%A1%FB%A1%FApython%A1%FB%A1%FA2%A1%FB%A1%FA1%7C%21recentSearch4%7E%60000000%A1%FB%A1%FA000000%A1%FB%A1%FA0000%A1%FB%A1%FA00%A1%FB%A1%FA99%A1%FB%A1%FA%A1%FB%A1%FA99%A1%FB%A1%FA99%A1%FB%A1%FA99%A1%FB%A1%FA99%A1%FB%A1%FA9%A1%FB%A1%FA99%A1%FB%A1%FA%A1%FB%A1%FA0%A1%FB%A1%FApython%A1%FB%A1%FA2%A1%FB%A1%FA1%7C%21; ssxmod_itna2=Qq0xnD2DgAGQi=Ye0LnexjhlDyBQD0GZlDzcGDnFfe9D4DsqNKDLGoFd1D4qfHwqQD6nDYx+K=fYoihqrWuYRhqtbnSWjbL2CBw8FE8QfHpyGp0B0e34qShq+UhKeLch7mbP2Sp7xdX8YhAPYAIXjODj+43k0YEqh+j5bf2/KCtesj0cDqbA4n=iEwwUY3iLmDaeoLx+jh=1+EUSGnAsKxIA/hoC6MHItl5mjhB1qzys/rAKQFvzK0fsfehELxEKnLyn9KkOF/Mx45E2Lg7LNVMKQ6Uj=pO78BHeSoZ+DU168Bvf/9ISEqQnDmeUHxPZ0EhBIA050ApPzPA00XP3vWAh13AiU4xNApeScw+Yo20A=OvfnYLleeeAKIeS7w2AvXWreedYRUTR5ooTdhY0058FRY+N/i5ZWN+YEAi3erWIFrZarllbO2=xhNp+XS7GIBUIGcdOTc25ePPFftInNLt9vjKL4y3Kb+QWW+5RYb88wyfF7c3jp4DQFND08DiQiYD=; ssxmod_itna=iqGxuiGQ0=omwkDl8D+rFx9D0xWuRoOAMOhDqqGXftoDZDiqAPGhDCbbz7MQrEw0IPED8DwhQOb6GuRrERmAT34WEYx0aDbqGkKbCPii9DCeDIDWeDiDG4GmB4GtDpxG=DjAKtZSjxYPDEAKDYxDrfrKDRxi7DD5Q8x07DQv81DexfaAFotHm2OihaWh8D7ymDla5AIOwEU3xga7Aw473mx0kB40Oc=vzCPoDUn9z9xAe+m+YbnuKbQaPKW2KrCiKTWr4oGecY1+x1BiPt024Km1uAiGDD=='
+
+wechat_headers='''
+Host: mp.weixin.qq.com
+Connection: keep-alive
+Pragma: no-cache
+Cache-Control: no-cache
+sec-ch-ua: "Not.A/Brand";v="8", "Chromium";v="114", "Microsoft Edge";v="114"
+X-Requested-With: XMLHttpRequest
+sec-ch-ua-mobile: ?0
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36 Edg/114.0.1823.41
+sec-ch-ua-platform: "Windows"
+Accept: */*
+Sec-Fetch-Site: same-origin
+Sec-Fetch-Mode: cors
+Sec-Fetch-Dest: empty
+Referer: https://mp.weixin.qq.com/cgi-bin/appmsg?t=media/appmsg_edit_v2&action=edit&isNew=1&type=77&createType=0&token=1026994541&lang=zh_CN
+Accept-Encoding: gzip, deflate, br
+Accept-Language: zh-CN,zh;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+Cookie: appmsglist_action_3008736571=card; RK=YHMEtt9NVS; ptcz=0a0f5be1a1425103643ebe867bc9dee3440bdb723806ed4bb16ae2bdbdb9687f; pgv_pvid=6228993056; ua_id=DP7FBGZAVQsGM5n1AAAAAKsyd3RfthWzYTiQZha2GiU=; wxuin=86305390662321; mm_lang=zh_CN; cert=FkkG0jrZjuNsq73ddDRHWCwnhVr_T2gy; uuid=2804eb795ab223908d760d973eb3d354; rand_info=CAESIM68h2CVIYoNX4AC5WXTstVd8vu7KwxspwPxnl1LkY1w; slave_bizuin=3008736571; data_bizuin=3215104193; bizuin=3008736571; data_ticket=xUf2nfgaL8QhBY1E/PvAKjJWXJ7m07bGvKz3BdwOsOBhVW6qjQS/bEdNJ9J8dNvr; slave_sid=MWh2V1Y2QVZ2WEtvYlFGUGhVNFFjSFNnVW11U3FnVWdfZzk5MjJZU2laazNYYmdidkJibTQyRVpfWUdKbVFuQ1ZEeWs4bFI4RUxMVkp6QWdZbV9COHpQNlBGYmx5cm05QUs2MXY5dnowelpDeGthVVBGSFhuMXZVbGhaR3lNckg3N3IxSGp3REhSbVlsTUJ6; slave_user=gh_8d7023ba706f; xid=20f8ee90530b97e9e5f3d8709357fe9e; rewardsn=; wxtokenkey=777; wwapp.vid=; wwapp.cst=; wwapp.deviceid=; skey=@Jx9OTpxGE; uin=o975081281; _clck=3008736571|1|fcc|0; _clsk=tqidh9|1686382054101|5|1|mp.weixin.qq.com/weheat-agent/payload/record
+'''
+
+
+
 
 def get_format_headers(text):
     format_headers = copy_headers_dict(text)
