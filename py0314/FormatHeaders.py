@@ -92,6 +92,23 @@ Accept-Language: zh-CN,zh;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
 Cookie:appmsglist_action_3008736571=card; RK=YHMEtt9NVS; ptcz=0a0f5be1a1425103643ebe867bc9dee3440bdb723806ed4bb16ae2bdbdb9687f; pgv_pvid=6228993056; ua_id=DP7FBGZAVQsGM5n1AAAAAKsyd3RfthWzYTiQZha2GiU=; wxuin=86305390662321; mm_lang=zh_CN; uuid=8595c8a41a776e8390a12c14690dbf85; rand_info=CAESINtPfkkxwWAJXVpBNpejrpm+SPUrWu6qk9f79/zMAhiB; slave_bizuin=3008736571; data_bizuin=3215104193; bizuin=3008736571; data_ticket=XF9c+zNbl4xJ1n4tgnjjEKtp2tqpbyQMih1M2i6bmt0E+brBtv09IPkPgGdxb0+4; slave_sid=SFRGWXVKcFBtcHZZQUVFaDdQTFNiMmcydGlNMGVJTVlsdGxEYXpWUU84YXM4VF9jYUVMbm0zSlhlVm4zZ2RmMG1LOV9hd3NYYUxzcUE0ZnhiSDNFSGlxc3dFQnFJTlRPTTlpd0RJQ28yNVVuVzlfRFRrWmVHcGx3YlgxZ09YTFRpQ25LWFRxZ3NVZEtCTG9O; slave_user=gh_8d7023ba706f; xid=c91900832fa6fd72efcc277384295cc1; _clck=3008736571|1|fcn|0; _clsk=16oi9c|1687341792064|2|1|mp.weixin.qq.com/weheat-agent/payload/record
 '''
 
+headers_ksd = '''
+Host: yx.jsh.com
+Connection: keep-alive
+Content-Length: 113
+Accept: application/json, text/plain, */*
+Authorization: {}
+MK-U-App-Code: gUsb9sx0eXEdMuc
+User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.138 Safari/537.36 MicroMessenger/7.0.9.501 NetType/WIFI MiniProgramEnv/Windows WindowsWechat
+MK-Source-Code: casarte
+Content-Type: application/json;charset=UTF-8
+Sec-Fetch-Site: same-origin
+Sec-Fetch-Mode: cors
+Sec-Fetch-Dest: empty
+Accept-Encoding: gzip, deflate, br
+Accept-Language: en-us,en
+'''
+
 
 def get_format_headers(text):
     format_headers = copy_headers_dict(text)

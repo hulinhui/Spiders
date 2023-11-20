@@ -15,18 +15,10 @@ import platform
 from py0314.FormatHeaders import headers_yy, get_format_headers
 from py0314.loggingmethod import get_logging
 from concurrent.futures import ThreadPoolExecutor
-from py0314.NotifyMessage import send_ding
+from py0314.NotifyMessage import send_ding, read_config
 
 headers = get_format_headers(headers_yy)
 logger = get_logging()
-
-yy_login = 'linhuihu9@gmail.com'
-yy_password = 'RpK8rGHn7984yHkZVjYa'
-yy_is_exchange = 1
-gift_list = [1, 2, 3, 4, 11, 12, 103, 104, 105, 106, 107, 108, 112, 174, 282, 283, 284, 285, 314, 315, 316, 317, 318,
-             319, 320]
-
-proxies = {"https": "http://220.186.18.252:40026"}
 
 
 def yy_account_info():
@@ -116,7 +108,7 @@ def yy_usercoupons(session):
         logger.info('【🎉🎉🎉 恭喜您鸭 🎉🎉🎉】获取优惠券: 获取失败❌')
 
 
-def yy_get_itemdata(data):
+def yy_get_itemdata(data, gift_list):
     gift_id_list = [str(item['id']) for item in data['data']]
     plat = platform.system().lower()
     if plat == 'linux' and os.environ.get('gift_str') is not None:
@@ -136,12 +128,12 @@ def yy_get_itemdata(data):
         return item_red
 
 
-def yy_get_reward_items(session):
+def yy_get_reward_items(session, gift_list):
     reward_url = 'https://api.v2.rainyun.com/user/reward/items'
     response = get_response(session, url=reward_url)
     flag, data = check_result(response)
     if flag:
-        item_red = yy_get_itemdata(data)
+        item_red = yy_get_itemdata(data, gift_list)
         return item_red
     else:
         logger.info(f"【🎉🎉🎉 恭喜您鸭 🎉🎉🎉】获取礼品列表: 获取失败❌，可能是：{data['message']}")
@@ -159,13 +151,14 @@ def yy_exchange_gift(session, item_id):
 
 
 def main():
+    yy_info = read_config()['YUYUN']
     # login, password = yy_account_info()
-    session = yy_login_on(yy_login, yy_password)
+    session = yy_login_on(yy_info['yy_login'], yy_info['yy_password'])
     yy_userinfo(session)
     yy_sign_in(session)
     yy_usercoupons(session)
-    item_info = yy_get_reward_items(session)
-    if item_info and yy_is_exchange:
+    item_info = yy_get_reward_items(session, yy_info['yy_gift_list'])
+    if item_info and yy_info['yy_is_exchange']:
         with ThreadPoolExecutor(max_workers=5) as executor:
             for item_id in item_info:
                 executor.submit(yy_exchange_gift, session, item_id)
@@ -175,9 +168,4 @@ def main():
 
 
 if __name__ == '__main__':
-    gift_list = [1, 2, 3, 4, 11, 12, 103, 104, 105, 106, 107, 108, 112, 174, 282, 283, 284, 285, 314, 315, 316, 317,
-                 318,
-                 319, 320]
-    gift_str = '&'.join([str(_) for _ in gift_list])
-    print(gift_str)
-    # main()
+    main()

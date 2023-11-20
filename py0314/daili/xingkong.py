@@ -11,15 +11,10 @@ import requests
 from bs4 import BeautifulSoup
 from py0314.FormatHeaders import headers_xingkong, get_format_headers
 from py0314.loggingmethod import get_logging
-from py0314.NotifyMessage import send_ding
+from py0314.NotifyMessage import send_ding, read_config
 
 headers = get_format_headers(headers_xingkong)
 logger = get_logging()
-
-xk_login = '19108632513'
-xk_password = 'hlh123456'
-xk_is_renew = 1
-xk_condition = 2000
 
 
 def xk_account_info():
@@ -109,7 +104,7 @@ def parse_order_html(response):
     return ip_num, params_list
 
 
-def xk_ip_residue(session):
+def xk_ip_residue(session, xk_is_renew, xk_condition):
     """获取套餐订单ip剩余量"""
     order_url = 'http://www.xkdaili.com/main/myOrders.aspx'
     response = get_response(session, url=order_url)
@@ -128,7 +123,7 @@ def xk_starB_renew(session, star_num, datalist):
     if star_num > need_starB > 0:
         data = {'orderId': orderId, 'payment_id': 7, 'amount': need_starB}
         response = get_response(session, method='post', url=renew_url, data=data)
-        flag, data = check_result(response, True)
+        flag, data = check_result(response)
         if flag:
             logger.info(f"订单-{orderCode}-星币续费结果:{data['msg']}")
         else:
@@ -148,11 +143,12 @@ def xk_ip_extract_count(session):
 
 
 def main():
-    #login, password, is_renew, condition = xk_account_info()
-    session = xk_login_on(xk_login, xk_password)
+    xk_info = read_config()['XINGKONG']
+    # login, password, is_renew, condition = xk_account_info()
+    session = xk_login_on(xk_info['xk_login'], xk_info['xk_password'])
     xk_sign_in(session)
     xk_ip_extract_count(session)
-    xk_ip_residue(session)
+    xk_ip_residue(session, xk_info['xk_is_renew'], xk_info['xk_condition'])
     send_ding('星空代理')
 
 

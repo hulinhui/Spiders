@@ -7,29 +7,11 @@
 # Date:      2023/6/25 10:39
 # -------------------------------------------------------------------------------
 import requests
-from py0314.FormatHeaders import get_format_headers
+from py0314.FormatHeaders import get_format_headers, headers_ksd
+from py0314.NotifyMessage import read_config
 import warnings
 
 warnings.filterwarnings('ignore')
-
-ksd_headers = '''
-Host: yx.jsh.com
-Connection: keep-alive
-Content-Length: 113
-Accept: application/json, text/plain, */*
-Authorization: {}
-MK-U-App-Code: gUsb9sx0eXEdMuc
-User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.138 Safari/537.36 MicroMessenger/7.0.9.501 NetType/WIFI MiniProgramEnv/Windows WindowsWechat
-MK-Source-Code: casarte
-Content-Type: application/json;charset=UTF-8
-Sec-Fetch-Site: same-origin
-Sec-Fetch-Mode: cors
-Sec-Fetch-Dest: empty
-Accept-Encoding: gzip, deflate, br
-Accept-Language: en-us,en
-'''
-
-ksd_data = '348f3cdf91b34a11ba76b36e3a2259a5#opKPE5c1xlLUHqRH5t-MmcC8S2ik@a61c6ef3463343af9b1e28a4b3ab1101#opKPE5U0smz4KCbQdcUya0MMYj5M'
 
 
 def get_response(sign_url, headers, method='get', data=None, params=None):
@@ -57,7 +39,8 @@ def ksd_client_sign(headers, openid, index):
 
 def get_header_openid(text):
     token, openid = text.split('#')
-    ksd_headers_dict = get_format_headers(ksd_headers.format(token))
+    print(headers_ksd.format(token))
+    ksd_headers_dict = get_format_headers(headers_ksd.format(token))
     return ksd_headers_dict, openid
 
 
@@ -82,6 +65,7 @@ def ksd_give_chance(headers, index):
 
 
 def main():
+    ksd_data = read_config()['KSD']['ksd_data']
     for index, token_and_openid in enumerate(ksd_data.split('@'), 1):
         ksd_params = get_header_openid(token_and_openid)
         ksd_client_sign(*ksd_params, index)

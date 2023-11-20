@@ -10,16 +10,11 @@ import os
 
 import requests
 from py0314.FormatHeaders import headers_xiongmao, get_format_headers
-from py0314.NotifyMessage import send_ding
+from py0314.NotifyMessage import send_ding, read_config
 from py0314.loggingmethod import get_logging
 
 headers = get_format_headers(headers_xiongmao)
 logger = get_logging()
-
-account = '19108632513'
-password = 'hlh123456'
-xm_is_run = 'true'
-gift_name = '5元余额'
 
 
 def xm_account_info():
@@ -52,7 +47,7 @@ def check_result(response, check_login=None):
         return is_login, json_data
 
 
-def xm_login():
+def xm_login(account, password):
     """熊猫先登录获取session"""
     session = requests.session()
     login_url = 'http://www.xiongmaodaili.com/xiongmao-web/user/login'
@@ -215,7 +210,7 @@ def xm_get_giftinfo(session, gift_name):
         logger.info('权益数据列表获取失败！')
 
 
-def xm_exchange_gift(session, gift_id):
+def xm_exchange_gift(session, gift_id, gift_name):
     exchange_good_url = f'http://www.xiongmaodaili.com/xiongmao-web/points/exchangeGoods?goodsId={gift_id}'
     response = get_response(session, exchange_good_url)
     flag, data = check_result(response)
@@ -225,17 +220,18 @@ def xm_exchange_gift(session, gift_id):
         logger.info(f"兑换权益[{gift_name}]:兑换失败【{data['msg']}】!")
 
 
-def xm_check_and_exchange_gift(session):
+def xm_check_and_exchange_gift(session, gift_name):
     user_point = xm_userpoints(session)
     gift_info = xm_get_giftinfo(session, gift_name)
     if gift_info and int(gift_info[1]) > user_point:
-        xm_exchange_gift(session, gift_info[0])
+        xm_exchange_gift(session, gift_info[0], gift_name)
     else:
         logger.info(f'兑换权益[{gift_name}]:积分不足或商品异常!')
 
 
 def main():
-    session = xm_login()  # 登录
+    xm_info = read_config()['XIONGMAO']
+    session = xm_login(xm_info['xm_account'], xm_info['xm_password'])  # 登录
     xm_userinfo(session)  # 获取用户信息
     ######################白名单部分########################################################
     # xm_secret = xm_userinfo(session)
@@ -248,9 +244,9 @@ def main():
     xm_sign_data(session)  # 签到
     xm_userpoints(session)  # 获取用户积分
     xm_taskdone(session)  # 任务完成情况
-    if xm_is_run == 'true':
+    if xm_info['xm_is_run'] == 'true':
         xm_luckdraw(session)  # 熊猫抽奖
-    xm_check_and_exchange_gift(session)  # 兑换权益
+    xm_check_and_exchange_gift(session, xm_info['xm_gift_name'])  # 兑换权益
     send_ding('熊猫代理签到')
 
 

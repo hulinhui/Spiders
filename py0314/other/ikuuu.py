@@ -14,13 +14,10 @@ import requests
 from bs4 import BeautifulSoup
 from py0314.FormatHeaders import headers_ikuuu, get_format_headers
 from py0314.loggingmethod import get_logging
-from py0314.NotifyMessage import send_ding
+from py0314.NotifyMessage import send_ding, read_config
 
 headers = get_format_headers(headers_ikuuu)
 logger = get_logging()
-
-iku_login = 'linhuihu9@gmail.com'
-iku_password = 'HhxFBoR424L2hdpbspM4'
 
 
 def xk_account_info():
@@ -119,12 +116,13 @@ def iku_usersubscribe(session):
 
 
 def main():
+    ikuu_info = read_config()['IKUU']
     # login, password = iku_account_info()
-    session = iku_login_on(iku_login, iku_password)
+    session = iku_login_on(ikuu_info['iku_login'], ikuu_info['iku_password'])
     iku_userinfo(session)
     iku_usersubscribe(session)
     # xk_sign_in(session)
-    send_ding('ikuu代理签到')
+    # send_ding('ikuu代理签到')
 
 
 if __name__ == '__main__':

@@ -14,13 +14,10 @@ import requests
 from bs4 import BeautifulSoup
 from py0314.FormatHeaders import headers_gw, get_format_headers
 from py0314.loggingmethod import get_logging
-from py0314.NotifyMessage import send_ding
+from py0314.NotifyMessage import send_ding, read_config
 
 headers = get_format_headers(headers_gw)
 logger = get_logging()
-
-gw_login = '975081281@qq.com'
-gw_password = 'cv5LgH7H7NmV7dtp547B'
 
 
 def gw_account_info():
@@ -44,7 +41,6 @@ def get_response(session, url, method='get', data=None):
 
 
 def check_result(response, check_login=None):
-    print(response.text)
     json_data = response.json() if response else {}
     result = json_data['ret'] if json_data and 'ret' in json_data else ''
     is_login = True if result else False
@@ -121,11 +117,12 @@ def gw_usersubscribe(response):
 
 
 def main():
+    gw_info = read_config()['GW']
     # login, password = gw_account_info()
-    session = gw_login_on(gw_login, gw_password)
+    session = gw_login_on(gw_info['gw_login'], gw_info['gw_password'])
     gw_userinfo(session)
     gw_sign_in(session)
-    send_ding('gw机场签到')
+    # send_ding('gw机场签到')
 
 
 if __name__ == '__main__':
