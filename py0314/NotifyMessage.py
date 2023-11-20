@@ -70,7 +70,7 @@ def get_file_text():
     content = ''
     with open('log.txt', encoding='utf-8') as f:
         for line in f:
-            content += line
+            content += line + '\n'
     return content
 
 

@@ -1,7 +1,7 @@
 import json
 import re
 from urllib.parse import quote
-
+import time
 import requests
 from lxml import etree
 
@@ -11,7 +11,9 @@ class Jd_Evaluate:
 
     def __init__(self):
         super(Jd_Evaluate, self).__init__()
-        self.comment_url = 'https://club.jd.com/comment/productPageComments.action?callback=fetchJSON_comment98&productId={}&score=0&sortType=5&page=0&pageSize=15&isShadowSku=0&fold=1'
+        self.comment_url = 'https://api.m.jd.com/?appid=item-v3&functionId=pc_club_skuProductPageComments&client=pc' \
+                           '&clientVersion=1.0.0&t={}&loginType=3&productId={' \
+                           '}&score=0&sortType=5&page=0&pageSize=15&isShadowSku=0&fold=1 '
         self.headers = {
             'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) '
                           'Chrome/103.0.5060.66 Safari/537.36 Edg/103.0.1264.44',
@@ -22,14 +24,14 @@ class Jd_Evaluate:
         self.save_product_coment_url = 'https://club.jd.com/myJdcomments/saveProductComment.action'
         self.orderVoucher_url = 'https://club.jd.com/myJdcomments/orderVoucher.action?ruleid={}'
         self.headers[
-            'cookie'] = 'xxxxxxxx'
+            'cookie'] = 'shshshfpa=563fd11c-0c38-6029-96c8-8f579f93ced5-1678164306; shshshfpx=563fd11c-0c38-6029-96c8-8f579f93ced5-1678164306; shshshfp=e6f68a8e2fa6bd2edee7ba62dfb045cd; user-key=4d0bdcd1-51af-455c-a03b-6ae064006d24; cn=5; unpl=JF8EAKdnNSttWxhTAEgFGBYYGA8BWwkLT0QHbmFVBloLHFwFT1VMQRh7XlVdXxRLFx9vYRRUXFNJVQ4YBCsVEUtcVVZtC0oVAmlgA1JYXntkNRgCKxMgS1pcVlgATBMKa2YHU1RaTF0NEwQcFSBKbVRWWjh7JwZvZgVVWllLVgMrAysQEEpcVl9ZDE8WMyQJBBldX0NcABMFHxsUSl9TV18PQh8LaWACZFxoSA; areaId=19; PCSYCityID=CN_440000_440300_0; __jdv=76161171|ntp.msn.cn|t_2030767747_|jingfen|2b64b6259bcd4e25b507ac6bf91effb9|1700188263288; jsavif=0; ipLoc-djd=19-1607-4773-62121; TrackID=1EHGBAZDVCiYoCP_B3pUAJByrr_fh1tik-PGzahBjS3t716cFsSsIx5IbubQZn9cz_1Rxx02HAr3Pv70qQz6L4ATFmDqYCnDgcfw37hcoQnLWY1w3mT1pIXnw4a_SnchH; thor=B70169661C900064F0D2E26658EC144B6BACF59C113B01D8BB40AAE0DBEB2D09C8D0DEB713B7C8A7DE407DFA6A98FC08BBFCD4F6AD93B732617A5C27F083CA690492297A94CF419A51699B6873DAB3206E43A1A86C20E2AC3FB8A0022F2B2C0BCCC724C634F2DE46DB7E65A3D57B0EE2E0ACABB27549CF879CB5C9E3BBF230920DAFC040C60086EBF36CE29148144E570A04460C0B9BA6AD007EAE6C40A3DA56; flash=2_SkZElLVBZAzonC3IXnwDhoqg3-KEcj1Cfc5ILWvjb65DaxdYfpfhBHkVKIvLoHwVVzLVvxf55C6fO4Tc09AF8fd5Bo4QXGYBeA2nm5tkd-p*; pinId=61F1TNdwLhBszIHFJtsEpw; pin=jd_rRhnMUyjukur; unick=jd_rRhnMUyjukur; ceshi3.com=201; _tp=EQxZRWvG%2Fz7U5rgK5u1Kbg%3D%3D; _pst=jd_rRhnMUyjukur; shshshsID=7aa0106d9e7b4bc4920e57a6c8386a1a_4_1700188450750; shshshfpb=AAqntINuLEj_RHAw4YCmWyI9Xn5PO1RZ4FkMGRAAAAAA; __jda=122270672.1699496585036836899766.1699496585.1699496585.1700188229.2; __jdc=122270672; __jdb=122270672.16.1699496585036836899766|2.1700188229; 3AB9D23F7A4B3C9B=XCE7GAZVX2WKZCD5S6S6LNW6PQWZR2BVMBM2VBP74ELXGF5UTC337Z5XR3AG2LOJMPYQORVOMI7OJSXSBFFNUNAGDI'
 
     def get_data(self, url, method='GET', headers=None, data=None):
         if method.lower() == 'get':
             try:
                 response = requests.get(url, headers=self.headers)
                 response.raise_for_status()
-                response.encoding = 'gbk'
+                response.encoding = response.apparent_encoding
                 return response
             except Exception as e:
                 print(e)
@@ -48,8 +50,8 @@ class Jd_Evaluate:
         sku_list = []
         response = self.get_data(self.orderVoucher_url.format(order_id))
         if response:
-            seletor_word = etree.HTML(response.text)
-            div_list = seletor_word.xpath('//div[@class="form-part1"]//div[@class="comment-goods"]')
+            select_word = etree.HTML(response.text)
+            div_list = select_word.xpath('//div[@class="form-part1"]//div[@class="comment-goods"]')
             for div in div_list:
                 sku_id = div.xpath('./div[@class="p-name"]/a/@href')[0].split('/')[-1].split('.')[0]
                 sku_list.append(sku_id)
@@ -61,8 +63,7 @@ class Jd_Evaluate:
     @staticmethod
     def processing_data(data):
         if data:
-            result_str = re.findall('fetchJSON_comment98\((.*)\);', data.text, re.S)[0]
-            result_dict = json.loads(result_str)
+            result_dict = json.loads(data.text)
             if 'comments' in result_dict and result_dict.get('comments'):
                 return result_dict['comments']
             else:
@@ -75,12 +76,12 @@ class Jd_Evaluate:
         if 'images' in comment_data:
             return [f"{img_dic['imgUrl']}" for img_dic in comment_data.get('images')]
         else:
-            print('当前评论未上传图片')
             return []
 
     def collection_comment(self, product_id):
         comment_list = []
-        response = self.get_data(self.comment_url.format(product_id))
+        tamp_times = int(round(time.time() * 1000))
+        response = self.get_data(self.comment_url.format(tamp_times, product_id))
         comment_data = self.processing_data(response)
         if comment_data:
             for data in comment_data:
@@ -155,6 +156,7 @@ class Jd_Evaluate:
                     for sku_id in sku_ids:
                         self.executive_comment(order_id, sku_id)  # 商品评价
                         print('###################################')
+                        time.sleep(3)  # 防止提交过快，导致提交失败
                 else:
                     print(f'订单:{order_id},无商品需要评价...')
 

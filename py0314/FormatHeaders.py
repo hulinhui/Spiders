@@ -9,6 +9,48 @@
 
 from lxpy import copy_headers_dict
 
+headers_yy = """
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/118.0.0.0 Safari/537.36 Edg/118.0.2088.61
+Content-Type: application/json
+"""
+
+headers_gw = """
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/118.0.0.0 Safari/537.36 Edg/118.0.2088.61
+"""
+
+headers_ikuuu = '''
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/118.0.0.0 Safari/537.36 Edg/118.0.2088.61
+origin: https://ikuuu.art
+'''
+
+headers_xingkong = '''
+Accept: application/json, text/javascript, */*; q=0.01
+Accept-Encoding: gzip, deflate
+Accept-Language: zh-CN,zh;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+Cache-Control: no-cache
+Content-Type: application/x-www-form-urlencoded; charset=UTF-8
+Host: www.xkdaili.com
+Origin: http://www.xkdaili.com
+Pragma: no-cache
+Proxy-Connection: keep-alive
+Referer: http://www.xkdaili.com/aspx/home.aspx
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/118.0.0.0 Safari/537.36 Edg/118.0.2088.61
+X-Requested-With: XMLHttpRequest
+'''
+
+headers_xiongmao = '''
+Accept: application/json, text/plain, */*
+Accept-Encoding: gzip, deflate
+Accept-Language: zh-CN,zh;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+Cache-Control: no-cache
+Host: www.xiongmaodaili.com
+Origin: http://www.xiongmaodaili.com
+Pragma: no-cache
+Proxy-Connection: keep-alive
+Referer: http://www.xiongmaodaili.com/
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/118.0.0.0 Safari/537.36 Edg/118.0.2088.61
+'''
+
 headers_one = '''
 Accept: application/json, text/plain, */*
 Accept-Encoding: gzip, deflate, br
@@ -30,8 +72,7 @@ sec-ch-ua-mobile: ?0
 sec-ch-ua-platform: "Windows"
 '''
 
-
-wechat_headers='''
+wechat_headers = '''
 Host: mp.weixin.qq.com
 Connection: keep-alive
 Pragma: no-cache
@@ -45,13 +86,11 @@ Accept: */*
 Sec-Fetch-Site: same-origin
 Sec-Fetch-Mode: cors
 Sec-Fetch-Dest: empty
-Referer: https://mp.weixin.qq.com/cgi-bin/appmsg?t=media/appmsg_edit_v2&action=edit&isNew=1&type=77&createType=0&token=1026994541&lang=zh_CN
+Referer: https://mp.weixin.qq.com/cgi-bin/appmsg?t=media/appmsg_edit_v2&action=edit&isNew=1&type=77&createType=0&token=1811859841&lang=zh_CN
 Accept-Encoding: gzip, deflate, br
 Accept-Language: zh-CN,zh;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
-Cookie: appmsglist_action_3008736571=card; RK=YHMEtt9NVS; ptcz=0a0f5be1a1425103643ebe867bc9dee3440bdb723806ed4bb16ae2bdbdb9687f; pgv_pvid=6228993056; ua_id=DP7FBGZAVQsGM5n1AAAAAKsyd3RfthWzYTiQZha2GiU=; wxuin=86305390662321; mm_lang=zh_CN; cert=FkkG0jrZjuNsq73ddDRHWCwnhVr_T2gy; uuid=2804eb795ab223908d760d973eb3d354; rand_info=CAESIM68h2CVIYoNX4AC5WXTstVd8vu7KwxspwPxnl1LkY1w; slave_bizuin=3008736571; data_bizuin=3215104193; bizuin=3008736571; data_ticket=xUf2nfgaL8QhBY1E/PvAKjJWXJ7m07bGvKz3BdwOsOBhVW6qjQS/bEdNJ9J8dNvr; slave_sid=MWh2V1Y2QVZ2WEtvYlFGUGhVNFFjSFNnVW11U3FnVWdfZzk5MjJZU2laazNYYmdidkJibTQyRVpfWUdKbVFuQ1ZEeWs4bFI4RUxMVkp6QWdZbV9COHpQNlBGYmx5cm05QUs2MXY5dnowelpDeGthVVBGSFhuMXZVbGhaR3lNckg3N3IxSGp3REhSbVlsTUJ6; slave_user=gh_8d7023ba706f; xid=20f8ee90530b97e9e5f3d8709357fe9e; rewardsn=; wxtokenkey=777; wwapp.vid=; wwapp.cst=; wwapp.deviceid=; skey=@Jx9OTpxGE; uin=o975081281; _clck=3008736571|1|fcc|0; _clsk=tqidh9|1686382054101|5|1|mp.weixin.qq.com/weheat-agent/payload/record
+Cookie:appmsglist_action_3008736571=card; RK=YHMEtt9NVS; ptcz=0a0f5be1a1425103643ebe867bc9dee3440bdb723806ed4bb16ae2bdbdb9687f; pgv_pvid=6228993056; ua_id=DP7FBGZAVQsGM5n1AAAAAKsyd3RfthWzYTiQZha2GiU=; wxuin=86305390662321; mm_lang=zh_CN; uuid=8595c8a41a776e8390a12c14690dbf85; rand_info=CAESINtPfkkxwWAJXVpBNpejrpm+SPUrWu6qk9f79/zMAhiB; slave_bizuin=3008736571; data_bizuin=3215104193; bizuin=3008736571; data_ticket=XF9c+zNbl4xJ1n4tgnjjEKtp2tqpbyQMih1M2i6bmt0E+brBtv09IPkPgGdxb0+4; slave_sid=SFRGWXVKcFBtcHZZQUVFaDdQTFNiMmcydGlNMGVJTVlsdGxEYXpWUU84YXM4VF9jYUVMbm0zSlhlVm4zZ2RmMG1LOV9hd3NYYUxzcUE0ZnhiSDNFSGlxc3dFQnFJTlRPTTlpd0RJQ28yNVVuVzlfRFRrWmVHcGx3YlgxZ09YTFRpQ25LWFRxZ3NVZEtCTG9O; slave_user=gh_8d7023ba706f; xid=c91900832fa6fd72efcc277384295cc1; _clck=3008736571|1|fcn|0; _clsk=16oi9c|1687341792064|2|1|mp.weixin.qq.com/weheat-agent/payload/record
 '''
-
-
 
 
 def get_format_headers(text):
@@ -59,13 +98,13 @@ def get_format_headers(text):
     return format_headers
 
 
-def update_cookies(headers,value):
-    item_cookies = {item.split('=',1)[0]:item.split('=',1)[1] for item in headers['Cookie'].split('; ')}
-    item_cookies.update({'acw_sc__v2':value})
-    new_cookies_text='; '.join([f'{k}={v}' for k,v in item_cookies.items()])
+def update_cookies(headers, value):
+    item_cookies = {item.split('=', 1)[0]: item.split('=', 1)[1] for item in headers['Cookie'].split('; ')}
+    item_cookies.update({'acw_sc__v2': value})
+    new_cookies_text = '; '.join([f'{k}={v}' for k, v in item_cookies.items()])
     headers.update({'Cookie': new_cookies_text})
 
 
 if __name__ == '__main__':
-    headers_item=get_format_headers(headers_one)
-    update_cookies(headers_item,'123456')
+    headers_item = get_format_headers(headers_one)
+    update_cookies(headers_item, '123456')
