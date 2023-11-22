@@ -1,4 +1,5 @@
 import logging
+import os
 
 
 def get_logging():
@@ -7,7 +8,7 @@ def get_logging():
     if not logger.handlers:
         logger.setLevel(logging.INFO)
         # 2、创建一个handler，用于写入日志文件
-        fh = logging.FileHandler('./log.txt', mode='w', encoding='utf-8')
+        fh = logging.FileHandler(os.path.join(os.path.dirname(__file__), 'log.txt'), mode='w', encoding='utf-8')
         # 3、定义handler输出格式
         fh.setFormatter(logging.Formatter('%(message)s'))
         # 4、将logger添加到handler
