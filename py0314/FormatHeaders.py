@@ -9,6 +9,12 @@
 
 from lxpy import copy_headers_dict
 
+header_v2 = """
+Host: www.v2ex.com
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/118.0.0.0 Safari/537.36 Edg/118.0.2088.61
+Cookie: {}
+"""
+
 header_ql = """
 Accept: application/json, text/plain, */*
 Accept-Encoding: gzip, deflate

@@ -1,67 +1,81 @@
+# -*- coding: utf-8 -*-
+# !/usr/bin/env python
+# -------------------------------------------------------------------------------
+# Name:         V2exSign.py
+# Description:
+# Author:       hlh
+# Date:      2023/11/23 14:37
+# -------------------------------------------------------------------------------
+from py0314.FormatHeaders import get_format_headers, header_v2
+from py0314.NotifyMessage import read_config, send_ding
+from py0314.loggingmethod import get_logging
+import requests
+from requests import exceptions
+from tenacity import retry, retry_if_exception_type, wait_fixed, stop_after_attempt
 import re
 
-import requests
-import urllib3
+logger = get_logging()
+header = get_format_headers(header_v2)
 
 
-def get_html(url):
-    headers = {
-        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) '
-                      'Chrome/113.0.0.0 Safari/537.36 Edg/113.0.1774.42',
-        'Cookie': 'V2EX_LANG=zhcn; PB3_SESSION="2|1:0|10:1684392018|11:PB3_SESSION|44'
-                  ':djJleDoyNDA3OmQ4NDA6NDA6OjEzNTo3NTczNDU4NA'
-                  '==|05bcf42a4766de5cc22e46d4e68a7b7527427c337060aa9088bca689462dd422"; '
-                  'V2EX_REFERRER="2|1:0|10:1684392024|13:V2EX_REFERRER|12:Q29sb1Rob3I'
-                  '=|9f0ea6a0d30b251d2ec71670e01b9806f804f28c3c551cd3fbf9cc362164cee4"; '
-                  'A2="2|1:0|10:1684481080|2:A2|48:YzY0ODYxMDQtMzk3ZC00Yzc4LTgzZWMtYTQ4ODdlNTdjMTgw'
-                  '|ecc6003751e946c1a7d95d0eca7ab7c25c6d1380a64a00620b75cc194aa14834"; '
-                  'V2EX_TAB="2|1:0|10:1684481087|8:V2EX_TAB|8:dGVjaA'
-                  '==|4b990b6d35098ed174b82709271afe354870febcca0689a7e22ab4b767d2929f"; '
-                  'V2EXSETTINGS="2|1:0|10:1684481087|12:V2EXSETTINGS|16:eyJuaWdodCI6IDB9'
-                  '|5d09eda2ad671db12c2aad00765fa3cfeff7c23b4f7b58e84181e485e694e9df" '
-    }
-    try:
-        urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)  # 去掉https警告
-        response = requests.get(url, headers=headers, verify=False)
+class V2_Sign:
+    def __init__(self):
+        self.page_url = 'https://www.v2ex.com/mission/daily'
+        self.logger = get_logging()
+        self.header = self.update_header()
+
+    @staticmethod
+    def update_header():
+        cookies_text = read_config()['V2EX']['v2_cookie']
+        header_dict = get_format_headers(header_v2.format(cookies_text))
+        return header_dict
+
+    @retry(retry=retry_if_exception_type((exceptions.Timeout, exceptions.ProxyError, exceptions.ReadTimeout)),
+           reraise=True,
+           retry_error_callback=exit,
+           wait=wait_fixed(3), stop=stop_after_attempt(3))
+    def get_response(self, url):
+        response = requests.get(url=url, headers=self.header, timeout=10)
         response.raise_for_status()
-        response.encoding = 'utf-8'
+        response.encoding = response.apparent_encoding
         return response
-    except Exception as e:
-        print(e)
 
+    def parse_html(self, response):
+        if not response:
+            self.logger.info('【V2EX】页面数据获取失败！')
+            return
+        text = response.text
+        message_text = re.search('<span.*?gray"><li.*?/li>.*?;(.*?)</span>', text, re.S).group(1)
+        sign_day_text = re.sub(r'\s+', '', re.findall('<div class="cell">(.*?)</div>', text, re.S)[-1])
+        ag, cu = re.findall('<a.*?balance_area.*?>(.*?)<.*?/>(.*?)<img.*?</a>', text, re.S)[0]
+        sign_text = f'【V2EX】签到情况:{message_text},{sign_day_text},账户余额：{ag.strip()}个银币,{cu.strip()}个铜币'
+        self.logger.info(sign_text)
 
-def get_sign_result(html):
-    if not html:
-        print('签到失败！')
-    message_text = re.search('<span.*?gray"><li.*?/li>.*?;(.*?)</span>', html.text, re.S).group(1)
-    sign_day_text = re.findall('<div class="cell">(.*?)</div>', html.text, re.S)[-1]
-    sign_text = f'{message_text},{sign_day_text}'
-    return sign_text
+    def get_sign_url(self, response):
+        link_data = re.search('<input type="button.*?location.href = \'(.*?)\';" />', response.text, re.S)
+        sign_url = self.page_url.split('/m')[0] + link_data.group(1) if link_data else ''
+        return sign_url
 
-
-def get_sign_href(text):
-    v2ex_domain = 'https://www.v2ex.com'
-    if not text:
-        print('签到页面访问失败！')
-        return
-    link_data = re.search('<input type="button.*?location.href = \'(.*?)\';" />', text.text, re.S)
-    if not link_data:
-        print('未匹配到签到url！')
-        return
-    return v2ex_domain + link_data.group(1)
-
-
-def main():
-    page_url = 'https://www.v2ex.com/mission/daily'
-    html1 = get_html(page_url)
-    # print(html1.text)
-    sign_url = get_sign_href(html1)
-    print(sign_url)
-    html3 = get_html(sign_url)
-    html2 = get_html(page_url)
-    message = get_sign_result(html2)
-    print(message)
+    def run(self):
+        try:
+            self.logger.info('【V2EX】签到情况：')
+            page_response = self.get_response(self.page_url)
+            sign_url = self.get_sign_url(page_response)
+            if not sign_url:
+                self.logger.info('【V2EX】签到链接获取失败！')
+            elif sign_url.endswith('balance'):
+                self.logger.info('【V2EX】今日无需签到！')
+                self.parse_html(page_response)
+            else:
+                self.logger.info('【V2EX】开始执行签到！')
+                result_response = self.get_response(sign_url)
+                self.parse_html(result_response)
+        except Exception as e:
+            self.logger.info(f'【V2EX】发生错误:{e}！')
+        finally:
+            send_ding('V2EX签到')
 
 
 if __name__ == '__main__':
-    main()
+    v2ex = V2_Sign()
+    v2ex.run()
