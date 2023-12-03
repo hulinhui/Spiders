@@ -1,4 +1,4 @@
-# 实现卡夫亨氏小程序的签到及兑换功能
+# 实现卡夫亨氏星球小程序的签到及兑换功能
 import os
 import threading
 import time

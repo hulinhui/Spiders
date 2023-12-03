@@ -33,6 +33,7 @@ def parse_html(html):
     for article in article_list:
         createtime = article.xpath('./p/time/text()')[0].strip()
         tag_text = article.xpath('./header/a/text()')[0].strip()
+        print(createtime, tag_text)
         if createtime == today and tag_text in tag_list:
             article_title = article.xpath('./header/h2/a/text()')[0]
             article_link = article.xpath('./a/@href')[0]
@@ -50,7 +51,7 @@ def main():
     html = get_html(base_url)
     info_message = parse_html(html)
     logger.info(info_message)
-    send_ding('有奖之家资讯信息', mode=1)
+    # send_ding('有奖之家资讯信息', mode=1)
 
 
 if __name__ == '__main__':

@@ -4,7 +4,7 @@ from configparser import ConfigParser
 
 import requests
 
-from py0314.NotifyMessage import send_pushplus
+from py0314.NotifyMessage import send_telegram
 from py0314.loggingmethod import get_logging
 
 logger = get_logging()  # 日志模块
@@ -105,7 +105,7 @@ def main():
         message = message + '\n' + data_message
         logger.info(message)
         # send_qmsg(message, item_data['group_code'], item_data['qmsg_key'])
-        send_pushplus('今日天气预报')
+        send_telegram()
 
     else:
         logger.info('参数不全，无法查询')

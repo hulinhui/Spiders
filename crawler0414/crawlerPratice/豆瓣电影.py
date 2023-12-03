@@ -11,7 +11,8 @@ from bs4 import BeautifulSoup
 import pandas as pd
 
 ua = {
-    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/115.0.0.0 Safari/537.36 Edg/115.0.0.0'}
+    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/115.0.0.0 '
+                  'Safari/537.36 Edg/115.0.0.0'}
 
 
 def get_movie_type():
@@ -38,7 +39,7 @@ def get_movie_data(item, get_link, get_rank):
     download_data = pd.DataFrame(
         {"排名": movie_rank, "名字": movie_title, "评分": movie_score, "类型": movie_type, "演员": movie_roles,
          "链接": movie_weburl})
-    download_data.to_excel("movie.xlsx",index=False)
+    download_data.to_excel("movie.xlsx", index=False)
 
 
 def main():

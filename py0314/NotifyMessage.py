@@ -68,9 +68,9 @@ def judge_result(response, push_type, response_key, response_code):
 
 def get_file_text():
     content = ''
-    with open('log.txt', encoding='utf-8') as f:
+    with open(os.path.join(os.path.dirname(__file__), 'log.txt'), encoding='utf-8') as f:
         for line in f:
-            content += line
+            content += line + '\n'
     return content
 
 

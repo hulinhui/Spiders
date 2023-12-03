@@ -39,14 +39,17 @@ def parse_html(text):
 
 def get_aeticle_info(html):
     if html:
-        print(html)
+        # print(html)
         tree = etree.HTML(html)
         post_body = tree.xpath('//div[@class="post_body"]')[0]
-        if post_body.xpath('./p[3]/@class'):  # 内容可能存在第2个p标签或第3个p便签里
+        if post_body.xpath('./p[1]/@id'):  # 内容可能存在第2个p标签或第3个p便签里
+            new_text = '\n'.join(post_body.xpath('./p[1]/text()')[1:])
+            return new_text
+        elif post_body.xpath('./p[2]/@id'):
             new_text = '\n'.join(post_body.xpath('./p[2]/text()')[1:])
             return new_text
         else:
-            new_text = '\n'.join(post_body.xpath('./p[3]/text()'))
+            new_text = '\n'.join(post_body.xpath('./p[3]/text()')[1:])
             return new_text
 
 
