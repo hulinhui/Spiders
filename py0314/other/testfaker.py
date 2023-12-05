@@ -1,7 +1,6 @@
 import random
 
 from faker import Faker
-
 from py0314.NotifyMessage import read_config
 from py0314.connectmondb import MymongodbClass
 

@@ -1,7 +1,6 @@
 import logging
 
 import requests
-
 from py0314.NotifyMessage import send_ding
 
 

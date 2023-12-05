@@ -1,8 +1,9 @@
 import json
-import random
-import requests
 import os
+import random
 import time
+
+import requests
 
 from config import global_config
 

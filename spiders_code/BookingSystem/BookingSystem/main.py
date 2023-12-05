@@ -1,6 +1,6 @@
-from BookingSystem.user import TrainUser
-from BookingSystem.ticket import TrainTicket
 from BookingSystem.settings import *
+from BookingSystem.ticket import TrainTicket
+from BookingSystem.user import TrainUser
 
 token = ""
 

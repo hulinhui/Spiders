@@ -6,9 +6,10 @@
 # Author:       hlh
 # Date:      2022/3/18 14:36
 # -------------------------------------------------------------------------------
+import re
+
 import requests
 from lxml import etree
-import re
 
 
 class ZhengHun():

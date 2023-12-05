@@ -6,11 +6,12 @@
 # Author:       hlh
 # Date:      2022/3/14 14:20
 # -------------------------------------------------------------------------------
-import requests
 import os
-from bs4 import BeautifulSoup
-from os.path import splitext, dirname, exists, basename
 import re
+from os.path import splitext, dirname, exists, basename
+
+import requests
+from bs4 import BeautifulSoup
 
 ###
 first_seletor_page = 'div.turn > a:nth-of-type(2)'

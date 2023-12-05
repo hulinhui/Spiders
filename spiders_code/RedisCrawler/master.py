@@ -4,14 +4,15 @@ Author: OniOn
 Site: http://www.cnblogs.com/TM0831/
 Time: 2019/8/16 13:50
 """
+import random
 import re
 import time
-import random
+from multiprocessing import Pool
+
 import requests
+from fake_useragent import UserAgent
 from lxml import etree
 from redis import Redis
-from multiprocessing import Pool
-from fake_useragent import UserAgent
 
 ua = UserAgent(verify_ssl=False)
 headers = {

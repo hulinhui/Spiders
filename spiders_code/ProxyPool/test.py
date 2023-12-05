@@ -4,10 +4,11 @@ Author: OniOn
 Site: http://www.cnblogs.com/TM0831/
 Time: 2019/2/14 14:24
 """
-import time
-import random
-import aiohttp
 import asyncio
+import random
+import time
+
+import aiohttp
 from ProxyPool.crawl import Crawler
 from ProxyPool.pool import RedisClient
 

@@ -5,15 +5,16 @@ Site: http://www.cnblogs.com/TM0831/
 Time: 2019/7/29 11:12
 """
 import json
-import time
 import random
+import time
+from itertools import product
+from multiprocessing import Pool
+
 import pymongo
 import pymysql
 import requests
-from lxml import etree
-from itertools import product
-from multiprocessing import Pool
 from fake_useragent import UserAgent
+from lxml import etree
 
 ua = UserAgent(verify_ssl=False)  # 随机UserAgent
 headers = {

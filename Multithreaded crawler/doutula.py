@@ -1,10 +1,9 @@
-import os.path
 import time
 from queue import Queue
 from threading import Thread
-from bs4 import BeautifulSoup
 
 import requests
+from bs4 import BeautifulSoup
 
 
 class DouTu(Thread):

@@ -4,12 +4,13 @@ Author: OniOn
 Site: http://www.cnblogs.com/TM0831/
 Time: 2019/3/27 16:40
 """
-import requests
-import time
-import json
 import base64
-import rsa
 import binascii
+import json
+import time
+
+import requests
+import rsa
 
 
 class WeiBoLogin:

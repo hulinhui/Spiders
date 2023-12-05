@@ -1,10 +1,10 @@
-import requests
-from fake_useragent import UserAgent
-from bs4 import BeautifulSoup
 import re
-from fontTools.ttLib import TTFont
 from io import BytesIO
 
+import requests
+from bs4 import BeautifulSoup
+from fake_useragent import UserAgent
+from fontTools.ttLib import TTFont
 
 headers={'User-Agent':UserAgent().random}
 

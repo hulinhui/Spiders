@@ -4,15 +4,16 @@ Author: OniOn
 Site: http://www.cnblogs.com/TM0831/
 Time: 2018/12/15 12:19
 """
-import re
 import json
-import time
+import re
 import smtplib
-import requests
-from lxml import etree
-from pprint import pprint
+import time
 from email.header import Header
 from email.mime.text import MIMEText
+from pprint import pprint
+
+import requests
+from lxml import etree
 
 
 def get_agent():

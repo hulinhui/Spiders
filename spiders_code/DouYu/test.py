@@ -4,14 +4,15 @@ Author: OniOn
 Site: http://www.cnblogs.com/TM0831/
 Time: 2019/1/6 13:57
 """
-import re
-import time
 import json
-import socket
-import pymongo
 import logging
-import requests
+import re
+import socket
 import threading
+import time
+
+import pymongo
+import requests
 
 # 配置日志1
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')

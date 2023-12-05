@@ -4,12 +4,12 @@ Author: OniOn
 Site: http://www.cnblogs.com/TM0831/
 Time: 2019/2/9 16:46
 """
-import re
 import json
+import re
 import time
+
 import requests
 from fake_useragent import UserAgent
-
 
 ua = UserAgent()
 city_dict = dict()

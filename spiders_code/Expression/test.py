@@ -4,13 +4,14 @@ Author: OniOn
 Site: http://www.cnblogs.com/TM0831/
 Time: 2019/4/2 12:06
 """
-import time
 import queue
 import random
-import requests
 import threading
-from lxml import etree
+import time
+
+import requests
 from fake_useragent import UserAgent
+from lxml import etree
 
 ua = UserAgent(verify_ssl=False)
 

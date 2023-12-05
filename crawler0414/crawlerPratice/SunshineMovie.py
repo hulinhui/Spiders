@@ -6,9 +6,10 @@
 # Author:       hlh
 # Date:      2023/6/17 11:22
 # -------------------------------------------------------------------------------
-import requests
 import re
+
 import pandas as pd
+import requests
 
 
 def get_html(url, headers=None):

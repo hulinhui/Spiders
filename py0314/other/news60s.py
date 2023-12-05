@@ -3,7 +3,6 @@ import re
 import time
 
 import requests
-
 from py0314.NotifyMessage import send_pushplus
 from py0314.loggingmethod import get_logging
 

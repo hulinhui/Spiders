@@ -6,10 +6,11 @@
 # Author:       hlh
 # Date:      2021/1/11 21:54
 # -------------------------------------------------------------------------------
+import os
+
 import requests
 from fake_useragent import UserAgent
 from lxml import etree
-import os
 
 
 class BookTxt():

@@ -17,7 +17,6 @@ from urllib.parse import quote
 import execjs
 import requests
 from bs4 import BeautifulSoup
-
 from py0314.FormatHeaders import get_format_headers, headers_one, update_cookies
 
 headers = get_format_headers(headers_one)

@@ -2,8 +2,6 @@ import time
 
 import requests
 from lxml import etree
-
-from py0314.NotifyMessage import send_ding
 from py0314.loggingmethod import get_logging
 
 headers = {

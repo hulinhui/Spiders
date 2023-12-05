@@ -5,8 +5,8 @@ Site: http://www.cnblogs.com/TM0831/
 Time: 2019/2/12 15:07
 """
 import requests
-from lxml import etree
 from fake_useragent import UserAgent
+from lxml import etree
 
 
 # 设置元类

@@ -6,9 +6,9 @@
 # Author:       hlh
 # Date:      2023/6/6 23:39
 # -------------------------------------------------------------------------------
+import pandas as pd
 import requests
 from bs4 import BeautifulSoup
-import pandas as pd
 
 ua = {
     'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/115.0.0.0 '

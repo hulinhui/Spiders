@@ -7,7 +7,6 @@
 # Date:      2023/6/13 23:39
 # -------------------------------------------------------------------------------
 import os
-import hashlib
 
 
 def generate_file(file_path, file_size_bytes):

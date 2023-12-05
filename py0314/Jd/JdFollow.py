@@ -1,8 +1,9 @@
 import json
 import time
-from py0314.NotifyMessage import read_config
+
 import requests
 from bs4 import BeautifulSoup
+from py0314.NotifyMessage import read_config
 
 
 class Jd_Follow:

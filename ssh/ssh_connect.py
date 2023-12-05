@@ -1,10 +1,9 @@
+import logging
 import sys
 
 from paramiko import AuthenticationException
 from paramiko.client import SSHClient, AutoAddPolicy
-from paramiko import SFTPClient
 from paramiko.ssh_exception import NoValidConnectionsError
-import logging
 
 
 class SshClient():

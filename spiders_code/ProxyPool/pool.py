@@ -4,8 +4,9 @@ Author: OniOn
 Site: http://www.cnblogs.com/TM0831/
 Time: 2019/2/12 14:54
 """
-import redis
 import random
+
+import redis
 
 MAX_SCORE = 100  # 最高分
 MIN_SCORE = 0  # 最低分

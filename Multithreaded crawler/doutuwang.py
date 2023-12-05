@@ -1,8 +1,9 @@
+import os
+import time
 from queue import Queue
 from threading import Thread
+
 import requests
-import time
-import os
 from bs4 import BeautifulSoup
 
 headers = {

@@ -6,13 +6,14 @@
 # Author:       hlh
 # Date:      2023/11/23 14:37
 # -------------------------------------------------------------------------------
+import re
+
+import requests
 from py0314.FormatHeaders import get_format_headers, header_v2
 from py0314.NotifyMessage import read_config, send_ding
 from py0314.loggingmethod import get_logging
-import requests
 from requests import exceptions
 from tenacity import retry, retry_if_exception_type, wait_fixed, stop_after_attempt
-import re
 
 logger = get_logging()
 header = get_format_headers(header_v2)

@@ -6,11 +6,11 @@
 # Author:       hlh
 # Date:      2023/6/18 0:40
 # -------------------------------------------------------------------------------
-import time
-import requests
 import hashlib
+import time
 from urllib.parse import quote
-from Spiders.crawler0414.crawlerPratice import headers_str
+
+import requests
 
 # headers = headers_str.get_format_headers(headers_str.headers_one)
 

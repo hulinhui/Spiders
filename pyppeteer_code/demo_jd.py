@@ -1,8 +1,7 @@
-import requests
-from bs4 import BeautifulSoup
-from pyppeteer import launch
 import asyncio
 import tkinter
+
+from pyppeteer import launch
 
 
 def screen_size():

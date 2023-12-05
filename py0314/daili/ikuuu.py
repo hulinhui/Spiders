@@ -13,8 +13,8 @@ import re
 import requests
 from bs4 import BeautifulSoup
 from py0314.FormatHeaders import headers_ikuuu, get_format_headers
+from py0314.NotifyMessage import read_config
 from py0314.loggingmethod import get_logging
-from py0314.NotifyMessage import send_ding, read_config
 
 headers = get_format_headers(headers_ikuuu)
 logger = get_logging()

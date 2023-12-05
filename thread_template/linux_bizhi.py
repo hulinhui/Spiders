@@ -1,8 +1,8 @@
+import time
 from queue import Queue
 from threading import Thread
 
 import requests
-import time
 from bs4 import BeautifulSoup
 
 headers = {

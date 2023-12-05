@@ -5,11 +5,12 @@ Site: http://www.cnblogs.com/TM0831/
 Time: 2019/1/23 13:03
 """
 import urllib
-import pymysql
-from time import sleep
-from lxml import etree
-import matplotlib.pyplot as plt
 from multiprocessing import Pool
+from time import sleep
+
+import matplotlib.pyplot as plt
+import pymysql
+from lxml import etree
 
 # 连接MySQL数据库
 db = pymysql.connect(host="localhost", port=3306, user="root", password="123456", db="spider")

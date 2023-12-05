@@ -1,13 +1,14 @@
 # 爬取保存指定歌曲的所有评论并生成词云
-import jieba
-import codecs
 import base64
-import requests
+import codecs
 from math import floor, ceil
+from multiprocessing import Pool
 from random import random
+
+import jieba
+import requests
 from Crypto.Cipher import AES
 from wordcloud import WordCloud
-from multiprocessing import Pool
 
 headers = {'Host': 'music.163.com',
            'Referer': 'http://music.163.com/',

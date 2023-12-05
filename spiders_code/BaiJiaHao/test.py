@@ -6,11 +6,12 @@ Time: 2019/1/31 14:08
 """
 import re
 import time
-import requests
-import matplotlib.pyplot as plt
-from lxml import etree
 from multiprocessing import Pool
+
+import matplotlib.pyplot as plt
+import requests
 from fake_useragent import UserAgent
+from lxml import etree
 
 
 class BaiJiaHao:

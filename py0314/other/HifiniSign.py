@@ -2,7 +2,6 @@ import json
 
 import requests
 from bs4 import BeautifulSoup
-
 from py0314.NotifyMessage import send_ding, read_config
 from py0314.loggingmethod import get_logging
 

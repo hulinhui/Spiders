@@ -6,10 +6,10 @@
 # Author:       hlh
 # Date:      2023/6/29 16:19
 # -------------------------------------------------------------------------------
+import pandas as pd
 import requests
 from crawler0414.crawlerPratice.豆瓣电影 import ua
 from lxml import etree
-import pandas as pd
 
 
 # detail_url='https://www.jkl.com.cn/shopLis.aspx?TypeId=10045'或https://www.jkl.com.cn/shopLis.aspx?current=2&TypeId=10045【多页】

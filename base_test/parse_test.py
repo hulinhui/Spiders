@@ -1,6 +1,6 @@
 # python爬虫网页解析之parse模块
-from parsel import Selector
 import requests
+from parsel import Selector
 
 
 def get_html(url):

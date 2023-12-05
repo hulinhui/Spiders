@@ -7,11 +7,12 @@
 # Date:      2023/11/2 10:46
 # -------------------------------------------------------------------------------
 import os
+
 import requests
 from bs4 import BeautifulSoup
 from py0314.FormatHeaders import headers_xingkong, get_format_headers
-from py0314.loggingmethod import get_logging
 from py0314.NotifyMessage import send_ding, read_config
+from py0314.loggingmethod import get_logging
 
 headers = get_format_headers(headers_xingkong)
 logger = get_logging()

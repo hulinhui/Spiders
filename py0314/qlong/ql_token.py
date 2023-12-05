@@ -7,12 +7,12 @@
 # Date:      2023/11/21 10:20
 # -------------------------------------------------------------------------------
 import json
+import time
 
 import requests
-from py0314.loggingmethod import get_logging
-from py0314.NotifyMessage import read_config, send_ding
 from py0314.FormatHeaders import get_format_headers, header_ql
-import time
+from py0314.NotifyMessage import read_config
+from py0314.loggingmethod import get_logging
 
 
 class QL_token:

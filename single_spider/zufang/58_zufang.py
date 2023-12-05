@@ -1,8 +1,9 @@
 #参考：https://www.cnblogs.com/hhh188764/p/14082028.html
 
-import requests
 import base64
 import json
+
+import requests
 from fake_useragent import UserAgent
 from fontTools.ttLib import TTFont
 from lxml import etree

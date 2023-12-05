@@ -3,7 +3,6 @@ import asyncio
 from pyppeteer import launch
 
 
-
 async def main():
     browser = await launch(headless=False, userDataDir='./userdata',
                            args=['--disable-infobars', '--no-sandbox', '--window-size=1366,850'], dumpio=True)

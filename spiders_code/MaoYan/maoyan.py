@@ -5,9 +5,10 @@ Site: http://www.cnblogs.com/TM0831/
 Time: 2018/12/6 14:58
 """
 import re
+
 import requests
-from lxml import etree
 from fontTools.ttLib import TTFont
+from lxml import etree
 
 headers = {
     "Host": "maoyan.com",

@@ -1,17 +1,18 @@
-import random
-import time
-import requests
 import functools
 import json
 import os
 import pickle
+import random
+import time
+from concurrent.futures import ProcessPoolExecutor
 
+import requests
 from lxml import etree
+
+from config import global_config
+from exception import SKException
 from jd_logger import logger
 from timer import Timer
-from config import global_config
-from concurrent.futures import ProcessPoolExecutor
-from exception import SKException
 from util import (
     parse_json,
     send_wechat,

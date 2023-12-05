@@ -1,15 +1,14 @@
-import codecs
-import requests
 import base64
+import codecs
+import json
 import random
 import string
-import json
-from fake_useragent import UserAgent
 from math import ceil
+from multiprocessing import Pool
+
+import requests
 from Crypto.Cipher import AES
-from multiprocessing import Pool,Lock
-
-
+from fake_useragent import UserAgent
 
 
 class WangyiSpider():

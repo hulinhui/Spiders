@@ -6,10 +6,11 @@
 # Author:       hlh
 # Date:      2023/6/25 10:39
 # -------------------------------------------------------------------------------
+import warnings
+
 import requests
 from py0314.FormatHeaders import get_format_headers, headers_ksd
 from py0314.NotifyMessage import read_config
-import warnings
 
 warnings.filterwarnings('ignore')
 

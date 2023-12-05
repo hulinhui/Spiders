@@ -2,11 +2,14 @@
 ##列表页链接：https://www.ivsky.com/bizhi/dongman_1920x1080/index_2.html
 ##图片真实下载地址:https://img-picdown.ivsky.com/img/bizhi/pic/201909/17/guimiezhiren.jpg?
 ##https://img.ivsky.com/img/bizhi/t/201909/17/guimiezhiren.jpg
-import time, os, re
+import os
+import re
+import time
 from queue import Queue
+from threading import Thread
+
 import requests
 from bs4 import BeautifulSoup
-from threading import Thread
 
 headers = {
     "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/94.0.4606.61 Safari/537.36"}

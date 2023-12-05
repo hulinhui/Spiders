@@ -1,11 +1,12 @@
 # -*- coding:utf-8 -*-
-import time
-import requests
 import json
-
+import time
 from datetime import datetime
-from jd_logger import logger
+
+import requests
+
 from config import global_config
+from jd_logger import logger
 
 
 class Timer(object):

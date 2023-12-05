@@ -1,6 +1,6 @@
 import time
-from CelerySpider.tasks import main
 
+from CelerySpider.tasks import main
 
 start_time = time.time()
 

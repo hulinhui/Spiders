@@ -4,11 +4,12 @@ Author: OniOn
 Site: http://www.cnblogs.com/TM0831/
 Time: 2019/1/14 16:23
 """
-import aiohttp
 import asyncio
-from lxml import etree
-import pymongo
+
+import aiohttp
 import pyecharts as pye
+import pymongo
+from lxml import etree
 
 info_list = []
 db = pymongo.MongoClient(host="127.0.0.1", port=27017)

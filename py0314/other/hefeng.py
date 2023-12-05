@@ -3,7 +3,6 @@ import pathlib
 from configparser import ConfigParser
 
 import requests
-
 from py0314.NotifyMessage import send_telegram
 from py0314.loggingmethod import get_logging
 

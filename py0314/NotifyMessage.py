@@ -1,16 +1,17 @@
 import base64
 import hashlib
 import hmac
+import json
 import os
 import pathlib
+import smtplib
 import time
 import urllib.parse
-from configparser import ConfigParser, RawConfigParser
-import requests
-import json
-import smtplib
+from configparser import RawConfigParser
 from email.header import Header
 from email.mime.text import MIMEText
+
+import requests
 
 
 def read_config():

@@ -5,10 +5,10 @@ Site: http://www.cnblogs.com/TM0831/
 Time: 2018/12/27 14:49
 """
 import re
-import time
+
 import requests
-from lxml import etree
 from fake_useragent import UserAgent
+from lxml import etree
 
 
 class DianPing:

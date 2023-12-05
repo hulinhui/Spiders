@@ -1,6 +1,7 @@
 import json
-from urllib.parse import quote
 import time
+from urllib.parse import quote
+
 import requests
 from lxml import etree
 from py0314.NotifyMessage import read_config

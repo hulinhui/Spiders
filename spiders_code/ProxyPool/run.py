@@ -4,8 +4,8 @@ Author: OniOn
 Site: http://www.cnblogs.com/TM0831/
 Time: 2019/2/14 14:26
 """
-from ProxyPool.pool import RedisClient
 from ProxyPool.get import GetProxy
+from ProxyPool.pool import RedisClient
 from ProxyPool.test import TestProxy
 
 

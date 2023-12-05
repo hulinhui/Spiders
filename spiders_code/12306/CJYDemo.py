@@ -1,5 +1,6 @@
-import requests
 from hashlib import md5
+
+import requests
 
 
 class CJYClient(object):

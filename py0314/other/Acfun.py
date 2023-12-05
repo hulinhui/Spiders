@@ -6,12 +6,11 @@
 # Author:       hlh
 # Date:      2023/11/27 10:21
 # -------------------------------------------------------------------------------
-import json
 
+import requests
+from py0314.FormatHeaders import get_format_headers, header_af
 from py0314.NotifyMessage import read_config, send_ding
 from py0314.loggingmethod import get_logging
-from py0314.FormatHeaders import get_format_headers, header_af
-import requests
 
 
 class AcFun:

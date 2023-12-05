@@ -1,9 +1,10 @@
 import random
+from multiprocessing import Pool
+from time import sleep
+
+import matplotlib.pyplot as plt
 import pymongo
 import requests
-from time import sleep
-import matplotlib.pyplot as plt
-from multiprocessing import Pool
 
 
 # 返回随机的User-Agent

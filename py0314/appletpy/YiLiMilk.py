@@ -10,9 +10,10 @@
 # Author:       hlh
 # Date:      2023/6/20 17:32
 # -------------------------------------------------------------------------------
+import warnings
+
 import requests
 from py0314.NotifyMessage import read_config
-import warnings
 
 warnings.filterwarnings('ignore')
 

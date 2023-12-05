@@ -8,14 +8,14 @@
 # -------------------------------------------------------------------------------
 import json
 import os
-import time
-from datetime import datetime
-import requests
 import platform
-from py0314.FormatHeaders import headers_yy, get_format_headers
-from py0314.loggingmethod import get_logging
 from concurrent.futures import ThreadPoolExecutor
+from datetime import datetime
+
+import requests
+from py0314.FormatHeaders import headers_yy, get_format_headers
 from py0314.NotifyMessage import send_ding, read_config
+from py0314.loggingmethod import get_logging
 
 headers = get_format_headers(headers_yy)
 logger = get_logging()

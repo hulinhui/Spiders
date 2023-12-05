@@ -4,18 +4,19 @@ Author: OniOn
 Site: http://www.cnblogs.com/TM0831/
 Time: 2019/4/25 15:28
 """
-import time
-import jieba
 import random
+import time
+
+import jieba
+import matplotlib.pyplot as plt
+import numpy as np
 import pymongo
 import requests
-import numpy as np
 from PIL import Image
+from fake_useragent import UserAgent
 from lxml import etree
 from snownlp import SnowNLP
-import matplotlib.pyplot as plt
 from wordcloud import WordCloud
-from fake_useragent import UserAgent
 
 
 class AvengersSpider:
