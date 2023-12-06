@@ -1,52 +1,67 @@
-import html
-import re
+import requests
+from py0314.loggingmethod import get_logging
+from py0314.NotifyMessage import send_pushplus
+from py0314.FormatHeaders import get_format_headers, headers_gw
+from bs4 import BeautifulSoup
 import time
 
-import requests
-from py0314.NotifyMessage import send_pushplus
-from py0314.loggingmethod import get_logging
 
-logger = get_logging()
+class New_60s:
+    def __init__(self):
+        self.logger = get_logging()
+        self.headers = get_format_headers(headers_gw)
 
+    def get_response(self, url, method='GET', data=None):
+        try:
+            response = requests.request(method=method, url=url, headers=self.headers, data=data)
+            response.raise_for_status()
+            response.encoding = response.apparent_encoding
+            return response
+        except Exception as e:
+            self.logger.info(f'【早报网】:请求失败，原因:{e}!')
 
-def get_href(news_url):
-    headers = {
-        'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/112.0.0.0 Safari/537.36'}
-    try:
-        response = requests.get(news_url, headers=headers)
-        response.raise_for_status()
-        return response
-    except Exception as e:
-        logger.info(e)
+    @staticmethod
+    def parse_home_html(response):
+        text = response.text if response else ''
+        soup = BeautifulSoup(text, 'lxml')
+        item_list = [{'href': _.select_one('header > h2 > a').get('href'),
+                      'date_time': _.select_one('p > span:nth-of-type(1)').get_text()} for _ in
+                     soup.select('article.excerpt')] if soup else []
+        return item_list
 
+    @staticmethod
+    def parse_detail_html(response):
+        text = response.text if response else ''
+        soup = BeautifulSoup(text, 'lxml')
+        text_list = [_.get_text() for _ in soup.select('article.article-content > p > strong')] if soup else []
+        span_list = [_.get_text() for _ in soup.select('article.article-content > p > span')] if soup else []
+        text_list.extend(span_list)
+        message_text = '\n'.join(text_list) if text_list else ''
+        return message_text
 
-def get_60s_data():
-    news_url = 'https://www.zhihu.com/api/v4/columns/c_1261258401923026944/items'
-    response = get_href(news_url)
-    if not response:
-        logger.info('60s新闻接口访问失败！')
-        return
-    json_data = response.json()
-    if 'data' not in json_data:
-        logger.info('60s新闻页面无数据')
-        return
-    latest_news_update = time.strftime('%Y-%m-%d', time.localtime(json_data['data'][0]['updated']))
-    today_date = time.strftime('%Y-%m-%d', time.localtime(time.time()))
-    if today_date != latest_news_update:
-        logger.info('今天新闻好像迟到了哦！')
-        return
-    content_str = re.findall(r'<p.data-pid=.*?>(.*?)</p>', json_data['data'][0]['content'], re.S)
-    if not content_str:
-        logger.info('60s新闻匹配内容失败')
-        return
-    content = html.unescape('\n'.join(content_str[1:]))
-    logger.info(content)
+    def get_top_news(self, new_date):
+        home_url = 'https://www.qqorw.cn/?page=1'
+        response = self.get_response(url=home_url)
+        item_list = self.parse_home_html(response)
+        url_list = [item.get('href') for item in item_list if
+                    item.get('date_time').find(new_date) > -1] if item_list else item_list
+        return url_list
 
-
-def main():
-    get_60s_data()
-    send_pushplus('每天60秒读懂世界')
+    def run(self):
+        new_date = time.strftime('%Y-%m-%d', time.localtime())
+        url_list = self.get_top_news(new_date)
+        if not url_list:
+            self.logger.info(f'【早报网】:{new_date}-新闻好像迟到了哦!')
+            return
+        response = self.get_response(*url_list)
+        message = self.parse_detail_html(response)
+        if not message:
+            self.logger.info('【早报网】:获取详情页新闻失败!')
+            return
+        self.logger.info(message)
+        send_pushplus('早报网新闻推送')
 
 
 if __name__ == '__main__':
-    main()
+    new = New_60s()
+    new.run()
