@@ -1,0 +1,14 @@
+2023-12-06 15:35:46-root-Handle_Logger.py-[line:141]-ERROR-[日志信息]: 这是错误日志信息
+2023-12-06 15:35:46-root-Handle_Logger.py-[line:143]-CRITICAL-[日志信息]: 这是严重级别信息
+2023-12-06 15:36:28-Handle_Logger.py-[line:141]-ERROR-[日志信息]: 这是错误日志信息
+2023-12-06 15:36:28-Handle_Logger.py-[line:143]-CRITICAL-[日志信息]: 这是严重级别信息
+2023-12-06 15:45:53-Handle_Logger.py-[line:141]-ERROR-[日志信息]: 这是错误日志信息
+2023-12-06 15:45:53-Handle_Logger.py-[line:143]-CRITICAL-[日志信息]: 这是严重级别信息
+2023-12-06 15:46:59-Handle_Logger.py-[line:141]-ERROR-[日志信息]: 这是错误日志信息
+2023-12-06 15:46:59-Handle_Logger.py-[line:143]-CRITICAL-[日志信息]: 这是严重级别信息
+2023-12-06 15:47:09-Handle_Logger.py-[line:141]-ERROR-[日志信息]: 这是错误日志信息
+2023-12-06 15:47:09-Handle_Logger.py-[line:143]-CRITICAL-[日志信息]: 这是严重级别信息
+2023-12-06 15:47:36-Handle_Logger.py-[line:141]-ERROR-[日志信息]: 这是错误日志信息
+2023-12-06 15:47:36-Handle_Logger.py-[line:143]-CRITICAL-[日志信息]: 这是严重级别信息
+2023-12-06 15:47:51-Handle_Logger.py-[line:141]-ERROR-[日志信息]: 这是错误日志信息
+2023-12-06 15:47:51-Handle_Logger.py-[line:143]-CRITICAL-[日志信息]: 这是严重级别信息
