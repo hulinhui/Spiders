@@ -13,7 +13,10 @@ class HeCaiYun(object):
         super(HeCaiYun, self).__init__()
         self.sign_url = 'https://caiyun.feixin.10086.cn:7071/portal/ajax/common/wechatSign.action'
         self.headers = {
-            'User-Agent': 'Mozilla/5.0 (Linux; Android 11; M2011K2C Build/RKQ1.200928.002; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/89.0.4389.72 MQQBrowser/6.2 TBS/045909 Mobile Safari/537.36 MMWEBID/9555 MicroMessenger/8.0.16.2040(0x28001057) Process/tools WeChat/arm64 Weixin NetType/WIFI Language/zh_CN ABI/arm64'}
+            'User-Agent': 'Mozilla/5.0 (Linux; Android 11; M2011K2C Build/RKQ1.200928.002; wv) AppleWebKit/537.36 ('
+                          'KHTML, like Gecko) Version/4.0 Chrome/89.0.4389.72 MQQBrowser/6.2 TBS/045909 Mobile '
+                          'Safari/537.36 MMWEBID/9555 MicroMessenger/8.0.16.2040(0x28001057) Process/tools '
+                          'WeChat/arm64 Weixin NetType/WIFI Language/zh_CN ABI/arm64'}
         self.logger = get_logging()
         self.logger.info('和彩云签到情况如下:')
         self.title = '和彩云'
