@@ -31,14 +31,14 @@ def parse_detail_page(response):
     group_text = pattern.search(text)
     if not group_text:
         return
-    print(group_text.group(1))
     return group_text.group(1)
 
 
 def main():
     url = 'https://ip.chinaz.com/'
     response = get_response(url)
-    parse_detail_page(response)
+    ip_text = parse_detail_page(response)
+    print(ip_text)
 
 
 if __name__ == '__main__':
