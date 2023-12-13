@@ -15,7 +15,7 @@ class Linux_Pic(Thread):
         super().__init__()
         self.queue = queue
         self.domain = 'http://www.linuxidc.com'
-        self.path = r'C:/Users/hlh/OneDrive/Pictures/pictures/linux_pic/'
+        self.path = r'C:\Users\hulinhui779\OneDrive\Pictures\pictures\\'
 
     def run(self):
         while True:

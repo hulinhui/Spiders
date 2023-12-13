@@ -16,7 +16,7 @@ from py0314.FormatHeaders import get_format_headers, headers_gw
 
 seam = asyncio.Semaphore(3)
 
-proxies = {"http": "http://120.79.140.163:8849", "https": "http://120.79.140.163:8849"}
+proxies = {"http": "http://hlhadmin:admin101@120.79.140.163:8849", "https": "http://hlhadmin:admin101@120.79.140.163:8849"}
 
 
 async def get_response(session, url, page):
