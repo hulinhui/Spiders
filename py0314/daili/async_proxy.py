@@ -7,24 +7,22 @@
 # Date:      2023/12/8 10:53
 # -------------------------------------------------------------------------------
 import asyncio
-import json
 import re
 import time
-
+import json
 import aiohttp
-from py0314.FormatHeaders import get_format_headers, headers_gw
+from py0314 import get_format_headers, headers_gw
+from py0314 import read_config
 
 seam = asyncio.Semaphore(3)
-
-proxies = {"http": "http://hlhadmin:admin101@120.79.140.163:8849", "https": "http://hlhadmin:admin101@120.79.140.163:8849"}
+proxy_str = json.loads(read_config()['AUTO_PROXY_POOL']['auto_proxy']).get('http')
 
 
 async def get_response(session, url, page):
-    proxy_type = url.split(':')[0]
     async with seam:
         print(f'第{page + 1}次访问获取ip页面')
         async with session.get(url=url, headers=get_format_headers(headers_gw),
-                               proxy=proxies.get(proxy_type)) as response:
+                               proxy=proxy_str) as response:
             page_text = await response.text()
             pattern = re.compile(r'<dd class="fz24">(.*?)</dd>', re.S)
             group_text = pattern.search(page_text)

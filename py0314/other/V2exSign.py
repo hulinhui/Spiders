@@ -73,8 +73,8 @@ class V2_Sign:
                 self.parse_html(result_response)
         except Exception as e:
             self.logger.info(f'【V2EX】发生错误:{e}！')
-        finally:
-            send_ding('V2EX签到')
+        # finally:
+        #     send_ding('V2EX签到')
 
 
 if __name__ == '__main__':

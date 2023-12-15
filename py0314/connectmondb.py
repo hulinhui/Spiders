@@ -1,6 +1,5 @@
 import pymongo
-from py0314.NotifyMessage import read_config
-
+from NotifyMessage import read_config
 
 class MymongodbClass(object):
 

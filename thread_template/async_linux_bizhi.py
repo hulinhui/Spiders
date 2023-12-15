@@ -15,7 +15,6 @@ import os
 import aiofiles
 
 import aiohttp
-
 asyncio.set_event_loop_policy(asyncio.WindowsSelectorEventLoopPolicy())
 
 
