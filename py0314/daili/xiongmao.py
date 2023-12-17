@@ -126,8 +126,12 @@ def xm_sign_data(session):
     response = get_response(session, url=signday_url)
     flag, data = check_result(response)
     if flag:
-        sign_day, sign_status = \
-            [(index, item['status']) for index, item in enumerate(data.get('obj'), 1) if item['date'] == '今日'][0]
+        sign_info_list = \
+            [(index, item['status']) for index, item in enumerate(data.get('obj'), 1) if item['date'] == '今日']
+        if not sign_info_list:
+            logger.info('已经签满7天，不需要进行签到！')
+            return
+        sign_day, sign_status = sign_info_list[0]
         xm_real_sign(session, sign_status, sign_day)
         xm_signday_time(session)
     else:

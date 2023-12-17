@@ -57,6 +57,7 @@ def get_user_info(user_url, headers_data):
 def main():
     config_items = read_config()
     sign_url, headers_data, title, user_url = config_data(config_items)
+    print(headers_data)
     logger.info(f'{title}信息如下:')
     hifini_sign(sign_url, headers_data)
     get_sign_info(sign_url, headers_data)
