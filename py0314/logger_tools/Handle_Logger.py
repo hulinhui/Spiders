@@ -165,9 +165,8 @@ class HandleLog:
         self.__console('critical', message)
 
 
-log = HandleLog()
-
 if __name__ == '__main__':
+    log = HandleLog()
     log.info("这是日志信息")
     log.debug("这是debug信息")
     log.warning("这是警告信息")

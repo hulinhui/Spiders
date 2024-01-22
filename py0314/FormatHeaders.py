@@ -9,6 +9,11 @@
 
 from lxpy import copy_headers_dict
 
+header_jl = """
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36 Edg/119.0.0.0
+Origin: https://www.juliangip.com
+"""
+
 header_af = """
 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36 Edg/119.0.0.0
 Accept: application/json, text/plain, */*
@@ -53,10 +58,10 @@ Accept-Language: zh-CN,zh;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
 Cache-Control: no-cache
 Content-Type: application/x-www-form-urlencoded; charset=UTF-8
 Host: www.xkdaili.com
-Origin: http://www.xkdaili.com
+Origin: https://www.xkdaili.com
 Pragma: no-cache
 Proxy-Connection: keep-alive
-Referer: http://www.xkdaili.com/aspx/home.aspx
+Referer: https://www.xkdaili.com/aspx/home.aspx
 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/118.0.0.0 Safari/537.36 Edg/118.0.2088.61
 X-Requested-With: XMLHttpRequest
 '''

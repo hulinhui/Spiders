@@ -30,7 +30,7 @@ def xk_account_info():
 
 def get_response(session, url, method='get', data=None):
     try:
-        response = session.request(method=method, url=url, headers=headers, data=data, verify=False)
+        response = session.request(method=method, url=url, headers=headers, data=data)
         response.raise_for_status()
         response.encoding = 'utf-8'
         return response
@@ -58,7 +58,7 @@ def parse_html(response, selector):
 def xk_login_on(login, password):
     """熊猫先登录获取session"""
     session = requests.session()
-    login_url = 'http://www.xkdaili.com/tools/submit_ajax.ashx?action=user_login&site_id=1'
+    login_url = 'https://www.xkdaili.com/tools/submit_ajax.ashx?action=user_login&site_id=1'
     data = {'username': login, 'password': password, 'remember': 1}
     response = get_response(session, method='post', url=login_url, data=data)
     flag, data = check_result(response)
@@ -72,7 +72,7 @@ def xk_login_on(login, password):
 
 
 def xk_sign_in(session):
-    sign_url = 'http://www.xkdaili.com/tools/submit_ajax.ashx?action=user_receive_point'
+    sign_url = 'https://www.xkdaili.com/tools/submit_ajax.ashx?action=user_receive_point'
     data_sign = {'type': 'login'}
     response = get_response(session, method='post', url=sign_url, data=data_sign)
     flag, data = check_result(response)
@@ -83,7 +83,7 @@ def xk_sign_in(session):
 
 
 def xk_get_starB(session):
-    user_center_url = 'http://www.xkdaili.com/main/usercenter.aspx'
+    user_center_url = 'https://www.xkdaili.com/main/usercenter.aspx'
     response = get_response(session, url=user_center_url)
     starB_num = parse_html(response, 'span#star_B_Num')
     if starB_num:
@@ -107,7 +107,7 @@ def parse_order_html(response):
 
 def xk_ip_residue(session, xk_is_renew, xk_condition):
     """获取套餐订单ip剩余量"""
-    order_url = 'http://www.xkdaili.com/main/myOrders.aspx'
+    order_url = 'https://www.xkdaili.com/main/myOrders.aspx'
     response = get_response(session, url=order_url)
     ip_num, params_list = parse_order_html(response)
     if 0 < ip_num < int(xk_condition) and xk_is_renew:
@@ -119,7 +119,7 @@ def xk_ip_residue(session, xk_is_renew, xk_condition):
 
 
 def xk_starB_renew(session, star_num, datalist):
-    renew_url = 'http://www.xkdaili.com/ashx/iporder/RenewOrder.ashx'
+    renew_url = 'https://www.xkdaili.com/ashx/iporder/RenewOrder.ashx'
     orderId, orderCode, need_starB = datalist if datalist else [0, '', 0]
     if star_num > need_starB > 0:
         data = {'orderId': orderId, 'payment_id': 7, 'amount': need_starB}
@@ -134,7 +134,7 @@ def xk_starB_renew(session, star_num, datalist):
 
 
 def xk_ip_extract_count(session):
-    ipcollect_url = 'http://www.xkdaili.com/main/IPCollect.aspx'
+    ipcollect_url = 'https://www.xkdaili.com/main/IPCollect.aspx'
     response = get_response(session, url=ipcollect_url)
     ip_count = parse_html(response, 'span#ContentPlaceHolder_lbIPCount')
     if ip_count > 0:
