@@ -68,7 +68,7 @@ def parse_html(response):
 def iku_login_on(login, password):
     """ikuu登录信息"""
     session = requests.session()
-    login_url = 'https://ikuuu.me/auth/login'
+    login_url = 'https://ikuuu.pw/auth/login'
     data = {'email': login, 'passwd': password}
     response = get_response(session, method='post', url=login_url, data=data)
     flag, data = check_result(response)
@@ -83,7 +83,7 @@ def iku_login_on(login, password):
 
 def xk_sign_in(session):
     """ikuu签到信息"""
-    sign_url = 'https://ikuuu.me/user/checkin'
+    sign_url = 'https://ikuuu.pw/user/checkin'
     response = get_response(session, method='post', url=sign_url)
     flag, data = check_result(response)
     if flag:
@@ -94,7 +94,7 @@ def xk_sign_in(session):
 
 def iku_userinfo(session):
     """ikuu用户信息"""
-    user_url = 'https://ikuuu.me/user'
+    user_url = 'https://ikuuu.pw/user'
     response = get_response(session, url=user_url)
     info_list = parse_html(response)
     if info_list:
@@ -105,7 +105,7 @@ def iku_userinfo(session):
 
 def iku_usersubscribe(session):
     """ikuu的订阅信息"""
-    subscribe_url = 'https://ikuuu.me/user/tutorial?os=windows&client=cfw'
+    subscribe_url = 'https://ikuuu.pw/user/tutorial?os=windows&client=cfw'
     response = get_response(session, url=subscribe_url)
     text = response.text if response else ''
     link_text = re.search(r"oneclickImport\('clash', '(.*?)'\)", text)
