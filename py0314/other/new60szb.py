@@ -65,7 +65,7 @@ def main():
         text = get_html(article_href)
         new_text = get_aeticle_info(text)
     logger.info(new_text)
-    #send_ding(title, mode=0)
+    send_ding(title, mode=1)
 
 
 if __name__ == '__main__':

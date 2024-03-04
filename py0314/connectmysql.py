@@ -30,10 +30,10 @@ class MysqlClass:
     # 执行sql
     def execute_query(self, sql_content, text=None):
         try:
-            if text:
+            if isinstance(text, list):
                 self.cursor.executemany(sql_content, text)  # 执行多条操作
             else:
-                self.cursor.execute(sql_content)  # 执行单条操作
+                self.cursor.execute(sql_content, text)  # 执行单条操作
             if sql_content.split()[0].lower() == 'select':
                 print('[SQL]开始执行查询语句sql！')
                 return self.cursor.fetchall()
