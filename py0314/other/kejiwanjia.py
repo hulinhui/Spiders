@@ -17,22 +17,22 @@ class KeJiWanJia(object):
             'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) '
                           'Chrome/95.0.4613.0 Safari/537.36 Edg/95.0.1000.0',
             'accept': 'application/json, text/plain, */*'}
-        self.login_url = 'https://www.kejiwanjia.com/wp-json/jwt-auth/v1/token'
-        self.sign_url = 'https://www.kejiwanjia.com/wp-json/b2/v1/userMission'
-        self.submit_url = 'https://www.kejiwanjia.com/wp-json/b2/v1/commentSubmit'
-        self.PostList = 'https://www.kejiwanjia.com/wp-json/b2/v1/getModulePostList'
-        self.task_url = 'https://www.kejiwanjia.com/wp-json/b2/v1/getTaskData'
-        self.user_list_url = 'https://www.kejiwanjia.com/page/5?s&type=user'
-        self.check_follow = 'https://www.kejiwanjia.com/wp-json/b2/v1/checkFollowByids'
-        self.AuthorFollow_url = 'https://www.kejiwanjia.com/wp-json/b2/v1/AuthorFollow'
+        self.login_url = 'https://www.kejiwanjia.net/wp-json/jwt-auth/v1/token'
+        self.sign_url = 'https://www.kejiwanjia.net/wp-json/b2/v1/userMission'
+        self.submit_url = 'https://www.kejiwanjia.net/wp-json/b2/v1/commentSubmit'
+        self.PostList = 'https://www.kejiwanjia.net/wp-json/b2/v1/getModulePostList'
+        self.task_url = 'https://www.kejiwanjia.net/wp-json/b2/v1/getTaskData'
+        self.user_list_url = 'https://www.kejiwanjia.net/page/5?s&type=user'
+        self.check_follow = 'https://www.kejiwanjia.net/wp-json/b2/v1/checkFollowByids'
+        self.AuthorFollow_url = 'https://www.kejiwanjia.net/wp-json/b2/v1/AuthorFollow'
 
     def get_userinfo(self):
         user_list = [
-            # {
-            #     "username":"2055957056@qq.com",
-            #     "password":"hlh123456"
-            # }
-            # ,
+            {
+                "username": "2055957056@qq.com",
+                "password": "hlh123456"
+            }
+            ,
             {
                 "username": "975081281@qq.com",
                 "password": "hlh123456"
@@ -81,11 +81,12 @@ class KeJiWanJia(object):
 
     ###登录####
     def login(self, data):
-        data = {"username": data['username'], "password": data['password']}
         response = requests.post(
             url=self.login_url,
             data=data
         )
+        print(response.request.headers)
+        print(response.headers)
         json_data = response.json()
         if response.status_code == 200:
             cookies_dict = requests.utils.dict_from_cookiejar(response.cookies)
@@ -153,13 +154,13 @@ class KeJiWanJia(object):
                     time_num = task_data[2]
                 elif self.submit_content(post_id) == 'Flag':
                     self.logger.info('评论提交速度过快，等待5s')  # 防止提交速度过快
-                    time.sleep(5)
                 else:
                     self.logger.info(f'{post_id}：评论失败,开始下一篇文章评论。。')
                     task_data = self.getTaskData('task_comment')
                     post_id = task_data[0]
                     finish_num = task_data[1]
                     time_num = task_data[2]
+                time.sleep(3)
 
             self.logger.info('恭喜你，完成了评论任务！！')
 
@@ -175,7 +176,7 @@ class KeJiWanJia(object):
             self.logger.info('获取user列表失败')
 
     def checkFollowByids(self, data_list):
-        data = {f'ids[{i}]': data_list[i] for i in range(18)}
+        data = {f'ids[{i}]': data_list[i] for i in range(16)}
         resp = requests.post(self.check_follow, headers=self.headers, data=data)
         if resp.status_code == 200:
             user_id_list = [user[0] for user in resp.json().items() if not user[1]]
@@ -221,12 +222,12 @@ class KeJiWanJia(object):
             self.login(item)
             if self.headers.get('authorization'):
                 # 2、签到
-                self.sign()
+                # self.sign()
                 # 评论
-                self.comment_submit()
+                # self.comment_submit()
                 self.logger.info('==========================')
                 # 关注
-                self.AuthorFollow()
+                # self.AuthorFollow()
                 self.logger.info('==========================')
                 del self.headers['authorization']
                 del self.headers['cookie']
