@@ -19,11 +19,12 @@ class QL_token:
 
     def __init__(self):
         self.ql_config = read_config()['QINGLONG']
-        self.host = '{}:{}'.format(self.ql_config['ql_host'], self.ql_config['ql_port'])
+        self.addr = '{}:{}'.format(self.ql_config['ql_host'], self.ql_config['ql_port'])
         self.client_id = self.ql_config['ql_client_id']
         self.client_secret = self.ql_config['ql_client_secret']
         self.jd_cookies = self.ql_config['ql_jd_cookies']
-        self.headers = get_format_headers(header_ql)
+        self.headers = get_format_headers(header_ql.format(self.addr))
+        self.host = 'http://' + self.addr
         self.logger = get_logging()
 
     def get_response(self, url, method='get', headers=None, data=None):

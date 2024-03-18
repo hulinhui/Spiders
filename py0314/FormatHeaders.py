@@ -9,6 +9,10 @@
 
 from lxpy import copy_headers_dict
 
+
+
+
+
 header_jl = """
 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36 Edg/119.0.0.0
 Origin: https://www.juliangip.com
@@ -30,7 +34,7 @@ Accept: application/json, text/plain, */*
 Accept-Encoding: gzip, deflate
 Accept-Language: zh-CN,zh;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
 Cache-Control: no-cache
-Host: 120.79.140.163:5800
+Host: {}
 Pragma: no-cache
 Proxy-Connection: keep-alive
 Content-Type: application/json

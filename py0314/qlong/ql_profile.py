@@ -7,7 +7,7 @@
 # Date:      2023/11/22 13:57
 # -------------------------------------------------------------------------------
 import time
-
+import os
 from ql_token import QL_token
 
 
@@ -49,12 +49,23 @@ class QL_PROFILE:
         text = '\n'.join(aa_list)
         return text
 
+    def download_file(self, text):
+        cur_dir = os.path.dirname(os.path.abspath(__file__))
+        cur_path = os.path.join(cur_dir, 'config')
+        file_path = os.path.join(cur_path, 'config.txt')
+        if not os.path.exists(cur_path):
+            os.mkdir(cur_path)
+        with open(file_path, 'w', encoding='utf-8') as fp:
+            fp.write(text)
+        print('本地配置文件下载成功！')
+
     def get_save_file(self):
         name_list = self.all_files()  # 查询所有文件名称
         if name_list and self.filename in name_list:
             text = self.all_files(self.filename)  # 获取文件内容
-            content = self.update_text(text)  # 文本处理方法
-            self.save_file(content)
+            self.download_file(text)
+            # content = self.update_text(text)  # 文本处理方法
+            # self.save_file(content)
         else:
             self.ql_info.logger.info('【青龙面板】文件名有误或者配置文件不存在❌')
 
