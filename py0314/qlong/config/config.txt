@@ -1,0 +1,312 @@
+## Version: v2.8.0
+## Date: 2021-06-20
+## Update Content: 可持续发展纲要\n1. session管理破坏性修改\n2. 配置管理可编辑config下文件\n3. 自定义脚本改为查看脚本\n4. 移除互助相关
+
+## 上面版本号中，如果第2位数字有变化，那么代表增加了新的参数，如果只有第3位数字有变化，仅代表更新了注释，没有增加新的参数，可更新可不更新
+
+## 在运行 ql repo 命令时，是否自动删除失效的脚本与定时任务
+AutoDelCron="true"
+
+## 在运行 ql repo 命令时，是否自动增加新的本地定时任务
+AutoAddCron="true"
+
+## 拉取脚本时默认的定时规则，当匹配不到定时规则时使用，例如: 0 9 * * *
+DefaultCronRule=""
+
+## ql repo命令拉取脚本时需要拉取的文件后缀，直接写文件后缀名即可
+RepoFileExtensions="js py sh"
+
+## 由于github仓库拉取较慢，所以会默认添加代理前缀，如不需要请移除
+GithubProxyUrl="https://ghproxy.com/"
+
+## 设置定时任务执行的超时时间，默认1h，后缀"s"代表秒(默认值), "m"代表分, "h"代表小时, "d"代表天
+CommandTimeoutTime="2h"
+
+## 设置批量执行任务时的并发数，默认同时执行5个任务
+MaxConcurrentNum="5"
+
+## 在运行 task 命令时，随机延迟启动任务的最大延迟时间
+## 默认给javascript任务加随机延迟，如 RandomDelay="300" ，表示任务将在 1-300 秒内随机延迟一个秒数，然后再运行，取消延迟赋值为空
+RandomDelay="300"
+
+## 如果你自己会写shell脚本，并且希望在每次运行 ql update 命令时，额外运行你的 shell 脚本，请赋值为 "true"，默认为true
+EnableExtraShell="true"
+
+## 是否自动启动bot，默认不启动，设置为true时自动启动，目前需要自行克隆bot仓库所需代码，存到ql/repo目录下，文件夹命名为dockerbot
+AutoStartBot=""
+
+## 安装bot依赖时指定pip源，默认使用清华源，如不需要源，设置此参数为空
+PipMirror="https://pypi.tuna.tsinghua.edu.cn/simple"
+
+## 通知环境变量
+## 1. Server酱
+## https://sct.ftqq.com
+## 下方填写 SCHKEY 值或 SendKey 值
+export PUSH_KEY=""
+
+## 2. BARK
+## 下方填写app提供的设备码，例如：https://api.day.app/123 那么此处的设备码就是123
+export BARK_PUSH=""
+## 下方填写推送声音设置，例如choo，具体值请在bark-推送铃声-查看所有铃声
+export BARK_SOUND=""
+## 下方填写推送消息分组，默认为"QingLong"
+export BARK_GROUP="QingLong"
+
+## 3. Telegram 
+## 下方填写自己申请@BotFather的Token，如10xxx4:AAFcqxxxxgER5uw
+export TG_BOT_TOKEN=""
+## 下方填写 @getuseridbot 中获取到的纯数字ID
+export TG_USER_ID=""
+## Telegram 代理IP（选填）
+## 下方填写代理IP地址，代理类型为 http，比如您代理是 http://127.0.0.1:1080，则填写 "127.0.0.1"
+## 如需使用，请自行解除下一行的注释
+export TG_PROXY_HOST=""
+## Telegram 代理端口（选填）
+## 下方填写代理端口号，代理类型为 http，比如您代理是 http://127.0.0.1:1080，则填写 "1080"
+## 如需使用，请自行解除下一行的注释
+export TG_PROXY_PORT=""
+## Telegram 代理的认证参数（选填）
+export TG_PROXY_AUTH=""
+## Telegram api自建反向代理地址（选填）
+## 教程：https://www.hostloc.com/thread-805441-1-1.html
+## 如反向代理地址 http://aaa.bbb.ccc 则填写 aaa.bbb.ccc
+## 如需使用，请赋值代理地址链接，并自行解除下一行的注释
+export TG_API_HOST=""
+
+## 4. 钉钉 
+## 官方文档：https://developers.dingtalk.com/document/app/custom-robot-access
+## 下方填写token后面的内容，只需 https://oapi.dingtalk.com/robot/send?access_token=XXX 等于=符号后面的XXX即可
+export DD_BOT_TOKEN=""
+export DD_BOT_SECRET=""
+
+## 5. 企业微信机器人
+## 官方说明文档：https://work.weixin.qq.com/api/doc/90000/90136/91770
+## 下方填写密钥，企业微信推送 webhook 后面的 key
+export QYWX_KEY=""
+
+## 6. 企业微信应用
+## 参考文档：http://note.youdao.com/s/HMiudGkb
+## 下方填写素材库图片id（corpid,corpsecret,touser,agentid），素材库图片填0为图文消息, 填1为纯文本消息
+export QYWX_AM=""
+
+## 7. iGot聚合
+## 参考文档：https://wahao.github.io/Bark-MP-helper
+## 下方填写iGot的推送key，支持多方式推送，确保消息可达
+export IGOT_PUSH_KEY=""
+
+## 8. Push Plus
+## 官方网站：http://www.pushplus.plus
+## 下方填写您的Token，微信扫码登录后一对一推送或一对多推送下面的token，只填 PUSH_PLUS_TOKEN 默认为一对一推送
+export PUSH_PLUS_TOKEN=""
+## 一对一多推送（选填）
+## 下方填写您的一对多推送的 "群组编码" ，（一对多推送下面->您的群组(如无则新建)->群组编码）
+## 1. 需订阅者扫描二维码 2、如果您是创建群组所属人，也需点击“查看二维码”扫描绑定，否则不能接受群组消息推送
+export PUSH_PLUS_USER=""
+
+## 8. go-cqhttp
+## gobot_url 推送到个人QQ: http://127.0.0.1/send_private_msg  群：http://127.0.0.1/send_group_msg 
+## gobot_token 填写在go-cqhttp文件设置的访问密钥
+## gobot_qq 如果GOBOT_URL设置 /send_private_msg 则需要填入 user_id=个人QQ 相反如果是 /send_group_msg 则需要填入 group_id=QQ群 
+## go-cqhttp相关API https://docs.go-cqhttp.org/api
+export GOBOT_URL=""
+export GOBOT_TOKEN=""
+export GOBOT_QQ=""
+
+## 其他需要的变量，脚本中需要的变量使用 export 变量名= 声明即可
+
+
+##BILIBILI
+export Ray_Security__RandomSleepMaxMin='10'
+export Ray_Security__IntervalSecondsBetweenRequestApi='10'
+export Ray_Security__IntervalMethodTypes='POST'
+export Ray_Security__UserAgent='Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36 Edg/122.0.0.0'
+export Ray_DailyTaskConfig__IsWatchVideo='true'
+export Ray_DailyTaskConfig__IsShareVideo='true'
+export Ray_DailyTaskConfig__NumberOfCoins='2'
+export Ray_DailyTaskConfig__SelectLike='false'
+export Ray_DailyTaskConfig__SupportUpIds='37974444,21837784,99157282'
+export Ray_DailyTaskConfig__DayOfAutoCharge='-1'
+export Ray_DailyTaskConfig__AutoChargeUpId='-1'
+export Ray_DailyTaskConfig__DayOfReceiveVipPrivilege='1'
+export Ray_DailyTaskConfig__DayOfExchangeSilver2Coin='-1'
+export Ray_DailyTaskConfig__SaveCoinsWhenLv6='false'
+export Ray_LiveLotteryTaskConfig__ExcludeAwardNames='舰|船|航海|代金券|自拍|照|写真|图'
+export Ray_LiveLotteryTaskConfig__AutoGroupFollowings='true'
+export Ray_UnfollowBatchedTaskConfig__GroupName='天选时刻'
+export Ray_UnfollowBatchedTaskConfig__Count='10'
+export Ray_UnfollowBatchedTaskConfig__RetainUids='108569350'
+export Ray_Notification__IsSingleAccountSingleNotify='true'
+export Ray_Serilog__WriteTo__5__Args__webHookUrl='https://oapi.dingtalk.com/robot/send?access_token=b8233741f2d32104f3ee36e69286a1e4664431cee572135e6f2575f07dcad0c3'
+
+
+
+
+#得物
+export dewuCookies="eyJhbGciOiJSUzI1NiJ9.eyJpYXQiOjE3MTE2OTIwNjEsImV4cCI6MTc0MzIyODA2MSwiaXNzIjoiMzQwNTU3NjE2ZmI1NGMxNCIsInN1YiI6IjM0MDU1NzYxNmZiNTRjMTQiLCJ1dWlkIjoiMzQwNTU3NjE2ZmI1NGMxNCIsInVzZXJJZCI6MjIxMzgxNDQyNiwiaXNHdWVzdCI6ZmFsc2UsIlNLIjoiOU9vTEZhRFlVVGhad09uVG1xdjdselZZU3JQcnhJVEF2Q1dWaGs1V09Qb2NubEY1NmNleGJaVEdRMjA5akZ6eFZNN2xhaDdma0xGdXNnWlBYT3FDMUFvNmtjMXoifQ.p85i_s4OmiaP-v7r8x7lPuJ_IMt4nHbwQbIJ1B9dFq9c4h1Oxf0WyNCtgVoWiKV_p4_0pB3Z5nQqzs5tDrZfP04b7K-6qHJ56pcoH2uiUPV-UWgRZfe0nr5Xf-xkoZBM6qvalk7GfTbIXmIuYFxwLgQ1L-qZxkqerbLAmHezbW8PlLNIhCgE9LQU1AWhc8dE8Nrx60BuoWB_WXVt-uf3GCN6R9E0YjNL2bmd7qZO1gB12TxFaYy4EiXRcI9t_Tgl1fBTM6VTGb-ILN287atag8Jt7yFuOVGf72rFDyyX4C0GS6MAOwt2vz-Om0takooVVu45gvVM38Ewyu6EjXy-OA#9OoLFaDYUThZwOnTmqv7lzVYSrPrxITAvCWVhk5WOPocnlF56cexbZTGQ209jFzxVM7lah7fkLFusgZPXOqC1Ao6kc1z#d41d8cd9|2213814426|1711692061|423be20594ecc44c"
+export dewuUA="Mozilla/5.0 (Linux; Android 12; M2011K2C Build/SKQ1.211006.001; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/95.0.4638.74 Mobile Safari/537.36/duapp/5.26.2(android;12)"
+
+#蜜雪冰城
+export mxbc_data='eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ3eF8xNDQ5MTA1MjAxNzM4OTQ4NjExIiwiaWF0IjoxNzExNjc3OTM4fQ.BpPdE1xvnGedL-iYlaDtWoOcCYVM6MBNnASfHOeomzVDZA80c3Ob0PmUE-kjXuYQ3BNaIbN2LtJWE3vsfZJjIw@eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ3eF8xNjE2MzM1MTI1NDUxMzU4MjEwIiwiaWF0IjoxNzExNjgzNDk0fQ.0o9QNrcfHVWqysq734l66bG7toqelxwDNJ6rN39ZU9o7PalYV4eXeODqmKG8wbJuBmuUsdm72A78RDRDQQLeog'
+
+
+#茶百道
+export cbd_ck='17620387339#1711172383|cPsxbon2GB7PYI8i.cvLeynaZfWjw/iCR3FrgbIwM12LrpQMpYR4feF0JU4wxOBIt5XYucNHYMWnBJ5P+ICl7HoYGGB1/wOj+H39oxg==.b31a4fe80854cbdd'
+
+#农夫山泉
+export nfsqCookie='019406b312664d66a365cc193d66eeb45d0f553afb6641bd8eb0cdf508bfcdf2
+278fcfe34274436a9502b5d6f16cc517ca4a5c373bf9428ca357f1057193a515'
+
+
+#胖乖生活
+export pgsh='52710cd3eabebeb8511c09fed6d4540c#7339'
+
+#超燃汇
+export lthdck='oHgZN48r8SuupN2t4HXuwrxXX7-8'
+export burningCookie='oHgZN48r8SuupN2t4HXuwrxXX7-8#7339'
+
+#美团小程序
+export meituanCookie="AgFGIXQAwYNyUfrRAVgHAfRAlj9I19jiUCH0dNOKgk2f3QxKtgO_oixW8HlgHUllx2HRjqm_YKtXYQAAAADRHgAAO0Mx7H9QrUpg289RzrB4Txb5QEE6IxedrthA4UJE3L5FFK_p_FHsBmMwUnBWgGAJ@AgGuHonsx_bXZLOpvzKNYl8PNCOBK6lW-MIQuIxIiXl5biNew9TvQXCo6kSyOq-8Nbk9waJyb0vYmQAAAADTHgAAJVQjgGRNumugNTZo92TFNYeYY1NPpwmPnMoqZVCHOCpbgGmpI34CBk8yrMUkSRxo"
+
+#霸王茶姬
+export bwcjCookie="xJz5UUn12dO0p6fja7pic86dUyDovlyAc9HrFe4yClXWqY8datxRbpjcogvoY2G9&NSrFHZ6A5R6KzRlssjPpf9OGvNWylRsDq6xYhRGIoQe0uJeaUbxCkXn4Mj0C4VV0"
+export bwcj_BF='2'
+
+#GlaDOs[机场签到]
+export GR_COOKIE='koa:sess=eyJ1c2VySWQiOjQyMTg4MSwiX2V4cGlyZSI6MTczMjUzMDczODA3NCwiX21heEFnZSI6MjU5MjAwMDAwMDB9; koa:sess.sig=-FtlDAQDzdyXdXFVf5UwY22gCeM&koa:sess=eyJ1c2VySWQiOjQ4MTcyNywiX2V4cGlyZSI6MTczNjQ3NTg5ODAyMywiX21heEFnZSI6MjU5MjAwMDAwMDB9; koa:sess.sig=JLUo3j5oDHajaPPeBWmK_URyg2M; _ga=GA1.1.640949452.1710555816; _ga_CZFVKMNT9J=GS1.1.1710559585.2.1.1710559593.0.0.0'
+export YY_DD_BOT_TOKEN="c11d49c3264e22f50814e3477c4ed38c157a15a8d5cf594cbff5a65785e70fce"
+export YY_DD_BOT_SECRET="SEC2d77d36b7113ba8070d1a3d2049c739ba841f9bf147c58c5f5522749e02c8a26"
+
+
+#联通获取token
+export ChinaUnicom_10010v4_mobile='17620387339'
+export ChinaUnicom_10010v4_code='7562'
+
+#中国联通
+export chinaUnicomCookie="e903aa893b53d469d2d7eff37950bfe9b1bf93c07ace7d297599a54ff6c23a8a44ab3157c8ad9410a8c15c9636386c955c36f66130992a9774987a364df7c5616f95022e9c61dcc11b30b30c1eee0c3a0e64dfa2016a1159e714561b0b8895676a67d1af0bab4031dd30b59cd7aa1531754570679dacba5e0a6e8016078bb59f4761ae2f517c1f801c10e3eea3f97da92a0d3a5ff9e73e279cb0b98f98b23bfde209e9d9adef29da3737a9627d48bddef818f75c238d80704efef86760c7dc828bc381ca0163245e56f1b2d1eb77250a38182b9042d34b97f4ffc7d4c5d74750874aa4fef06f07f0a339ef49e862afe6"
+export chinaUnicomUuid="xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
+
+#电信签到
+export chinaTelecomAccount="19108632513#254743"
+
+#统一茄皇二期
+export tyqhCookie="oBk224p7JMzYtel0vbUtUQk_0AXA#10819329335#7339@oBk224qC-OEs-WL_alkLhwYo6S2I#10819336853#2513"
+
+# export tyqhCookie='{"thirdId":"oBk224p7JMzYtel0vbUtUQk_0AXA","wid":10819329335}
+# {"thirdId":"oBk224qC-OEs-WL_alkLhwYo6S2I","wid":10819336853}'
+
+#昂立积分商城
+export aljfscCookie="86233pa1no5v10inh5udc14frh@5b7n9g21oesamilmnb6jn8i5rr"
+
+#德邦快递
+export dbkdCookie="A76EF55CC8521605804F28C08C8EC82C@A6A02091FA8B25C4F89DAEC7BF37B7A7"
+
+#顺丰快递
+export sfsyBee="true"
+export sfsyUrl="https://mcs-mimp-web.sf-express.com/mcs-mimp/share/weChat/shareGiftReceiveRedirect?source=CX&scene=6&unionId=47ke0kNafq3c9Odd5bHjerkJ%2B0XHZM0FkDhuX4Bl9CA%3D&openId=bWW55%2ByBZnSD5TW6TIdIOgEQOjlsVd4cx8YMzBjm%2FSQ%3D&memId=Yn%2FJVeiaC276nW3BVEej1rJGHuv%2B1%2BFZt3%2FkbWeEbPYDdjSr%2F6X0WoiZtgGzs7sG&memNo=6tB15T6k0ZvyroDMcHJm6TJ%2BpZpgTlIlBDMzeb%2B1Y28DdjSr%2F6X0WoiZtgGzs7sG&mobile=YylcVZHcYWPCjkxcPow9Rg%3D%3D&bizCode=619%40%40R0VaTmhYNnZHWHNKZTJLejlPV3hpeDhveGVTMXBzbGhXU0JtR00ySVowQT0%3D
+https://mcs-mimp-web.sf-express.com/mcs-mimp/share/weChat/shareGiftReceiveRedirect?source=CX&scene=6&unionId=tbJF%2F%2Fnh6XYxXcfTEKoSQaBW9yzBx99Pcvwy8fDq9ks%3D&openId=RmD2ZC4xE4k9jO1Mblkbfe8f9EuqJTNhLJuQi23WMR4%3D&memId=OHw6qZeyIqAph7cKrHOrxaBFfeb%2BhA1mnjp7tyUuhOsDdjSr%2F6X0WoiZtgGzs7sG&memNo=6tB15T6k0ZvyroDMcHJm6frL1wBnIoIvAb2SpW4O2S8DdjSr%2F6X0WoiZtgGzs7sG&mobile=Uf1GuBylQXziRFvTlBTr1Q%3D%3D&bizCode=619%40%40R0VaTmhYNnZHWHNKZTJLejlPV3hpeDhveGVTMXBzbGhXU0JtR00ySVowQT0%3D"
+
+#掘金cookie
+export JUEJIN_COOKIE="csrf_session_id=e65e550ab090b0de82e52400a46a131b; _tea_utm_cache_2608=undefined; __tea_cookie_tokens_2608=%257B%2522user_unique_id%2522%253A%25227238799832554522123%2522%252C%2522web_id%2522%253A%25227238799832554522123%2522%252C%2522timestamp%2522%253A1685415508822%257D; passport_csrf_token=b3412343b90e67880105f51d803abaab; passport_csrf_token_default=b3412343b90e67880105f51d803abaab; n_mh=BiHWyvd42li5_02-fPspKg2Th09nsstAK-BF5WvEBNk; passport_auth_status=41bba62467a38d7c1b4100a303dcc9e8%2C; passport_auth_status_ss=41bba62467a38d7c1b4100a303dcc9e8%2C; sid_guard=b1468e258a295e2ce380376dcd930df9%7C1685417202%7C31536000%7CWed%2C+29-May-2024+03%3A26%3A42+GMT; uid_tt=57b7236b53c769f29bd0b2ee9815c5d7; uid_tt_ss=57b7236b53c769f29bd0b2ee9815c5d7; sid_tt=b1468e258a295e2ce380376dcd930df9; sessionid=b1468e258a295e2ce380376dcd930df9; sessionid_ss=b1468e258a295e2ce380376dcd930df9; sid_ucp_v1=1.0.0-KDdlNmExN2Y1ZDE4MDRmNTk4ZWRmYjEwMzg3MTk1YmM2MzQzYTdkMTAKFwj4p6Crx4zqBRDy2dWjBhiwFDgCQPEHGgJsZiIgYjE0NjhlMjU4YTI5NWUyY2UzODAzNzZkY2Q5MzBkZjk; ssid_ucp_v1=1.0.0-KDdlNmExN2Y1ZDE4MDRmNTk4ZWRmYjEwMzg3MTk1YmM2MzQzYTdkMTAKFwj4p6Crx4zqBRDy2dWjBhiwFDgCQPEHGgJsZiIgYjE0NjhlMjU4YTI5NWUyY2UzODAzNzZkY2Q5MzBkZjk; store-region=cn-gd; store-region-src=uid; msToken=oJZslKhk9Ki_kInRGvhmljLmN9nT5U06DpxX4i2UN4hlfF4uir71Cm4QkTWQ1nVY-ApqUU1f3mGxf4dfFS-_qbvyL7tMP5DiowI5xtZcySQ="
+export JUEJIN_USER_INFO='{"receive_name":"胡林辉","receive_address":"广东省深圳市龙华区民治街道创业花园59栋","receive_phone":"17620387339","lottery_name":"小米投影仪","remark":"","user_id":"3281374163768312"}'
+
+##拼多多果园
+export ddgyck='7JORCNRXSZKJPCRIF7TD2Y2ZL2BV3JSNADP3PE3OYFBIDGWV7ZGQ1220465@PSACSD65YAZA3IXSIXTFCTNYXCQSUQUKK64AFWRMO4IXSTNCDK7A122257a'
+
+##康师傅畅饮社
+export yml_ksf_data='eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJVU0VSX0lEIjoiNjg4MjE0NTExMjAwNTM0OTM3Ny1XRUIiLCJleHAiOjE3MTIwMjU3ODF9.tT9K9IroCx_AWZFf3ocCrlIBNAq2rErSrkYzdO7I_jA'
+
+##联通签到
+export ltphone='17620387339'
+export ltpwd='064710'
+
+#携程旅行
+export xclxCookie='574CE25E30F949A50866709ED2AC3F3D130097A200C779303BFA9E04775170E9
+354EDE26889C51D273EC26010BA91D7BE18506FF6B3C44DB9B7C296E0AD0003E'
+
+
+##望潮
+export WangChao="17620387339#hlh123456"
+
+#miuiver签到
+export miui_account='17620387339&linhuihu9@gmail.com'
+export miui_pwd='hlh123456&zqwzbody'
+
+##喜爱帮
+export xabzh="17620387339#hlh123456"
+
+##科技玩家签到
+export kjwjCookie="username=975081281@qq.com; password=hlh123456;#username=2055957056@qq.com; password=hlh123456;"
+
+#天翼云盘
+export TYYP_USERNAME='17620387339'
+export TYYP_PSW='Hlh654321@'
+
+##群签到
+export wjds_id='1464070023550210048@1464077307181404160'
+export wjds_unionId='o-Uc8s-nApLifFotLzlQ6V7QTTwo'
+export wjds_name='奔跑吧 ℡¹⁷⁶²⁰³⁸⁷³³⁹'
+export wjds_headimgurl='https://thirdwx.qlogo.cn/mmopen/vi_32/gM697yEawKIbVNKCIywYicy8bDicsRj2Z4iaXpPMTJZFnibAbWkzTSDG6DHkMBmZsvicDKbnL37rcVY4iaUfaKLznhdA/132'
+
+##应用试客
+export yyskapp='OD=j1ciPWPBiCpxLCobHf2FDVIj5I2vXfJoZqWJRsl84boWX0EErNfogs8Ekd7tWMp1;'
+
+
+##熊猫代理签到
+export xom_account='19108632513'
+export xom_password='hlh123456'
+export xom_is_run='false'
+export xom_gift_name='5元余额'
+
+
+##星空代理签到
+export xk_login='19108632513'
+export xk_password='hlh123456'
+export xk_is_renew=1
+export xk_condition='200'
+
+##ikuuu机场
+export iku_login='linhuihu9@gmail.com'
+export iku_password='HhxFBoR424L2hdpbspM4'
+
+
+##gw树袋熊机场
+export gw_login='975081281@qq.com'
+export gw_password='cv5LgH7H7NmV7dtp547B'
+
+
+#雨云
+export yy_login='linhuihu9@gmail.com'
+export yy_password='RpK8rGHn7984yHkZVjYa'
+export yy_is_exchange=1
+export yy_gift_str='1&2&3&4&11&12&103&104&105&106&107&108&112&174&282&283&284&285&314&315&316&317&318&319&320'
+
+
+##卡夫亨氏兑换
+export kfxtoken='6eb154178433eea995c2481f8e7547c0@e85ef8299d5916b1244fb06898c71b38'
+
+##广汽传祺 v2.01[next.gacmotor.com域名下任意包的header里面的apptoken(app)或token(小程序),填到变量gqcqCookie里,多账号换行或&或@隔开]
+export gqcqCookie="AT-26904-tW171G2jqJWNjIqMD4SZcpghjp1TSJBaIyR@AT-26692-jmcmah6dTtLLta0MbZnaZswRbPPAPyRcb17"
+
+
+##B站天选时刻填写地址
+export BZ_Cookie="buvid3=5887CDC6-FF91-40E9-A367-B4BA827A3E46148808infoc; buvid_fp=5887CDC6-FF91-40E9-A367-B4BA827A3E46148808infoc; buvid_fp_plain=undefined; i-wanna-go-back=-1; LIVE_BUVID=AUTO4116457818733103; CURRENT_BLACKGAP=0; hit-dyn-v2=1; blackside_state=0; nostalgia_conf=-1; fingerprint3=b4b7232df52f74ae951abcf24c0b176d; b_nut=100; CURRENT_FNVAL=4048; CURRENT_QUALITY=64; fingerprint=859b709a43426edcce97a95f7f6a36df; DedeUserID=368426889; DedeUserID__ckMd5=efa4bf9409d545bd; b_ut=5; rpdid=|(um|JRl~m~k0J'uYYmuYmu~Y; SESSDATA=11a24a84%2C1684721176%2Ca3e11%2Ab2; bili_jct=8c96ecb4a19141117ec3333dc7a22d59; sid=edgtsiky; innersign=0; bp_video_offset_368426889=731662389325332500; _dfcaptcha=4ef00c63bcc5311e4ab2bdc0d23bfbed"
+
+
+#千图网签到
+export qtw_cookie='qt_visitor_id=%22c893a58bdccc4e7c35d7876cfcebf165%22; qt_type=0; censor=%2220230310%22; did=%224ce528d5ff7d0b5e%22; history_did_data_4ce528d5ff7d0b5e=%22eyJkaXN0aW5jdF9pZCI6IjRjZTUyOGQ1ZmY3ZDBiNWUiLCJ1dG1fY2FtcGFpZ24iOjAsInV0bV9zb3VyY2UiOjAsInV0bV9tZWRpdW0iOjAsInV0bV90ZXJtIjowLCJ1dG1fY29udGVudCI6MCwidGlkIjowfQ%3D%3D%22; qiantudata2018jssdkcross=%7B%22distinct_id%22%3A%22186ca5c00f38e5-0779cf3231fe17-74525476-2073600-186ca5c00f4b80%22%7D; qtjssdk_2018_cross_new_user=1; message2=1; imgCodeKey=%2228b7245b3a778362cdf098c5701532db%22; token0=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1aWQiOjAsImlhdCI6MTY3ODQzMjI3MywiZXhwIjoxNjc4NDM5NDczfQ.ZLTPMbj2l8PtqdZtoP4eH7sCvJVxdM8jZy4d0xFupxA; loginBackUrl=%22https%3A%5C%2F%5C%2Fwww.58pic.com%5C%2F%22; register_success_target_path=%22%5C%2F%5C%2Fwww.58pic.com%5C%2Fenroll%3Ffrom%3Dteam%26type%3Dpurpose%22; tokenundefined=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1aWQiOjAsImlhdCI6MTY3ODQzMjI4MSwiZXhwIjoxNjc4NDM5NDgxfQ.U8ubyER8Gqc8qKi6O6cMZNC0L2FQzjdROKvX52xqmmo; tid_today_data_4ce528d5ff7d0b5e_20230310=%22eyJub1RvZGF5RGlkIjoxfQ%3D%3D%22; history_uid_data_77493288=%22eyJ1aWQiOjc3NDkzMjg4LCJkaXN0aW5jdF9pZCI6IjRjZTUyOGQ1ZmY3ZDBiNWUiLCJ1dG1fY2FtcGFpZ24iOjAsInV0bV9zb3VyY2UiOjAsInV0bV9tZWRpdW0iOjAsInV0bV90ZXJtIjowLCJ1dG1fY29udGVudCI6MCwiZmlyc3RfdHJhZmZpY19zb3VyY2VfdHlwZSI6MCwidGlkIjowfQ%3D%3D%22; auth_id_v2=yi38TRuD3iNLF6Rs03P3KVV8OJQn8kq4uDFYrB4FiyPtztYEh2jG3QKUTWUSC-DaPZtUnyv48crzO7sIYGKTbT39-OMA-KGMM8ulegkLs_WkD_vvyVfWSCuMhSHKUJrlCN0KQUP4cAyQNkK8w-HsRuOKX0E9bFKJoXhOfY3sAHT_DzPdHpgS4-Hc3PRVxgLheQSDP9BFX9IHyaRf6vujvCJDxtH8h-NJcT64uMGIAQpfmdSje31npBdZ7flF8gehWB7_owjqn75dOXO6y1peMlLNbq5gSo7M74wku9pW38s; login_status=1; auth_id=%2277493288%7C5Y2D5Zu%2B55So5oi3XzMyODg%3D%7C1679037113%7C8bd979ce9f029fb64b7bf7eafdbaf138%22; sns=%7B%22token%22%3A%7B%22ToUserName%22%3A%22gh_9b23fdd4e900%22%2C%22FromUserName%22%3A%22oAuSO1g6T1SmcT6aczhcYYqQ-GKc%22%2C%22CreateTime%22%3A%221678432312%22%2C%22MsgType%22%3A%22event%22%2C%22Event%22%3A%22subscribe%22%2C%22EventKey%22%3A%22qrscene_login%22%2C%22Ticket%22%3A%22gQGX7zwAAAAAAAAAAS5odHRwOi8vd2VpeGluLnFxLmNvbS9xLzAyMmdpMk1iMkFlZW0xZWlvYWhBY1IAAgQa2ApkAwR4AAAA%22%2C%22isThePublic%22%3A1%7D%2C%22type%22%3A%22weixin%22%7D; ssid=%22640ad8390e5f85.68663918%22; last_login_type=6; qt_risk_visitor_id=%22e7c7179388cbd1612f6e49c3421bf5f6%22; success_target_path=%22%5C%2F%5C%2Fwww.58pic.com%5C%2F%22; newbieTask=%22%7B%5C%22is_login%5C%22%3A1%2C%5C%22is_search%5C%22%3A0%2C%5C%22is_download%5C%22%3A0%2C%5C%22is_keep%5C%22%3A0%2C%5C%22login_count%5C%22%3A1%2C%5C%22upload_material%5C%22%3A0%2C%5C%22is_task_complete%5C%22%3A0%2C%5C%22task1%5C%22%3A0%2C%5C%22task2%5C%22%3A0%2C%5C%22task3%5C%22%3A0%7D%22; _is_pay=0; register_success_time=1678432313; _auth_dl_=Nzc0OTMyODh8MTY3OTAzNzExM3xiMjI5OWFmMWRiMTZkMWVmMjdlY2E2MWQzMjAwNDI5NA%3D%3D; qt_uid=%2277493288%22; originUrl=https%3A%2F%2Fwww.58pic.com%2F; han_data_is_pay:77493288=2; _uab_collina=167843231352042994440961; show-choose-user-type-77493288=1; show-choose-user-type-gr-77493288=1; token77493288=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1aWQiOjc3NDkzMjg4LCJpYXQiOjE2Nzg0MzIzMjMsImV4cCI6MTY3ODQzOTUyM30.I9Wf9AioipNH289GYd6w7214uS9SlQCDu8DFux9YfMg; recharge_pid=1508; public_property=%22eyJ1aWQiOiI3NzQ5MzI4OCIsImxpYiI6InBocCIsImxpYl92ZXJzaW9uIjoiMS4wIiwiZXF1aXAiOjEsImRpc3RpbmN0X2lkIjoiNGNlNTI4ZDVmZjdkMGI1ZSIsImV2ZW50X25hbWUiOiIiLCJzZXJ2ZXJfYWdlbnQiOiJNb3ppbGxhXC81LjAgKFdpbmRvd3MgTlQgMTAuMDsgV2luNjQ7IHg2NCkgQXBwbGVXZWJLaXRcLzUzNy4zNiAoS0hUTUwsIGxpa2UgR2Vja28pIENocm9tZVwvMTEwLjAuMC4wIFNhZmFyaVwvNTM3LjM2IEVkZ1wvMTEwLjAuMTU4Ny42MyIsInVybCI6Imh0dHA6XC9cL3d3dy41OHBpYy5jb21cL2luZGV4LnBocD9tPXNwb25zb3ImYT1pbmRleG5ldyZzaG9wX2lkPTE1MDgmdGFiX3R5cGU9MiIsInRpbWUiOjE2Nzg0MzIzMjgsImNsaWVudF9pcCI6IjExMy4xMTYuMTE2LjE4NyIsIm9zIjoiV2luZG93cyAxMCIsImJyb3dzZXIiOiJDaHJvbWUiLCJicm93c2VyX3ZlcnNpb24iOiIxMTAuMC4wLjAiLCJyZWZlcnJlciI6Imh0dHBzOlwvXC93d3cuNThwaWMuY29tXC9lbnJvbGw%5C%2FZnJvbT10ZWFtJnR5cGU9cHVycG9zZSIsImxhdGVzdF90cmFmZmljX3NvdXJjZV90eXBlIjpudWxsLCJsYXRlc3RfcmVmZXJyZXIiOm51bGwsImxhdGVzdF9yZWZlcnJlcl9ob3N0IjpudWxsLCJsYXRlc3Rfc2VhcmNoX2tleXdvcmQiOm51bGwsImxhdGVzdF91dG1fbWVkaXVtIjpudWxsLCJsYXRlc3RfdXRtX2NhbXBhaWduIjpudWxsLCJsYXRlc3RfdXRtX3Rlcm0iOm51bGwsImxhdGVzdF91dG1fc291cmNlIjpudWxsLCJsYXRlc3RfdGlkIjpudWxsLCJsYXRlc3RfdXRtX2NvbnRlbnQiOm51bGwsInF5X2lkIjowLCJ1c2VyX3N0YXR1cyI6MSwidGlkIjowLCJ1dG1fc291cmNlIjowLCJ1dG1fbWVkaXVtIjowLCJ1dG1fY2FtcGFpZ24iOjAsInV0bV9jb250ZW50IjowLCJ1dG1fdGVybSI6MH0%3D%22; qt_register_add_experience_vip=1; qt_utime=1678432344; big_data_visit_time=1678432344'
+
+#卡萨帝
+export ksd_data='5d641148ac624ddd9cf3a8da9353eea8#opKPE5c1xlLUHqRH5t-MmcC8S2ik@bf4fbe1588ae4bd0bfb5282da549ddd7#opKPE5U0smz4KCbQdcUya0MMYj5M'
+
+#伊利牛奶
+export YILI_TOKEN='CVzBLOdo+DyyQjCime1DJArI5HVOTzDQnej12ejsCpmaY7cbimvaulBqHvxLIG2v8/HZxnlegUBWHEwCzWeqE3RBWoWYlwZdzFptAM/T3sc=@8U7nvmh9ko+5lahphQCe+pbG2Ow6EqYZ9L1VNe68Jet2qbXYvdf3gKLfUA2/WYFsWR0N4+tQ7+wIipPw8qSW+I8fHMH8FDGzTBUirL8uobY='
+
+#快手极速版[抓取report接口的sign3数据]
+export ckList='7339@ecfcbb8bb05e29fd3eb0c2b3b4b56df50eb74aec33ef20ae62daa3a3a5a5a6a798b8@kpn=NEBULA; kpf=ANDROID_PHONE; userId=1732343301; did=ANDROID_35c52781ee70a961; c=XIAOMI; language=zh-cn; countryCode=CN; sys=ANDROID_12; mod=Xiaomi%28M2011K2C%29; deviceName=Xiaomi%28M2011K2C%29; ud=1732343301; did_tag=0; thermal=10000; kcv=1571; app=0; bottom_navigation=true; android_os=0; oDid=ANDROID_769e3696639eb910; boardPlatform=lahaina; newOc=XIAOMI; androidApiLevel=31; slh=0; country_code=cn; nbh=56; hotfix_ver=; did_gt=1708655031403; cdid_tag=2; max_memory=256; oc=XIAOMI; sh=3200; deviceBit=0; browseType=3; ddpi=560; socName=Qualcomm+Snapdragon+8350; sw=1440; ftt=; apptype=22; abi=arm64; cl=0; userRecoBit=0; device_abi=arm64; totalMemory=7253; grant_browse_type=AUTHORIZED; iuid=; rdid=ANDROID_f3537c08fe90b21d; sbh=137; darkMode=false; __NSWJ=; client_key=2ac2a76d; keyconfig_state=2; is_background=0; egid=DFPD19F2B345DEF4B25B020260B57D744FA35837CC9559F46ABABB5AA59BE850; ver=12.2; appver=12.2.10.7455; isp=CTCC; net=WIFI; earphoneMode=1; kuaishou.api_st=Cg9rdWFpc2hvdS5hcGkuc3QSoAGc_eDOd9eIbGbBJLAp8KpK9cV8zOJmV5Z136COXiJpDNhMndi9gxQyZavsA1aPo4qj5Mri8hja79UfHq8eT8h2MjXsC67LkdUpaI5QLCzcU0j47_fBKeYqqk1NgWXtrge_Q74068gcqZgKmrdAuCuSZri6WKWsuUvMC2eNupb5NMNDkchTQtFw-LXkWFaAicXg3JwK3FYXJist3l2DTQqBGhJmQmJkX-pJEqgjQbtJv1UuVkwiIC7Aqou8K9aiAKes2pIdBsP-_AWe85cZHSsAJ6Zm46qdKAUwAQ; token=Cg9rdWFpc2hvdS5hcGkuc3QSoAGc_eDOd9eIbGbBJLAp8KpK9cV8zOJmV5Z136COXiJpDNhMndi9gxQyZavsA1aPo4qj5Mri8hja79UfHq8eT8h2MjXsC67LkdUpaI5QLCzcU0j47_fBKeYqqk1NgWXtrge_Q74068gcqZgKmrdAuCuSZri6WKWsuUvMC2eNupb5NMNDkchTQtFw-LXkWFaAicXg3JwK3FYXJist3l2DTQqBGhJmQmJkX-pJEqgjQbtJv1UuVkwiIC7Aqou8K9aiAKes2pIdBsP-_AWe85cZHSsAJ6Zm46qdKAUwAQ; kuaishou.h5_st=Cg5rdWFpc2hvdS5oNS5zdBKgAdGS-2hHHTaoz13eBJAVkjm9D4X7D_EgA845_oFWYzh0DcB0G2GyRHchRSgdQGf0GBx0V6MbSyCxNAgApdD4D1Z-T0iAj2sMfyaRkN4hqjuS7EQqCABQVtq0vqKjdyvUFV-dJ_GSmvNzX1PyA8cBlkSq-YvEQKUweZmLmFaxGrtuupSY_xm_3nbOwG-NYJxOklFO_1cTKqnWboTxEqMh_S8aEr7HkeXUKLsZtMH-j4EHZjUlyCIg6nb0mL2Si5_cWCtrmK-gZuEHkrhPl7SkuBjCud25hWIoBTAB; ll_client_time=1710478620193; lkvr=3TlKe3qH99Fk48jsOqffp8BlOpdDowuhmDQT9U9i1tbudnb7szZuB3FZBh2OWBvPsvxezA; sid=64b0a213-d525-4205-b798-49ed64e2be85; cold_launch_time_ms=1710514222003@Mozilla/5.0 (Linux; Android 12; M2011K2C Build/SKQ1.211006.001; wv) AppleWebKit/537.36 (KHTML, like Gecko)====2513@8090d7e7b33ffa0651dcaddfd8d96832f93509dfea144fc2e87ccfcfc9c9cacbf4d4@kpn=NEBULA; kpf=ANDROID_PHONE; userId=2806248678; did=ANDROID_35c52781ee70a961; c=XIAOMI; ver=12.0; appver=12.0.40.7282; language=zh-cn; countryCode=CN; sys=ANDROID_12; mod=Xiaomi%28M2011K2C%29; net=WIFI; deviceName=Xiaomi%28M2011K2C%29; earphoneMode=1; isp=CUCC; ud=2806248678; did_tag=0; egid=DFP03C09559296DFCF1E79B2590033606F7432EF4C175EFEEEAD20286A5551E5; thermal=10000; kcv=1571; app=0; bottom_navigation=true; android_os=0; oDid=ANDROID_419e29ed98d06193; boardPlatform=lahaina; newOc=XIAOMI; androidApiLevel=31; slh=0; country_code=cn; nbh=165; hotfix_ver=; did_gt=1708678029913; keyconfig_state=2; cdid_tag=2; max_memory=256; sid=c71a18cb-cc6b-41b7-b1b1-49ed17086308; cold_launch_time_ms=1708678240375; oc=XIAOMI; sh=3200; deviceBit=0; browseType=3; ddpi=560; socName=Qualcomm+Snapdragon+8350; is_background=0; sw=1440; ftt=; apptype=22; abi=arm64; cl=0; userRecoBit=0; device_abi=arm64; totalMemory=7253; grant_browse_type=AUTHORIZED; iuid=; rdid=ANDROID_ab3b68fe5e896fa7; sbh=137; darkMode=false; kuaishou.api_st=Cg9rdWFpc2hvdS5hcGkuc3QSoAElYDVWyp-iz4q_GbYgybVTWE14xvzf09tnBzadCVcfM_ZDAcOt4O8SwXjXNI-Fmjkc7O1HNqCJ1_a6Nm_6iizQfim4H2jkaqV_PvUQ1uNRZm6MJWDckA_uiNebivZ1-gVjR6gUYaJYsCsAarUkOdv3DVG9CvqdlbOFUFmgvIIvHTFzkeyKAfnu2q1WjbOaO0kNDilgnJQPfVTv8ayim6PvGhLmHaQkwpVHXJtSDkMe1YHGH_QiICoA8d71E6e8N9Sweln7w8ik31LQ1iukbrqvoNe0EJ05KAUwAQ; token=Cg9rdWFpc2hvdS5hcGkuc3QSoAElYDVWyp-iz4q_GbYgybVTWE14xvzf09tnBzadCVcfM_ZDAcOt4O8SwXjXNI-Fmjkc7O1HNqCJ1_a6Nm_6iizQfim4H2jkaqV_PvUQ1uNRZm6MJWDckA_uiNebivZ1-gVjR6gUYaJYsCsAarUkOdv3DVG9CvqdlbOFUFmgvIIvHTFzkeyKAfnu2q1WjbOaO0kNDilgnJQPfVTv8ayim6PvGhLmHaQkwpVHXJtSDkMe1YHGH_QiICoA8d71E6e8N9Sweln7w8ik31LQ1iukbrqvoNe0EJ05KAUwAQ; __NSWJ=; client_key=2ac2a76d; kuaishou.h5_st=Cg5rdWFpc2hvdS5oNS5zdBKgAXREv-z3letuYqypmta_X0uXvPXNjs5v3S8yYFHTKlYXil_CH08KbFbDM5K1LhVzNJZvUGxR8zJ-wXoQtPhFrsxBPJoqYJvv5j08ccifHZoaOR4aNqiNV1Ql89TSOchdLx_9e6k4i92FOtiMQQHnzDOlL-3lefr3aK71Kc7HEA4xICKPvc3WFXdNNZGNjqgeAlFbZF1y7DgYka4z0UAo3jQaErEJA26FToVlAmaCbr6l_rMcGiIgVeiFbbbTK80v98F2DIeVMgtucF1IpGNkyidqXcHjxn0oBTAB@Mozilla/5.0 (Linux; Android 12; M2011K2C Build/SKQ1.211006.001; wv) AppleWebKit/537.36 (KHTML, like Gecko)'
+
+
+#广汽丰田小程序
+export ftbz='eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOlsiYmZmLW5ldi13eGFwcCJdLCJhdXRob3JpdGllcyI6W10sImNsaWVudElkIjoiMTY3MTA0MDUxNzA5OTQxNzYwMSIsImV4cGlyeVRpbWUiOjE3MDA2ODc1NTEzNjEsImV4dGVuc2lvbiI6eyJXRUNIQVQtU0VTU0lPTi1LRVkiOiJqdGE1OS9qWU15SVpSWisrQ0l4Y0NBPT0ifSwiaWQiOjE2NzEwNDA1MTcwOTk0MTc2MDEsImludmFsaWQiOmZhbHNlLCJ1aWRHdG1jIjoiMTA0MjIwOTYzIn0.hRcOsK8BJCo9bH7nYntFe8AZw7CUaDALo5eXVD3hl1s
+eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOlsiYmZmLW5ldi13eGFwcCJdLCJhdXRob3JpdGllcyI6W10sImNsaWVudElkIjoiMTY3MTM0MTM4MDUzMTU1NjM1MyIsImV4cGlyeVRpbWUiOjE3MDA2ODc2MTY3NzEsImV4dGVuc2lvbiI6eyJXRUNIQVQtU0VTU0lPTi1LRVkiOiJkbjRIU21Qa2xqeUR2WGhZa3huTzhBPT0ifSwiaWQiOjE2NzEzNDEzODA1MzE1NTYzNTMsImludmFsaWQiOmZhbHNlLCJ1aWRHdG1jIjoiMTA0MjI3NDU1In0.FogOJGTzp07Z_r7m6q_kohm8f_bZ57Rj3xdb9hN5gKs'
+
+
