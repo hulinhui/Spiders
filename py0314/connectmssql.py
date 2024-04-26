@@ -1,5 +1,6 @@
 import pymssql
 from py0314.NotifyMessage import read_config
+from py0314.logger_tools.Handle_Logger import HandleLog
 
 
 class HandleSqlServer:
@@ -9,17 +10,18 @@ class HandleSqlServer:
         self.pwd = ms_pwd
         self.db = ms_db
         self.charset = ms_charset
+        self.log = HandleLog()
         self.conn = self.__ms_get_conn()
         self.cursor = self.__ms_get_cursor()
 
     def __ms_get_conn(self):
-        print("[MSSQL]开始进行数据库连接！")
+        self.log.info("[MSSQL]开始进行数据库连接！")
         try:
             conn = pymssql.connect(host=self.host, user=self.user, password=self.pwd,
                                    database=self.db, charset=self.charset, as_dict=True)
             return conn
         except Exception as e:
-            print(f'[MSSQL]数据库:{self.db} 连接失败!')
+            self.log.error(f'[MSSQL]数据库:{self.db} 连接失败!')
             exit()
 
     def __ms_get_cursor(self):
@@ -34,29 +36,29 @@ class HandleSqlServer:
             else:
                 self.cursor.execute(sql_content, text)  # 执行单条操作
             if sql_content.split()[0].lower() == 'select':
-                print('[MSSQL]开始执行查询语句sql！')
+                self.log.info('[MSSQL]开始执行查询语句sql！')
                 return self.cursor.fetchall()
             else:
-                print("[MSSQL]开始执行非查询语句sql！")
+                self.log.info("[MSSQL]开始执行非查询语句sql！")
                 self.conn.commit()
-                print(f"[MSSQL]√执行成功，影响行数:{self.cursor.rowcount}")
+                self.log.info(f"[MSSQL]√执行成功，影响行数:{self.cursor.rowcount}")
                 return self.cursor.rowcount
         except Exception as e:
             self.conn.rollback()
-            print(e)
+            self.log.error(e)
 
     def __del__(self):
         if self.cursor:
             self.cursor.close()
         if self.conn:
             self.conn.close()
-        print('[MSSQL]全部执行完毕，关闭数据库连接！')
+        self.log.info('[MSSQL]全部执行完毕，关闭数据库连接！')
 
 
 def main():
     ms_infos = read_config()['MS_SQL_INFO']
+    sql_content = ms_infos.pop('ms_sql_text')
     ms_object = HandleSqlServer(**ms_infos)
-    sql_content = 'SELECT TOP(1000) [ID] ,[FID] ,[FEntryID] ,[TemplateType] ,[BillNo] ,[OrderCode] ,[SupplierName] ,[StockName] ,[Sku] ,[BigCode] FROM [QATest].[dbo].[QA_TestInspection_Template]'
     item_data = ms_object.execute_query(sql_content)
     for item in item_data:
         print(item)

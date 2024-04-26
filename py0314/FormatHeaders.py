@@ -12,7 +12,7 @@ from lxpy import copy_headers_dict
 header_rl = """
 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36 Edg/124.0.0.0
 X-Requested-With: XMLHttpRequest
-Cookie: ASP.NET_SessionId=zbgisv041bnxktotlx1dcn2t
+Cookie: ASP.NET_SessionId=thtglavtj3dhpsnpmn5cerds
 Content-Type: application/x-www-form-urlencoded; charset=UTF-8
 """
 
