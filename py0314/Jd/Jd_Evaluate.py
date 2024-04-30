@@ -7,11 +7,11 @@ from lxml import etree
 from py0314.NotifyMessage import read_config
 
 
-class Jd_Evaluate:
+class JdEvaluate:
     """docstring for Jd_Evaluate"""
 
     def __init__(self):
-        super(Jd_Evaluate, self).__init__()
+        super(JdEvaluate, self).__init__()
         self.comment_url = 'https://api.m.jd.com/?appid=item-v3&functionId=pc_club_skuProductPageComments&client=pc' \
                            '&clientVersion=1.0.0&t={}&loginType=3&productId={' \
                            '}&score=0&sortType=5&page=0&pageSize=15&isShadowSku=0&fold=1 '
@@ -167,5 +167,5 @@ class Jd_Evaluate:
 
 
 if __name__ == '__main__':
-    jd_ev = Jd_Evaluate()
+    jd_ev = JdEvaluate()
     jd_ev.run()

@@ -54,8 +54,9 @@ class ReadExcelChenShi:
     def __colse(self):
         self.workbook.close()
 
-    if __name__ == '__main__':
-        file_path = r'C:\Users\hulinhui779\Downloads\Documents\订单批量出库导入模板.xlsx'
-        excel = ReadExcelChenShi(file_path)
-        print(excel)
-        print(excel.read_data())
+
+if __name__ == '__main__':
+    file_path = r'C:\Users\hulinhui779\Downloads\Documents\订单批量出库导入模板.xlsx'
+    excel = ReadExcelChenShi(file_path)
+    print(excel)
+    print(excel.read_data())

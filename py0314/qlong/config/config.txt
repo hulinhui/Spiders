@@ -140,17 +140,21 @@ export Ray_Serilog__WriteTo__5__Args__webHookUrl='https://oapi.dingtalk.com/robo
 
 
 #可口可乐吧
-export Coca='MP 8b9e8140fb484798add19b58d5ebd67f@MP 287c3a0791064b279ed0fce80e0bdfe6'
+export Coca='MP 54652146ff2540798150526243009a31@MP f916aaae76b64be68cc11ad107a269ed'
 
 #杰士邦安全福利社
 export jsbaxfls='uI6EWVjaQ-ACp9LLnJvkdWII9owvzm2PijEueW_2IowP0I5MJYzIDbeKsIBbXhCi&An3kHPRCgCR8ryg-avPEY4Yl-l9SV_1xOzfApSO7Yx8CVsYqmfm86WXjN6ulhB2D'
 
 #好人家美味生活馆(&链接)
-export hrjmwshg='8099f9b86d524b1fde703086dc8d84f435e435d10671ae29e0caaaca07d4d663d37ceff2ad8d6f8f249fca86d24c8071&645a67732f51f67be1c1af1045053a78a3d4b5bda08e360a573936c01363e0703eaa474709df219d46274fb532b6b76f'
+export hrjmwshg='645a67732f51f67be1c1af1045053a78af6eb0e288ed528d1ab2572476cd0fac009a101bee2b3be11f8e54c7bd5dd0fd&8099f9b86d524b1fde703086dc8d84f4e0d8b77a80e1031ef9a0752bd22ed0c931677bb91611c966233b7d19cffc23a5'
 
 #得物
 export dewuCK="eyJhbGciOiJSUzI1NiJ9.eyJpYXQiOjE3MTE2OTIwNjEsImV4cCI6MTc0MzIyODA2MSwiaXNzIjoiMzQwNTU3NjE2ZmI1NGMxNCIsInN1YiI6IjM0MDU1NzYxNmZiNTRjMTQiLCJ1dWlkIjoiMzQwNTU3NjE2ZmI1NGMxNCIsInVzZXJJZCI6MjIxMzgxNDQyNiwiaXNHdWVzdCI6ZmFsc2UsIlNLIjoiOU9vTEZhRFlVVGhad09uVG1xdjdselZZU3JQcnhJVEF2Q1dWaGs1V09Qb2NubEY1NmNleGJaVEdRMjA5akZ6eFZNN2xhaDdma0xGdXNnWlBYT3FDMUFvNmtjMXoifQ.p85i_s4OmiaP-v7r8x7lPuJ_IMt4nHbwQbIJ1B9dFq9c4h1Oxf0WyNCtgVoWiKV_p4_0pB3Z5nQqzs5tDrZfP04b7K-6qHJ56pcoH2uiUPV-UWgRZfe0nr5Xf-xkoZBM6qvalk7GfTbIXmIuYFxwLgQ1L-qZxkqerbLAmHezbW8PlLNIhCgE9LQU1AWhc8dE8Nrx60BuoWB_WXVt-uf3GCN6R9E0YjNL2bmd7qZO1gB12TxFaYy4EiXRcI9t_Tgl1fBTM6VTGb-ILN287atag8Jt7yFuOVGf72rFDyyX4C0GS6MAOwt2vz-Om0takooVVu45gvVM38Ewyu6EjXy-OA#d41d8cd9|2213814426|1711692061|423be20594ecc44c"
 export dewuUA="Mozilla/5.0 (Linux; Android 12; M2011K2C Build/SKQ1.211006.001; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/95.0.4638.74 Mobile Safari/537.36/duapp/5.26.2(android;12)"
+export dewu_x_auth_token='Bearer eyJhbGciOiJSUzI1NiJ9.eyJpYXQiOjE3MTE2OTIwNjEsImV4cCI6MTc0MzIyODA2MSwiaXNzIjoiMzQwNTU3NjE2ZmI1NGMxNCIsInN1YiI6IjM0MDU1NzYxNmZiNTRjMTQiLCJ1dWlkIjoiMzQwNTU3NjE2ZmI1NGMxNCIsInVzZXJJZCI6MjIxMzgxNDQyNiwiaXNHdWVzdCI6ZmFsc2UsIlNLIjoiOU9vTEZhRFlVVGhad09uVG1xdjdselZZU3JQcnhJVEF2Q1dWaGs1V09Qb2NubEY1NmNleGJaVEdRMjA5akZ6eFZNN2xhaDdma0xGdXNnWlBYT3FDMUFvNmtjMXoifQ.p85i_s4OmiaP-v7r8x7lPuJ_IMt4nHbwQbIJ1B9dFq9c4h1Oxf0WyNCtgVoWiKV_p4_0pB3Z5nQqzs5tDrZfP04b7K-6qHJ56pcoH2uiUPV-UWgRZfe0nr5Xf-xkoZBM6qvalk7GfTbIXmIuYFxwLgQ1L-qZxkqerbLAmHezbW8PlLNIhCgE9LQU1AWhc8dE8Nrx60BuoWB_WXVt-uf3GCN6R9E0YjNL2bmd7qZO1gB12TxFaYy4EiXRcI9t_Tgl1fBTM6VTGb-ILN287atag8Jt7yFuOVGf72rFDyyX4C0GS6MAOwt2vz-Om0takooVVu45gvVM38Ewyu6EjXy-OA'
+export dewu_sk='d41d8cd9|2213814426|1711692061|423be20594ecc44c'
+export dewu_user_agent='Mozilla/5.0 (Linux; Android 12; M2011K2C Build/SKQ1.211006.001; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/95.0.4638.74 Mobile Safari/537.36/duapp/5.26.2(android;12)'
+
 
 #蜜雪冰城
 export mxbc_data='eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ3eF8xNDQ5MTA1MjAxNzM4OTQ4NjExIiwiaWF0IjoxNzExNjc3OTM4fQ.BpPdE1xvnGedL-iYlaDtWoOcCYVM6MBNnASfHOeomzVDZA80c3Ob0PmUE-kjXuYQ3BNaIbN2LtJWE3vsfZJjIw@eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ3eF8xNjE2MzM1MTI1NDUxMzU4MjEwIiwiaWF0IjoxNzExNjgzNDk0fQ.0o9QNrcfHVWqysq734l66bG7toqelxwDNJ6rN39ZU9o7PalYV4eXeODqmKG8wbJuBmuUsdm72A78RDRDQQLeog'
@@ -160,8 +164,8 @@ export mxbc_data='eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ3eF8xNDQ5MTA1M
 export cbd_ck='17620387339#1711172383|cPsxbon2GB7PYI8i.cvLeynaZfWjw/iCR3FrgbIwM12LrpQMpYR4feF0JU4wxOBIt5XYucNHYMWnBJ5P+ICl7HoYGGB1/wOj+H39oxg==.b31a4fe80854cbdd'
 
 #农夫山泉
-export nfsqCookie='6ab48e3d1c5449b593a1dedd2f035449822bbc42eb4e435d93a4e3698252e69c
-da5bd42555e4401db665abb2a76e95cbea977c8190c34be8a48b5a502595a39a'
+export nfsqCookie='1518d6cb5f4541c289bb33de02fffacb7c1d98a878e54ddb83627a7ff9298423
+247d261f79b745a49bf62d9e67da45f42a4b06ba368441d5bd6ac0ecbfd991b2'
 
 
 #胖乖生活
@@ -220,7 +224,7 @@ export JUEJIN_USER_INFO='{"receive_name":"胡林辉","receive_address":"广东�
 export ddgyck='Z42ZWWLXEFKPXLCOPKDAW6F6HELARIWYNX3BJHLC2MV7W67YPVJA1220465@EJZZ6B2J6EZQAIWS46SKMHBCKSTCXFXP4U7YJUDBSPAESKN62THQ122257a'
 
 ##康师傅畅饮社
-export yml_ksf_data='eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJVU0VSX0lEIjoiNjg4MjE0NTExMjAwNTM0OTM3Ny1XRUIiLCJleHAiOjE3MTM0OTIyMjN9.jNTbnaNDjkgPqFxY3TgB7XavFtlCLcgZqx7cFX3S2B4'
+export yml_ksf_data='eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJVU0VSX0lEIjoiNjg4MjE0NTExMjAwNTM0OTM3Ny1XRUIiLCJleHAiOjE3MTQwOTk2MjR9.waDFq4VW5Xrw5oNYcR1yuvxXTPLrAlFdfMSS4Hx8vtk'
 
 ##联通签到
 export ltphone='17620387339'
@@ -293,7 +297,7 @@ export kafufeng='3d2ad24992eeec7c64cd6e9095fe9c7d&42265cbfcc55da85d0e017fa15b565
 export kfh_data='3d2ad24992eeec7c64cd6e9095fe9c7d@42265cbfcc55da85d0e017fa15b565c8'
 
 ##广汽传祺 v2.01[next.gacmotor.com域名下任意包的header里面的apptoken(app)或token(小程序),填到变量gqcqCookie里,多账号换行或&或@隔开]
-export gqcqCookie="AT-187778-S7niFE3wflJk2ugv3QASMofJmResKgBSOaz@AT-188402-jDlYM1zkDpWsrlkH2xe3XRMTmwdPS1ddKCO"
+export gqcqCookie="AT-345548-dv5d0JQshSGufBZCVGUD1pA0eLstsXW2otp@AT-347992-TcsXCTDfOEBrQYmqsUUdAr5p5WVLWGZcIeF"
 
 
 ##B站天选时刻填写地址
