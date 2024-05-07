@@ -9,13 +9,22 @@ def get_server_info(filename=None):
         yaml_path = os.path.join(dir_path, 'serverinfo.yaml')
     else:
         yaml_path = filename
-    with open(yaml_path, encoding='utf-8') as fp:
-        result = fp.read()
-        dict_data = yaml.load(result, Loader=yaml.RoundTripLoader)
-        return dict_data
+    data = save_read_file(yaml_path)
+    return data
 
 
-def modfiy_file(ssh, info):
+def save_read_file(yaml_path, yaml_data=None, is_read=True):
+    if is_read:
+        with open(yaml_path, encoding='utf-8') as fp:
+            result = fp.read()
+            dict_data = yaml.load(result, Loader=yaml.RoundTripLoader)
+            return dict_data
+    else:
+        with open(yaml_path, 'w', encoding='utf-8') as fp:
+            yaml.dump(yaml_data, fp, Dumper=yaml.RoundTripDumper, allow_unicode=True)
+
+
+def modify_file(ssh, info):
     local_path = info['path'][0]
     file_name = os.path.basename(local_path)
     proxy_info = get_server_info(local_path)
@@ -28,8 +37,7 @@ def modfiy_file(ssh, info):
         proxy_info['changeRequest'][0]['proxy'] = 'proxy[巨量],proxy[yyy],proxy[携趣]'
         ssh.logger.info(f'修改前代理为：{proxy_text};')
         ssh.logger.info('修改后代理为:proxy[巨量],proxy[yyy],proxy[携趣];')
-    with open(local_path, 'w', encoding='utf-8') as fp:
-        yaml.dump(proxy_info, fp, Dumper=yaml.RoundTripDumper, allow_unicode=True)
+    save_read_file(local_path, proxy_info, is_read=False)
     ssh.logger.info(f'本地文件{file_name}:内容修改成功！')
     return file_name
 
@@ -40,7 +48,7 @@ def main():
     # 获取服务器对象
     ssh = SshClient(**server_info)
     # 修改本地文件,返回文件名
-    file_name = modfiy_file(ssh, server_info)
+    file_name = modify_file(ssh, server_info)
     # 连接服务器
     if ssh.ssh_login() == 1000:
         ssh.logger.info('主机连接成功！！！')
