@@ -1,12 +1,15 @@
 import re
 
 import openpyxl
+from openpyxl.styles import Alignment
 import os
 
 
 class ProbationExcel:
     def __init__(self, path, name=None):
         self.file_path = path
+        self.start_row = 5
+        self.end_cols = 9
         self.workbook, self.sheet = self.__open_excel(name)
 
     def __str__(self):
@@ -70,12 +73,53 @@ class ProbationExcel:
         except Exception:
             print('非法字符，跳过不保存')
 
-    def run(self, min_row, max_col, is_write=False):
-        is_have_plan = True
-        for index, row_value in enumerate(self.sheet.iter_rows(min_row=min_row,
-                                                               max_col=max_col,
+    def add_weekly_task(self):
+        row_no = 0
+        for index, row_value in enumerate(self.sheet.iter_rows(min_row=self.start_row,
+                                                               max_col=self.end_cols,
                                                                values_only=True), 0):
-            index += min_row
+            index += self.start_row
+            if any(row_value[2:6]):
+                continue
+            row_no += index
+            break
+        week_task_list = self.add_task_list(task_num=4)
+        self.insert_data(row_no, week_task_list)
+        self.workbook.save(self.file_path)
+        self.__close()
+
+    @staticmethod
+    def add_task_list(task_num):
+        day_num = 1
+        week_task_list = []
+        while day_num <= task_num:
+            week_text = input(f'请输入第几周(格式：第n周)') if day_num == 1 else None
+            task_text = input(f'请输入第{day_num}天的工作计划:')
+            done_text = input(f'请输入第{day_num}天的达标要求:') if day_num == 1 else None
+            start_text = input(f'请输入第{day_num}天的开始时间:')
+            end_start = input(f'请输入第{day_num}天的完成时间:')
+            week_task_list.append([week_text, task_text, done_text, start_text, end_start])
+            day_num += 1
+        return week_task_list
+
+    def insert_data(self, row_no, data):
+        rows = None
+        for data_row, value_list in enumerate(data, 0):  # 数据的行数、数据列表
+            rows = row_no + data_row
+            for cols, value in enumerate(value_list, 2):  # 第3列开始插入数据
+                self.sheet.cell(row=rows, column=cols, value=value)
+                self.sheet.cell(row=rows, column=cols).alignment = Alignment(horizontal='center', vertical='center')
+            print(f'第{rows}行任务添加成功！')
+        self.sheet.merge_cells(f'B{row_no}:B{rows}')
+        self.sheet.merge_cells(f'D{row_no}:D{rows}')
+        print('本周任务添加成功！')
+
+    def run(self, is_write=False):
+        is_have_plan = True
+        for index, row_value in enumerate(self.sheet.iter_rows(min_row=self.start_row,
+                                                               max_col=self.end_cols,
+                                                               values_only=True), 0):
+            index += self.start_row
             if not any(row_value[2:6]) or row_value[6]:
                 continue
             self.read_data(row_value)
@@ -92,8 +136,13 @@ class ProbationExcel:
         self.workbook.close()
 
 
-if __name__ == '__main__':
-    file_path = r'\\Filesvr\综合支持中心\信息管理部\周工作任务\07 测试组\06 胡林辉\胡林辉-试用期工作计划表.xlsx'
+def main():
+    file_path = r'D:\Downloads\document\胡林辉-试用期工作计划表.xlsx'
     excel = ProbationExcel(file_path)
     excel.user_info_tips()
-    excel.run(5, 9)
+    excel.add_weekly_task()
+    excel.run()
+
+
+if __name__ == '__main__':
+    main()

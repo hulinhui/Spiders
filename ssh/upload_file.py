@@ -1,0 +1,58 @@
+import os
+from ruamel import yaml
+from ssh.ssh_connect import SshClient
+
+
+def get_server_info(filename=None):
+    if filename is None:
+        dir_path = os.path.dirname(__file__)
+        yaml_path = os.path.join(dir_path, 'serverinfo.yaml')
+    else:
+        yaml_path = filename
+    with open(yaml_path, encoding='utf-8') as fp:
+        result = fp.read()
+        dict_data = yaml.load(result, Loader=yaml.RoundTripLoader)
+        return dict_data
+
+
+def modfiy_file(ssh, info):
+    local_path = info['path'][0]
+    file_name = os.path.basename(local_path)
+    proxy_info = get_server_info(local_path)
+    proxy_text = proxy_info['changeRequest'][0]['proxy']
+    if proxy_text and len(proxy_text.split(',')) > 1:
+        proxy_info['changeRequest'][0]['proxy'] = 'proxy[星空]'
+        ssh.logger.info(f'修改前代理为：{proxy_text};')
+        ssh.logger.info('修改后代理为:proxy[星空];')
+    else:
+        proxy_info['changeRequest'][0]['proxy'] = 'proxy[巨量],proxy[yyy],proxy[携趣]'
+        ssh.logger.info(f'修改前代理为：{proxy_text};')
+        ssh.logger.info('修改后代理为:proxy[巨量],proxy[yyy],proxy[携趣];')
+    with open(local_path, 'w', encoding='utf-8') as fp:
+        yaml.dump(proxy_info, fp, Dumper=yaml.RoundTripDumper, allow_unicode=True)
+    ssh.logger.info(f'本地文件{file_name}:内容修改成功！')
+    return file_name
+
+
+def main():
+    # 获取服务器信息及命令、上传文件路径
+    server_info = get_server_info()
+    # 获取服务器对象
+    ssh = SshClient(**server_info)
+    # 修改本地文件,返回文件名
+    file_name = modfiy_file(ssh, server_info)
+    # 连接服务器
+    if ssh.ssh_login() == 1000:
+        ssh.logger.info('主机连接成功！！！')
+        # 上传
+        ssh.sftp_put_file(file_name)
+        # 执行命令
+        ssh.ssh_execute_command()
+        # 退出
+        ssh.ssh_logout()
+    else:
+        ssh.logger.error("主机连接失败")
+
+
+if __name__ == '__main__':
+    main()
