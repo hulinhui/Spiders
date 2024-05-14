@@ -9,6 +9,18 @@
 
 from lxpy import copy_headers_dict
 
+headers_52="""
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7
+Accept-Encoding: gzip, deflate, br, zstd
+Accept-Language: zh-CN,zh;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+Content-Type: application/x-www-form-urlencoded
+Connection: keep-alive
+Cookie: htVC_2132_connect_is_bind=1; KF4=iuH00U; htVC_2132_smile=1D1; htVC_2132_ignore_rate=1; htVC_2132_atarget=1; wzws_sessionid=gWU5NWZiOKBmQxLxgDExNy42MS4xMDMuNjiCZGIxY2Fh; htVC_2132_seccodecSmvA=7066314.a5ba6fa2574ae2fd5a; htVC_2132_saltkey=yxXBgLXX; htVC_2132_lastvisit=1715663091; htVC_2132_viewid=tid_98585; htVC_2132_seccodecSp3d=7066445.f55047abb4016ac54d; htVC_2132_seccodecS=7066447.3fff0f35628d90b3e8; htVC_2132_con_request_uri=https%3A%2F%2Fwww.52pojie.cn%2Fconnect.php%3Fmod%3Dlogin%26op%3Dcallback%26referer%3Dhttps%253A%252F%252Fwww.52pojie.cn%252Fthread-98585-1-1.html; htVC_2132_client_created=1715671942; htVC_2132_client_token=C970DAA7E0CFDA04CA05118136920E69; htVC_2132_ulastactivity=1715671942%7C0; htVC_2132_auth=0195UPS2bKh%2FPPwtlKYZ7udf1FrhYw0OfMWAa4ejPrBkb4CXU%2B8oGLgnBy225CxjKglz%2B3gFPZ2k37QHQgV1jzPPcZsT; htVC_2132_connect_login=1; htVC_2132_connect_uin=C970DAA7E0CFDA04CA05118136920E69; htVC_2132_stats_qc_login=3; htVC_2132_sid=0; htVC_2132_lastcheckfeed=2224404%7C1715671943; htVC_2132_st_p=2224404%7C1715671946%7C561aa1683ecf97f1257e7ccb0439df72; htVC_2132_noticonf=2224404D1D3_3_1; htVC_2132_visitedfid=16D13; htVC_2132_st_t=2224404%7C1715671955%7C12331d0b6119e098016374f85e11d61d; htVC_2132_forum_lastvisit=D_16_1715671955; htVC_2132_lastact=1715672368%09plugin.php%09
+Host: www.52pojie.cn
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36 Edg/125.0.0.0
+"""
+
+
 header_rl = """
 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36 Edg/124.0.0.0
 X-Requested-With: XMLHttpRequest
