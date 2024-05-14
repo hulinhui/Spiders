@@ -13,6 +13,20 @@ def get_server_info(filename=None):
     return data
 
 
+def execute_put_file(obj, server_info, put_flag=True):
+
+    if put_flag:
+        # 修改本地文件,返回文件名
+        file_name = modify_file(obj, server_info)
+        # 上传
+        obj.sftp_put_file(file_name)
+        # 执行命令
+        obj.ssh_execute_command()
+    else:
+        # 执行命令
+        obj.ssh_execute_command()
+
+
 def save_read_file(yaml_path, yaml_data=None, is_read=True):
     if is_read:
         with open(yaml_path, encoding='utf-8') as fp:
@@ -47,15 +61,10 @@ def main():
     server_info = get_server_info()
     # 获取服务器对象
     ssh = SshClient(**server_info)
-    # 修改本地文件,返回文件名
-    file_name = modify_file(ssh, server_info)
     # 连接服务器
     if ssh.ssh_login() == 1000:
         ssh.logger.info('主机连接成功！！！')
-        # 上传
-        ssh.sftp_put_file(file_name)
-        # 执行命令
-        ssh.ssh_execute_command()
+        execute_put_file(ssh, server_info, put_flag=True)
         # 退出
         ssh.ssh_logout()
     else:
