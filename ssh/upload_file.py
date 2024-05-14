@@ -1,5 +1,5 @@
 import os
-from ruamel import yaml
+from ruamel import yaml as ryaml
 from ssh.ssh_connect import SshClient
 
 
@@ -17,11 +17,11 @@ def save_read_file(yaml_path, yaml_data=None, is_read=True):
     if is_read:
         with open(yaml_path, encoding='utf-8') as fp:
             result = fp.read()
-            dict_data = yaml.load(result, Loader=yaml.RoundTripLoader)
+            dict_data = ryaml.load(result, Loader=ryaml.RoundTripLoader)
             return dict_data
     else:
         with open(yaml_path, 'w', encoding='utf-8') as fp:
-            yaml.dump(yaml_data, fp, Dumper=yaml.RoundTripDumper, allow_unicode=True)
+            ryaml.dump(yaml_data, fp, Dumper=ryaml.RoundTripDumper, allow_unicode=True, default_flow_style=True)
 
 
 def modify_file(ssh, info):
