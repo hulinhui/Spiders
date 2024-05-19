@@ -95,7 +95,6 @@ class Pojie:
         data_response = self.get_response(url)
         score_url = self.get_score_url(data_response)
         score_data = self.get_score_data(data_response)
-        print(score_data)
         if not (score_url and score_data):
             self.logger.info('评分参数获取失败！')
             return
@@ -123,7 +122,6 @@ class Pojie:
     def send_comment(self, response):
         comment_url = self.get_comment_url(response)
         comment_data = self.get_comment_data(response)
-        print(comment_data)
         comment_response = self.get_response(comment_url, method='POST', data=comment_data)
         comment_text = comment_response.text
         if 'succeedhandle_fastpost' in comment_text:
