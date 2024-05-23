@@ -89,6 +89,31 @@ class Pojie:
                      f'&handlekey={params_list[0]}&inajax=1&ajaxtarget=fwin_content_{params_list[0]}'
         return params_url, post_title
 
+    def get_sign_url(self, response):
+        sign_tuple = ('div#um > p:nth-of-type(2) > a:nth-of-type(1)', 'href')
+        text = self.parse_html(response, sign_tuple)
+        url_text = f'{self.base_url}{text}'
+        if url_text.find('apply') < 0:
+            self.logger.info('获取签到链接失败！')
+            return
+        sign_url = url_text.replace('apply', 'draw')
+        return sign_url
+
+    def get_sign_status(self, response):
+        img_tuple = ('div#um > p:nth-of-type(2) img', 'src')
+        img_url = self.parse_html(response, img_tuple)
+        sign_status = True if img_url.find('qds', -7) > 0 else False
+        return sign_status
+
+    def send_sign(self, detail_response):
+        sign_status = self.get_sign_status(detail_response)
+        if not sign_status:
+            self.logger.info('今日已签到！')
+            return
+        sign_url = self.get_sign_url(detail_response)
+        sign_response = self.get_response(sign_url)
+        print(sign_response.text)
+
     def send_score(self, detail_response):
         url, title = self.detail_info(detail_response)
         self.logger.info(f'免费评分：{title}')
@@ -133,6 +158,7 @@ class Pojie:
     def run(self):
         post_url = self.post_info()  # 详情页url
         detail_response = self.get_response(post_url)  # 详情页响应数据
+        self.send_sign(detail_response)
         self.send_score(detail_response)  # 免费评分
         self.send_comment(detail_response)  # 评论文章
 

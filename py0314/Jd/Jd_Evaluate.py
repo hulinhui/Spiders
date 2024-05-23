@@ -12,9 +12,8 @@ class JdEvaluate:
 
     def __init__(self):
         super(JdEvaluate, self).__init__()
-        self.comment_url = 'https://api.m.jd.com/?appid=item-v3&functionId=pc_club_skuProductPageComments&client=pc' \
-                           '&clientVersion=1.0.0&t={}&loginType=3&productId={' \
-                           '}&score=0&sortType=5&page=0&pageSize=15&isShadowSku=0&fold=1 '
+        self.comment_url = 'https://api.m.jd.com/?appid=item-v3&functionId=pc_club_productPageComments&client=pc' \
+                           '&clientVersion=1.0.0&t={}&loginType=3&body={}'
         self.headers = {
             'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) '
                           'Chrome/103.0.5060.66 Safari/537.36 Edg/103.0.1264.44',
@@ -79,10 +78,19 @@ class JdEvaluate:
         else:
             return []
 
+    @staticmethod
+    def get_encode_body(product_id):
+        body_dcit = {"productId": product_id, "score": 0, "sortType": 5, "page": 0, "pageSize": 10, "isShadowSku": 0,
+                     "fold": 1,
+                     "bbtf": "", "shield": ""}
+        body_text = quote(json.dumps(body_dcit).replace(' ', ''))
+        return body_text
+
     def collection_comment(self, product_id):
         comment_list = []
         tamp_times = int(round(time.time() * 1000))
-        response = self.get_data(self.comment_url.format(tamp_times, product_id))
+        body_text = self.get_encode_body(product_id)
+        response = self.get_data(self.comment_url.format(tamp_times, body_text))
         comment_data = self.processing_data(response)
         if comment_data:
             for data in comment_data:
