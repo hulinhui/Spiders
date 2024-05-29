@@ -111,8 +111,9 @@ class Pojie:
             self.logger.info('今日已签到！')
             return
         sign_url = self.get_sign_url(detail_response)
-        sign_response = self.get_response(sign_url)
-        print(sign_response.text)
+        # sign_response = self.get_response(sign_url)
+        # print(sign_response.text)
+        print(sign_url)
 
     def send_score(self, detail_response):
         url, title = self.detail_info(detail_response)

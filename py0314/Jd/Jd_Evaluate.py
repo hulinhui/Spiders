@@ -13,7 +13,7 @@ class JdEvaluate:
     def __init__(self):
         super(JdEvaluate, self).__init__()
         self.comment_url = 'https://api.m.jd.com/?appid=item-v3&functionId=pc_club_productPageComments&client=pc' \
-                           '&clientVersion=1.0.0&t={}&loginType=3&body={}'
+                           '&clientVersion=1.0.0&t={}&body={}'
         self.headers = {
             'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) '
                           'Chrome/103.0.5060.66 Safari/537.36 Edg/103.0.1264.44',
@@ -31,7 +31,9 @@ class JdEvaluate:
             try:
                 response = requests.get(url, headers=self.headers)
                 response.raise_for_status()
-                response.encoding = response.apparent_encoding
+                #评价接口数据智能识别编码错误，故去掉设置编码
+                # print(response.apparent_encoding)
+                # response.encoding = 'UTF-8'
                 return response
             except Exception as e:
                 print(e)
@@ -64,6 +66,7 @@ class JdEvaluate:
     def processing_data(data):
         if data:
             result_dict = json.loads(data.text)
+            print(result_dict)
             if 'comments' in result_dict and result_dict.get('comments'):
                 return result_dict['comments']
             else:
@@ -176,4 +179,5 @@ class JdEvaluate:
 
 if __name__ == '__main__':
     jd_ev = JdEvaluate()
+    # jd_ev.collection_comment('10063576559287')
     jd_ev.run()
