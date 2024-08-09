@@ -9,17 +9,15 @@
 
 from lxpy import copy_headers_dict
 
-headers_52="""
+headers_52 = """
 Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7
 Accept-Encoding: gzip, deflate, br, zstd
 Accept-Language: zh-CN,zh;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
 Content-Type: application/x-www-form-urlencoded
-Connection: keep-alive
-Cookie: htVC_2132_connect_is_bind=1; KF4=iuH00U; htVC_2132_smile=1D1; htVC_2132_ignore_rate=1; htVC_2132_atarget=1; wzws_sessionid=gWU5NWZiOKBmQxLxgDExNy42MS4xMDMuNjiCZGIxY2Fh; htVC_2132_seccodecSmvA=7066314.a5ba6fa2574ae2fd5a; htVC_2132_saltkey=yxXBgLXX; htVC_2132_lastvisit=1715663091; htVC_2132_viewid=tid_98585; htVC_2132_seccodecSp3d=7066445.f55047abb4016ac54d; htVC_2132_seccodecS=7066447.3fff0f35628d90b3e8; htVC_2132_con_request_uri=https%3A%2F%2Fwww.52pojie.cn%2Fconnect.php%3Fmod%3Dlogin%26op%3Dcallback%26referer%3Dhttps%253A%252F%252Fwww.52pojie.cn%252Fthread-98585-1-1.html; htVC_2132_client_created=1715671942; htVC_2132_client_token=C970DAA7E0CFDA04CA05118136920E69; htVC_2132_ulastactivity=1715671942%7C0; htVC_2132_auth=0195UPS2bKh%2FPPwtlKYZ7udf1FrhYw0OfMWAa4ejPrBkb4CXU%2B8oGLgnBy225CxjKglz%2B3gFPZ2k37QHQgV1jzPPcZsT; htVC_2132_connect_login=1; htVC_2132_connect_uin=C970DAA7E0CFDA04CA05118136920E69; htVC_2132_stats_qc_login=3; htVC_2132_sid=0; htVC_2132_lastcheckfeed=2224404%7C1715671943; htVC_2132_st_p=2224404%7C1715671946%7C561aa1683ecf97f1257e7ccb0439df72; htVC_2132_noticonf=2224404D1D3_3_1; htVC_2132_visitedfid=16D13; htVC_2132_st_t=2224404%7C1715671955%7C12331d0b6119e098016374f85e11d61d; htVC_2132_forum_lastvisit=D_16_1715671955; htVC_2132_lastact=1715672368%09plugin.php%09
+Cookie: wzws_sessionid=oGax5G6CZGIxY2FhgTRjOWM3ZIAxMTMuOTEuMTQwLjMw; htVC_2132_saltkey=Ee7EkE3W; htVC_2132_lastvisit=1722913110; htVC_2132_lastact=1723173342%09plugin.php%09; htVC_2132_st_t=2224404%7C1723173169%7C3b8f56affaf04b20220e4b0fd8831536; htVC_2132_atarget=1; htVC_2132_forum_lastvisit=D_16_1723173169; htVC_2132_visitedfid=16; Hm_lvt_46d556462595ed05e05f009cdafff31a=1722934388; Hm_lpvt_46d556462595ed05e05f009cdafff31a=1723173329; HMACCOUNT=B7E09C3B1C4E99B9; htVC_2132_seccodecS=3793946.e8a71aaed1687107f4; htVC_2132_seccodecSzUg=3793947.28068221ccc097a9bd; htVC_2132_ulastactivity=1723173169%7C0; htVC_2132_auth=745b9Eo3TCPlaCgg9IcIncex%2BJLAqA0p3U%2Fsb4krZMlsA0HcJhGsTKzfdpVAcPygqa6L4oLB6CLgKwiIAHxfFRf60oUz; htVC_2132_lastcheckfeed=2224404%7C1723173302; htVC_2132_lip=113.91.140.30%2C1722934390; KF4=YU75vr; htVC_2132_sid=0; htVC_2132_connect_is_bind=1; htVC_2132_st_p=2224404%7C1723173316%7Cbd826a58b312c40522dc0fe8f787e516; htVC_2132_viewid=tid_1952768; htVC_2132_smile=1D1; htVC_2132_secqaaqS0=4303908.ac131ee24d06760161; htVC_2132_noticonf=2224404D1D3_3_1; htVC_2132_nofavfid=1; wzws_cid=4e3840062f4f1da6776e384d7289cffc0f6d669c4667a17a9579d7efdae147c5e80a1688705dc9b647957793ecdadd571528a32145d80bb8c8fe59a5f5556817551b12a6bf956ef57e5c6e00f6ad0aee; htVC_2132_checkpm=1
 Host: www.52pojie.cn
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36 Edg/125.0.0.0
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:127.0) Gecko/20100101 Firefox/127.0
 """
-
 
 header_rl = """
 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36 Edg/124.0.0.0
